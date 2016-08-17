@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<callback prefix="emberAf" postfix="Callback">
+  <function id="HAN_MESSAGE_DISPATCH_DATA_RECEIVED" name="Data Received" returnType="void">
+    <description>
+      This callback is called by the HAN Message Dispatch plugin whenever a message was received.
+    </description>
+    <arg name="data"        type="uint8_t *" description="Buffer containing the raw octets of the data." />
+    <arg name="dataLen"     type="uint16_t"  description="The length in octets of the data." />
+    <codeForStub />
+  </function>
+</callback>

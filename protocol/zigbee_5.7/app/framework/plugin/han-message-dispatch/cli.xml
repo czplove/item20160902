@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<cli>
+  <group id="plugin-han-message-dispatch" name="Plugin Commands: HAN Message Dispatch">
+    <description>
+      The reporting plugin contributes several CLI commands to the application framework to be used in creating and managing HAN Message Dispatch functionality on the device.
+    </description>
+  </group>
+  <command cli="plugin han-message-dispatch send" functionName="emAfPluginHanMessageDispatchCliSend" group="plugin-han-message-dispatch">
+    <description>
+      Send a message.
+    </description>
+    <arg name="dstEUI64"       type="IEEE_ADDRESS" />
+    <arg name="payload"        type="OCTET_STRING" />
+  </command>
+</cli>

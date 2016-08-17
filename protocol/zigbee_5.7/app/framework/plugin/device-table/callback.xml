@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<callback prefix="emberAf" postfix="Callback">
+  <function id="DEVICE_TABLE_STATE_CHANGE" name="StateChange" returnType="void">
+    <description>
+      This callback is called when a device's state changes.
+    </description>
+    <arg name="nodeId" type="EmberNodeId"/>
+    <arg name="state" type="uint8_t"/>
+    <codeForStub>
+    </codeForStub>
+  </function>
+   <function id="DEVICE_TABLE_CLEARED" name="Cleared" returnType="void">
+    <description>
+      This callback is called when a device table has been cleared.
+    </description>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="BIND_RESPONSE" name="BindResponse" returnType="void">
+  <description>
+    This callback is called when a device received a bind request.
+  </description>
+  <arg name="nodeId"   type="EmberNodeId"/>
+  <arg name="apsFrame" type="EmberApsFrame*"/>
+  <arg name="message"  type="uint8_t*"/>
+  <arg name="length"   type="uint16_t"/>
+  <codeForStub>
+  </codeForStub>
+  </function>
+  <function id="BINDING_TABLE_RESPONSE" name="BindingTableResponse" returnType="void">
+  <description>
+    This callback is called when a device received a binding table request.
+  </description>
+  <arg name="nodeId"   type="EmberNodeId"/>
+  <arg name="apsFrame" type="EmberApsFrame*"/>
+  <arg name="message"  type="uint8_t*"/>
+  <arg name="length"   type="uint16_t"/>
+  <codeForStub>
+  </codeForStub>
+  </function>
+</callback>

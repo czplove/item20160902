@@ -192,6 +192,8 @@ static void printBlockRequestInfo(const EmberAfOtaImageId* id,
                               id->firmwareVersion, 
                               maxDataSize, 
                               offset);
+
+  emberAfPluginOtaServerUpdateStartedCallback(id->manufacturerId, id->imageTypeId,id->firmwareVersion, maxDataSize, offset);
 }
 
 // This function is made non-static for the Page request code
@@ -244,6 +246,7 @@ uint8_t emAfOtaImageBlockRequestHandler(EmberAfImageBlockRequestCallbackStruct* 
                                                 &actualLength)
       || actualLength == 0) {
     status = EMBER_ZCL_STATUS_NO_IMAGE_AVAILABLE;
+    emberAfPluginOtaServerImageFailedCallback();
   }
 
   if (status != EMBER_ZCL_STATUS_SUCCESS) {
@@ -263,6 +266,8 @@ uint8_t emAfOtaImageBlockRequestHandler(EmberAfImageBlockRequestCallbackStruct* 
   emberAfPutInt8uInResp((uint8_t)actualLength);
   emberAfPutBlockInResp(data, actualLength);
   emberAfSetCommandEndpoints(serverEndpoint, callbackData->clientEndpoint);
+
+  emberAfPluginOtaServerBlockSentCallback((int8u)actualLength, callbackData->id->manufacturerId, callbackData->id->imageTypeId,callbackData->id->firmwareVersion);
 
   // We can't send more than 128 bytes in a packet so we can safely cast this
   // to a 1-byte number.
@@ -307,6 +312,7 @@ static void upgradeEndRequestHandler(EmberNodeId source,
   if (status == EMBER_ZCL_STATUS_SUCCESS) {
     if (goAhead) {
       constructUpgradeEndResponse(imageId, upgradeTime);
+      emberAfPluginOtaServerFinishedCallback(imageId->manufacturerId,imageId->imageTypeId,imageId->firmwareVersion, source, status);
       return;
 
     } else {

@@ -62,30 +62,154 @@ EmberEventControl emberAfPluginIasZoneClientStateMachineEventControl;
 
 //-----------------------------------------------------------------------------
 // Forward Declarations
-
 void readIasZoneServerAttributes(EmberNodeId nodeId);
+void iasClientSaveCommand(); 
+void iasClientLoadCommand(); 
+void iasZoneServerPrint();
 
 //-----------------------------------------------------------------------------
 // Functions
+
+void emberAfIasZoneClusterClientInitCallback(uint8_t endpoint)
+{
+  emAfClearServers();
+  myEndpoint = endpoint;
+  iasClientLoadCommand();
+}
 
 void emAfClearServers(void)
 {
   MEMSET(emberAfIasZoneClientKnownServers, 0xFF, 
          sizeof(IasZoneDevice)
          * EMBER_AF_PLUGIN_IAS_ZONE_CLIENT_MAX_DEVICES);
-
-}
-
-void emberAfIasZoneClusterClientInitCallback(uint8_t endpoint)
-{
-  emAfClearServers();
-  myEndpoint = endpoint;
 }
 
 static void clearState(void)
 {
   currentIndex = 0;
   iasZoneClientState = IAS_ZONE_CLIENT_STATE_NONE;
+}
+
+static void setServerZoneStatus(uint8_t serverIndex, uint16_t zoneStatus) {
+  emberAfIasZoneClientKnownServers[serverIndex].zoneStatus = zoneStatus;
+  iasClientSaveCommand();
+}
+
+static void setServerIeee(uint8_t serverIndex, uint8_t* ieeeAddress) {
+  MEMMOVE(emberAfIasZoneClientKnownServers[serverIndex].ieeeAddress, ieeeAddress, EUI64_SIZE);
+  iasClientSaveCommand();
+}
+
+static void clearServerIeee(uint8_t serverIndex) {
+  MEMSET(emberAfIasZoneClientKnownServers[serverIndex].ieeeAddress,
+       0xFF,
+       sizeof(IasZoneDevice));
+  iasClientSaveCommand();
+}
+
+static void setServerZoneState(uint8_t serverIndex, uint8_t zoneState) {
+  emberAfIasZoneClientKnownServers[serverIndex].zoneState = zoneState;
+  iasClientSaveCommand();
+}
+
+static void setServerEndpoint(uint8_t serverIndex, uint8_t endpoint) {
+  emberAfIasZoneClientKnownServers[serverIndex].endpoint = endpoint;
+  iasClientSaveCommand();
+}
+
+static void setServerZoneType(uint8_t serverIndex, uint16_t zoneType) {
+  emberAfIasZoneClientKnownServers[serverIndex].zoneType = zoneType;
+  iasClientSaveCommand();
+}
+
+static void setServerZoneId(uint8_t serverIndex, uint16_t zoneId) {
+  emberAfIasZoneClientKnownServers[serverIndex].zoneId = zoneId;
+  iasClientSaveCommand();
+}
+
+static void setCurrentIndex(uint8_t serverIndex) {
+  currentIndex = serverIndex;
+  iasClientSaveCommand();
+}
+
+static void setIasZoneClientState(uint8_t clientState) {
+  iasZoneClientState = clientState;
+  iasClientSaveCommand();
+}
+
+void iasZoneServerPrint() {
+  uint8_t i = 0;
+  for (i = 0 ; i < EMBER_AF_PLUGIN_IAS_ZONE_CLIENT_MAX_DEVICES; i++) {
+    emberAfCorePrint("\nindex: %x, Zone State: zoneId: %x, zoneStatus: %x, zoneState: %x, endpoint: %x, zoneType: %x, eui: ", i,
+                       emberAfIasZoneClientKnownServers[i].zoneId, 
+                       emberAfIasZoneClientKnownServers[i].zoneStatus,
+                       emberAfIasZoneClientKnownServers[i].zoneState,
+                       emberAfIasZoneClientKnownServers[i].endpoint,
+                       emberAfIasZoneClientKnownServers[i].zoneType);
+    uint8_t j;
+    for (j = 8; j > 0; j--) {
+      emberAfCorePrint("%X", emberAfIasZoneClientKnownServers[i].ieeeAddress[j-1]);
+    }
+  }
+};
+
+void iasClientSaveCommand() {
+  FILE *fp;
+  uint16_t i, j;
+
+  // save zone server list
+  fp = fopen("iaszone.txt", "w");
+  
+  for (i = 0 ; i < EMBER_AF_PLUGIN_IAS_ZONE_CLIENT_MAX_DEVICES; i++) {
+    if (emberAfIasZoneClientKnownServers[i].zoneId != 0xFF) {
+      fprintf(fp, "%x %x %x %x %x ", emberAfIasZoneClientKnownServers[i].zoneId, 
+                                     emberAfIasZoneClientKnownServers[i].zoneStatus,
+                                     emberAfIasZoneClientKnownServers[i].zoneState,
+                                     emberAfIasZoneClientKnownServers[i].endpoint,
+                                     emberAfIasZoneClientKnownServers[i].zoneType);
+      for (j = 0; j < 8; j++) {
+        fprintf(fp, "%x ", emberAfIasZoneClientKnownServers[i].ieeeAddress[j]);
+      }
+    }
+  }
+  // write something to mark the end
+  fprintf(fp, "ff");
+  fclose(fp);
+}
+
+void iasClientLoadCommand() {
+  FILE *fp;
+  uint16_t i, j; 
+
+  unsigned int data1, data2, data3, data4, data5;
+
+  fp = fopen("iaszone.txt", "r");
+
+  if (!fp) {
+    return;
+  }
+
+  for (i = 0 ; i < EMBER_AF_PLUGIN_IAS_ZONE_CLIENT_MAX_DEVICES && feof(fp) == false; i++) {
+    fscanf(fp, "%x ", &data1);
+    if (data1 != 0xff) {
+      fscanf(fp, "%x %x %x %x ", &data2, 
+                                    &data3,
+                                    &data4,
+                                    &data5);
+
+      emberAfIasZoneClientKnownServers[i].zoneId = (uint8_t) data1;
+      emberAfIasZoneClientKnownServers[i].zoneStatus = (uint16_t) data2;
+      emberAfIasZoneClientKnownServers[i].zoneState = (uint8_t) data3;
+      emberAfIasZoneClientKnownServers[i].endpoint = (uint8_t) data4;
+      emberAfIasZoneClientKnownServers[i].zoneType = (uint16_t) data5;
+
+      for (j = 0; j < 8; j++) {
+        fscanf(fp, "%x ", &data1);
+        emberAfIasZoneClientKnownServers[i].ieeeAddress[j] = (uint8_t) data1;
+      }
+    }
+  }
+  fclose(fp);
 }
 
 static uint8_t findIasZoneServerByIeee(uint8_t* ieeeAddress)
@@ -119,10 +243,12 @@ bool emberAfIasZoneClusterZoneStatusChangeNotificationCallback(uint16_t zoneStat
 {
   uint8_t serverIndex = findIasZoneServerByNodeId(emberAfCurrentCommand()->source);
   uint8_t status = EMBER_ZCL_STATUS_NOT_FOUND;
+
   if (serverIndex != NO_INDEX) {
     status = EMBER_ZCL_STATUS_SUCCESS;
-    emberAfIasZoneClientKnownServers[serverIndex].zoneStatus = zoneStatus;
+    setServerZoneStatus(serverIndex, zoneStatus);
 
+    emberAfPluginIASZoneClientContactCallback(zoneStatus);
     emberAfIasZoneClusterPrintln("Zone %d status change, 0x%2X from 0x%2X",
                                  zoneId,
                                  zoneStatus,
@@ -147,7 +273,7 @@ bool emberAfIasZoneClusterZoneEnrollRequestCallback(uint16_t zoneType,
   if (serverIndex != NO_INDEX) {
     responseCode = EMBER_ZCL_IAS_ENROLL_RESPONSE_CODE_SUCCESS;
     zoneId = serverIndex;
-    emberAfIasZoneClientKnownServers[serverIndex].zoneId = zoneId;
+    setServerZoneId(serverIndex, zoneId);
   }
   emberAfFillCommandIasZoneClusterZoneEnrollResponse(responseCode,
                                                      zoneId);
@@ -181,8 +307,8 @@ static uint8_t addServer(uint8_t* ieeeAddress)
     if (0 == MEMCOMPARE(emberAfIasZoneClientKnownServers[i].ieeeAddress, 
                         unsetEui64, 
                         EUI64_SIZE)) {
-      MEMMOVE(emberAfIasZoneClientKnownServers[i].ieeeAddress, ieeeAddress, EUI64_SIZE);
-      emberAfIasZoneClientKnownServers[i].endpoint = UNKNOWN_ENDPOINT;
+      setServerIeee(i, ieeeAddress);
+      setServerEndpoint(i, UNKNOWN_ENDPOINT); 
       return i;
     }
   }
@@ -192,9 +318,7 @@ static uint8_t addServer(uint8_t* ieeeAddress)
 static void removeServer(uint8_t* ieeeAddress)
 {
   uint8_t index = findIasZoneServerByIeee(ieeeAddress);
-  MEMSET(emberAfIasZoneClientKnownServers[index].ieeeAddress,
-         0xFF,
-         sizeof(IasZoneDevice));
+  clearServerIeee(index);
 }
 
 static EmberStatus sendCommand(EmberNodeId destAddress)
@@ -226,7 +350,7 @@ static void setCieAddress(EmberNodeId destAddress)
                                                         sizeof(writeAttributes));
   emberAfIasZoneClusterPrintln("Writing CIE Address to IAS Zone Server");
   if (EMBER_SUCCESS == sendCommand(destAddress)) {
-    iasZoneClientState = IAS_ZONE_CLIENT_STATE_SET_CIE_ADDRESS;
+    setIasZoneClientState(IAS_ZONE_CLIENT_STATE_SET_CIE_ADDRESS);
   }
 
 }
@@ -237,7 +361,7 @@ static void iasZoneClientServiceDiscoveryCallback(const EmberAfServiceDiscoveryR
       && result->zdoRequestClusterId == MATCH_DESCRIPTORS_REQUEST) {
       const EmberAfEndpointList* endpointList = (const EmberAfEndpointList *)result->responseData;
       if (endpointList->count > 0) {
-        emberAfIasZoneClientKnownServers[currentIndex].endpoint = endpointList->list[0];
+        setServerEndpoint(currentIndex, endpointList->list[0]);
         emberAfIasZoneClusterPrintln("Device 0x%2X supports IAS Zone Server",
                                      result->matchAddress);
         setCieAddress(result->matchAddress);
@@ -249,7 +373,7 @@ static void iasZoneClientServiceDiscoveryCallback(const EmberAfServiceDiscoveryR
 
 static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
 {
-  uint8_t endpointIndex = emberAfIndexFromEndpoint(myEndpoint);	
+  uint8_t endpointIndex = emberAfIndexFromEndpoint(myEndpoint); 
   uint16_t profileId = emberAfProfileIdFromIndex(endpointIndex);
   uint8_t serverIndex = addServer(ieeeAddress);
 
@@ -258,7 +382,7 @@ static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
     return;
   }
 
-  currentIndex = serverIndex;
+  setCurrentIndex(serverIndex);
 
   if (emberAfIasZoneClientKnownServers[serverIndex].endpoint != UNKNOWN_ENDPOINT) {
     // If a remote endpoint that you have already seen announces itself,
@@ -308,7 +432,7 @@ void readIasZoneServerAttributes(EmberNodeId nodeId)
                                                        iasZoneAttributeIds,
                                                        sizeof(iasZoneAttributeIds));
   if (EMBER_SUCCESS == sendCommand(nodeId)) {
-    iasZoneClientState = IAS_ZONE_CLIENT_STATE_READ_ATTRIBUTES;
+    setIasZoneClientState(IAS_ZONE_CLIENT_STATE_READ_ATTRIBUTES);
   }
 
 }
@@ -323,7 +447,7 @@ void readIasZoneServerCieAddress(EmberNodeId nodeId)
                                                        iasZoneAttributeIds,
                                                        sizeof(iasZoneAttributeIds));
   if (EMBER_SUCCESS == sendCommand(nodeId)) {
-    iasZoneClientState = IAS_ZONE_CLIENT_STATE_READ_CIE_ADDRESS;
+    setIasZoneClientState(IAS_ZONE_CLIENT_STATE_READ_CIE_ADDRESS);
   }
 
 }
@@ -345,6 +469,7 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
                                                               uint8_t * buffer,
                                                               uint16_t bufLen) 
 {
+  uint8_t zoneStatus, zoneType, zoneState; 
   if (clusterId == ZCL_IAS_ZONE_CLUSTER_ID
       && (iasZoneClientState == IAS_ZONE_CLIENT_STATE_READ_ATTRIBUTES
           || iasZoneClientState == IAS_ZONE_CLIENT_STATE_READ_CIE_ADDRESS)) {
@@ -367,8 +492,8 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
               // Too short, dump the message.
               return;
             }
-            emberAfIasZoneClientKnownServers[currentIndex].zoneStatus = (buffer[i]
-                                                                      + (buffer[i+1] << 8));
+            zoneStatus = (buffer[i] + (buffer[i+1] << 8));
+            setServerZoneStatus(currentIndex, zoneStatus);
             i += 2;
             break;
           case ZCL_ZONE_TYPE_ATTRIBUTE_ID:
@@ -376,8 +501,8 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
               // Too short, dump the message.
               return;
             }
-            emberAfIasZoneClientKnownServers[currentIndex].zoneType = (buffer[i]
-                                                                    + (buffer[i+1] << 8));
+            zoneType = (buffer[i] + (buffer[i+1] << 8));
+            setServerZoneType(currentIndex, zoneType);
             i += 2;
             break;
           case ZCL_ZONE_STATE_ATTRIBUTE_ID:
@@ -385,7 +510,8 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
               // Too short, dump the message
               return;
             }
-            emberAfIasZoneClientKnownServers[currentIndex].zoneState = buffer[i];
+            zoneState = buffer[i];
+            setServerZoneState(currentIndex, zoneState);
             i++;
             break;
           case ZCL_IAS_CIE_ADDRESS_ATTRIBUTE_ID: {

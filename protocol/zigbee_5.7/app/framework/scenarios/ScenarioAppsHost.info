@@ -3,6 +3,14 @@
 # Lovingly hand-crafted for any ISC files that live outside the purview of the
 # sample-apps-regenerate.pl auto-generation.
 
+HaGatewayReference {
+  name=HaGatewayReference
+  dir=zha/HaGatewayReference
+  isc=zha/HaGatewayReference/HaGatewayReferenceHost.isc
+  include=HaGatewayReference_callbacks.c
+  This is the reference HA Gateway application.  
+}
+
 SeSampleCommsHub {
   name=SeSampleCommsHub 
   dir=zse/SeSampleCommsHub
@@ -49,6 +57,14 @@ XncpHostSpi {
   isc=xncp/XncpHost/XncpHost.isc
   include=XncpHost_callbacks.c
   This is a demonstration of a host application that utilizes the features of the XNCP.
+}
+
+GpProxyUnix {
+  name=GpProxyUnix
+  dir=gp/GpProxyUnix
+  isc=gp/GpProxyUnix/GpProxyUnixHost.isc
+  include=GpProxyUnix_callbacks.c
+  This is a Proxy Basic application for a Green Power network.
 }
 
 Z3Gateway {

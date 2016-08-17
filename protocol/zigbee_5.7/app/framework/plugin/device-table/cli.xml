@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<cli>
+  <group id="plugin-device-table" name="Plugin Commands: Device Table">
+    <description>
+      The device table plugin demonstrates tracking devices as they join the 
+	  gateway's ZigBee network.  
+    </description>
+  </group>
+  <command cli="plugin device-table disc" functionName="deviceTableDiscoverPresentNodeCommand" group="plugin-device-table">
+    <description>
+      Bind inNodeId to outNodeId so the gateway will re-transmit any incoming command from device in to device out.
+    </description>
+    <arg name="nodeId" type="INT16U" description = "Node ID to discover." />
+  </command>
+  <command cli="plugin device-table send" functionName="deviceTableSendCommand" group="plugin-device-table">
+    <description>
+      Send to device in device table.
+    </description>
+    <arg name="index"   type="INT8U"  description = "Out Action data." />
+  </command>
+  <command cli="plugin device-table save" functionName="deviceTableSaveCommand" group="plugin-device-table">
+    <description>
+      Save the file.
+    </description>
+  </command>
+  <command cli="plugin device-table load" functionName="deviceTableLoadCommand" group="plugin-device-table">
+    <description>
+      Load the file.
+    </description>
+  </command>
+</cli>
