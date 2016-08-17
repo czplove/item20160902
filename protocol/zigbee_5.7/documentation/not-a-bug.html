@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html lang="en">
+<head>
+	<title>Not-A-Bug Description</title>
+</head>
+<body>
+<br>
+<h2>Not-a-Bug: Misleading behaviors that are intended behavior</h2>
+<br/>
+This page explains items that can be misleading behavior but are intended behaviors
+
+<ul>
+	<li>Broadcasts with empty payload are not heard through the loopback by the sending node </li>
+	<ul>
+		<li><b>Problem:</b> When sending a broadcast with no payload, the sending node does not get an emberIncomingMessageHandler() call for the broadcast loopback. </br>
+		Other devices in the network will receive the broadcast as expected.</li>
+		<li><b>Workaround:</b> add a 1 byte payload to a broadcast that the sender expects to hear through the broadcast loopback.</li>
+		<li><b>Case reference:</b> 7090</li>
+	</ul>
+	<li>When a node “hears” one of its own messages, the lastHopLqi and lastHopRssi parameters should have invalid values.</li>
+	<ul>
+		<li><b>Problem:</b> the last read values for LQI and RSSI are used when a device hears a message from itself</li>
+		<li><b>Workaround:</b> a device should not use LQI and RSSI values when the source address is itself.</li>
+		<li><b>Case reference:</b> 6207</li>
+	</ul>
+	<li>Parent could allow a device rejoining with an in-use ID to cause a node on the network to change its ID</li>
+	<ul>
+		<li><b>Problem:</b> If a child attempts a rejoin using a shortID that is already assigned to another device, the parent does not allow the rejoin and sends an ID conflict message causing <br/> 
+		the joined device using the same ID to change it's ID. </li>
+		<li><b>Workaround:</b> none, intended behavior.</li>
+		<li><b>Case reference:</b> 6790</li>
+	</ul>
+	<li>A route discovery is not initiated if a source routed unicast is sent with the EMBER_APS_OPTION_FORCE_ROUTE_DISCOVERY APS option</li>
+	<ul>
+		<li><b>Problem:</b>  the source route option takes precedence over the route discovery option. This could be setup to return an error, but the designed behavior is to allow the source route <br/>
+		option (the route being used is a many-to-one route) to take precedence over the route discovery option.</li>
+		<li><b>Workaround:</b> none, intended behavior</li>
+		<li><b>Case reference:</b> 7932</li>
+	</ul>
+	<li>Route Records are not sent to Trust Center from a router after it reboots</li>
+	<ul>
+		<li><b>Problem:</b> Route table data (such as the “concentrator” flag associated with route destinations that are concentrators) are stored in RAM, which is cleared upon reboot. <br/>
+		When the router reboots, it has no Many-to-one Route [MTOR] to the Trust Center [TC], so it has no reason to send Route Records when communicating to the TC. <br/>
+		Furthermore, routing to the TC becomes almost impossible because no known route exists; the exception to this is when the router in question is a neighbor of the TC, <br/>
+		in which case a one-hop route is inferred by the router once it finds the destination in its neighbor table. However, even in the inferred, one-hop route case, <br/>
+		there is no actual route entry and thus no concentrator status to be preserved yet, so no Route Record arrives for the TC to process.</li>
+		<li><b>Workaround:</b> While it is possible for the TC (assuming it’s running our EmberZNet PRO stack) to infer a similar one-hop route back to the router in the neighboring case and thus route its replies, <br/>
+		this won’t work for routers that are non-neighbors of the TC. In order to properly correct the situation for all routers, the TC needs to be doing Many-to-one Route Requests [MTORR] periodically <br/> to advertise its status as a concentrator. Once the MTORR is received by the router, a route table entry for the TC will be created, and Route Records will resume when unicasting to the TC.</li>
+		<li><b>Case reference:</b>  11553</li>
+	</ul>
+</ul>
+</body>
+</html>
