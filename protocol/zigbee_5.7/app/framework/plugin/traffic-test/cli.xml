@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<cli>
+  <group id="plugin-traffic-test" name="Plugin Commands: Traffic Test">
+    <description>
+      The commands for testing traffic on a network.
+    </description>
+  </group>
+
+  <command cli="plugin traffic-test on-off" functionName="emberTrafficTestOnOffCommand" group="plugin-traffic-test">
+    <description>
+      Start the on/off test.
+    </description>
+    <arg name="deviceEntry"      type="INT16U"  />
+    <arg name="msBetweenToggles" type="INT16U"  />
+    <arg name="numMessages"      type="INT16U"  />
+  </command>
+
+  <command cli="plugin traffic-test level" functionName="emberTrafficTestLevelCommand" group="plugin-traffic-test">
+    <description>
+      Start the level test.
+    </description>
+    <arg name="deviceEntry"      type="INT16U"  />
+    <arg name="msBetweenToggles" type="INT16U"  />
+    <arg name="numMessages"      type="INT16U"  />
+  </command>
+
+</cli>

@@ -28,6 +28,29 @@ void emberAfOtaServerSendUpgradeCommandCallback(EmberNodeId dest,
                                                 uint8_t endpoint,
                                                 const EmberAfOtaImageId* id);
 
+/** @brief OTA Server Block Sent Callback
+ *
+ * This function will be called when a block is sent to a device
+ */
+void emberAfPluginOtaServerBlockSentCallback(int8u actualLength,int16u manufacturerId,int16u imageTypeId,int32u firmwareVersion);
+
+/** @brief OTA Server Update Started Callback
+ *
+ * This function will be called when an update has started
+ */
+void emberAfPluginOtaServerUpdateStartedCallback(int16u mid,int16u itype,int32u fwv,int8u maxDataSize,int32u offset);
+
+/** @brief OTA Server Update Failed callback
+ *
+ * This function will be called when an update has failed
+ */
+void emberAfPluginOtaServerImageFailedCallback(); 
+
+/** @brief OTA Server Finished Callback
+ *
+ * This function will be called when an OTA update has finished
+ */
+void emberAfPluginOtaServerFinishedCallback(int16u mid,int16u itype,int32u fwv, EmberNodeId source, int8u status);
 
 #if defined(EMBER_TEST) && !defined(EM_AF_TEST_HARNESS_CODE)
   #define EM_AF_TEST_HARNESS_CODE

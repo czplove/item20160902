@@ -95,6 +95,8 @@ typedef bit            BIT;
     #define BIGENDIAN_CPU  false
   #elif defined(__x86_64__)
     #define BIGENDIAN_CPU  false
+  #elif defined(__mips__)
+    #define BIGENDIAN_CPU  true
   #elif defined(__arm__)
     #if defined(__BIG_ENDIAN)
       #define BIGENDIAN_CPU  true
