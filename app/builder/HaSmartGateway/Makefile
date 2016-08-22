@@ -50,7 +50,7 @@ ifneq ($(CURDIR),$(shell dirname $(abspath $(lastword $(MAKEFILE_LIST)))))
 $(error This makefile should only be invoked under its current directory ($(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))))
 endif
 
-COMPILER_INCLUDES ?= 
+COMPILER_INCLUDES ?=-I/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/include 
 
 INCLUDES= \
   $(COMPILER_INCLUDES) \
@@ -259,7 +259,7 @@ DEPENDENCY_FLAGS ?= -MMD -MP -MF $(@D)/$*.d
 DEPENDENCY_POST_PROCESS ?=
 
 CPPFLAGS= $(INCLUDES) $(DEFINES) $(COMPILER_FLAGS) $(DEPENDENCY_FLAGS)
-LINKER_FLAGS ?=
+LINKER_FLAGS ?=-L/usr/local/OpenWrt-SDK-ramips-for-redhat-i686-gcc-4.8-linaro_uClibc-0.9.33.2/staging_dir/target-mipsel_24kec+dsp_uClibc-0.9.33.2/usr/lib
 
 ifdef NO_READLINE
   CPPFLAGS += -DNO_READLINE
