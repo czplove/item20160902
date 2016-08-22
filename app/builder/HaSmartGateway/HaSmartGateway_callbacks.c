@@ -272,7 +272,6 @@ void emberAfMainInitCallback(void)
   linkListPushBack(topicHandlerList,
                    (void*)buildTopicHandler("updatesettings",
                                             handleUpdateSettingsMessage));
-  emberEventControlSetActive(stateUpdateEventControl);
 }
 
 MqttTopicHandlerMap* buildTopicHandler(char* topicString,

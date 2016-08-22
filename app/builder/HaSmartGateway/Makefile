@@ -242,7 +242,7 @@ APPLICATION_OBJECTS= $(shell echo $(APPLICATION_FILES) | xargs -n1 echo | sed -e
 ifdef GENERATE_LIBRARY
 TARGET_FILE= $(EXE_DIR)/HaSmartGateway$(ARCHIVE_EXTENSION)
 else
-TARGET_FILE= $(EXE_DIR)/HaSmartGateway
+TARGET_FILE= $(EXE_DIR)/HaSmartGateway-MIPS
 endif
 
 # -MMD and -MF generates Makefile dependencies while at the same time compiling.
