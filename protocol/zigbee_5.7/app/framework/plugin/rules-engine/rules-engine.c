@@ -329,7 +329,7 @@ void emberAfPluginRulesEngineInitCallback(void)
   rulesEngineLoadCommand();
 
   // Publish a change to esatablish the new rules engine
-  emberAfPluginRulesEngineChangedCallback();
+  //emberAfPluginRulesEngineChangedCallback();
 }
 
 uint16_t findEmptyBindEntry( void )

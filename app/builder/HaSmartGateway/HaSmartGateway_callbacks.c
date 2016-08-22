@@ -1,4 +1,4 @@
-// Copyright 2016 Silicon Laboratories, Inc.                                *80*
+﻿// Copyright 2016 Silicon Laboratories, Inc.                                *80*
 
 // This callback file is created for your convenience. You may add application code
 // to this file. If you regenerate this file over a previous version, the previous
@@ -17,7 +17,9 @@
 #include "sys/time.h"
 #include "stdlib.h"
 #include "app/framework/plugin-host/link-list/link-list.h"
-
+#ifndef EMBEDDED_GATEWAY
+  #include <stdio.h>
+#endif
 // cJSON open-source-module include
 #include "build/external/inc/cJSON.h"
 
@@ -32,7 +34,7 @@
 #define PANID_STRING_LENGTH 5 // 4 chars + NULL
 #define CLUSTERID_STRING_LENGTH 5 // 4 chars + NULL
 #define GATEWAY_TOPIC_PREFIX_LENGTH 21 // 21 chars `gw/xxxxxxxxxxxxxxxx/` + NULL
-#define HEARTBEAT_RATE_MS 5000 // milliseconds
+#define HEARTBEAT_RATE_MS 600000 // milliseconds
 #define PROCESS_COMMAND_RATE_MS 20 // milliseconds
 #define BLOCK_SENT_THROTTLE_VALUE 25 // blocks to receive before sending updates
 
@@ -59,6 +61,7 @@
 
 #define IAS_ZONE_CONTACT_STATE_BIT 0
 #define IAS_ZONE_TAMPER_STATE_BIT  2
+#define IAS_ZONE_BATTERY_STATE_BIT 3
 
 #define READ_REPORT_CONFIG_STATUS       0
 #define READ_REPORT_CONFIG_DIRECTION    1
@@ -244,11 +247,48 @@ static char* createTwoByteHexString(uint16_t value)
  */
 void emberAfMainInitCallback(void)
 {
+  EmberNodeType nodeTypeResult = 0xFF;
+  EmberNetworkParameters networkParams;
+  cJSON* heartbeatJson;
+  char* heartbeatJsonString;
+  char panIdString[7] = {0};
+  char nodeIdString[7] = {0};
+  char xpanString[17] = {0};
   emberSerialPrintfLine(APP_SERIAL, "HA Gateweay Init");
 
-  // Save our EUI information
+  // Save our EUI and network information
   emberAfGetEui64(gatewayEui64);
+  emberAfGetNetworkParameters(&nodeTypeResult, &networkParams);
   eui64ToString(gatewayEui64, gatewayEui64String);
+  eui64ToString(networkParams.extendedPanId, xpanString);
+  nodeIdToString(emberAfGetNodeId(),nodeIdString);
+  nodeIdToString(networkParams.panId,panIdString);
+
+
+  heartbeatJson = cJSON_CreateObject();
+  cJSON_AddStringToObject(heartbeatJson, "gatewayEui",gatewayEui64String);
+  cJSON_AddStringToObject(heartbeatJson, "nodeID",nodeIdString);
+  cJSON_AddStringToObject(heartbeatJson, "panID",panIdString);
+  cJSON_AddIntegerToObject(heartbeatJson, "channel",networkParams.radioChannel);
+  cJSON_AddIntegerToObject(heartbeatJson, "radioTxPower",networkParams.radioTxPower);
+  cJSON_AddStringToObject(heartbeatJson, "xpan",xpanString);
+  cJSON_AddIntegerToObject(heartbeatJson, "nodeType",nodeTypeResult);
+  cJSON_AddIntegerToObject(heartbeatJson, "Security level",emberAfGetSecurityLevel());
+  cJSON_AddIntegerToObject(heartbeatJson, "network state",emberNetworkState());
+  heartbeatJsonString = cJSON_PrintUnformatted(heartbeatJson);
+#ifndef EMBEDDED_GATEWAY
+  FILE *fp;
+  uint16_t i;
+
+  // save EUI address into file
+  fp = fopen("/etc/env/gwcfg.json", "w");
+        fprintf(fp, "%s ",heartbeatJsonString);
+  // write something to mark the end
+  //fprintf(fp, "\r\nffff\r\n");
+  fclose(fp);
+ #endif
+  free(heartbeatJsonString);
+  cJSON_Delete(heartbeatJson);
 
   strcat(gatewayTopicUriPrefix, "gw/");
   strcat(gatewayTopicUriPrefix, gatewayEui64String);
@@ -920,11 +960,18 @@ static void publishMqttContactSense(EmberNodeId nodeId,
   char nodeIdString[NODEID_STRING_LENGTH] = {0};
   cJSON* contactSenseJson;
   char* contactSenseJsonString;
-
+  char* dataString;
   eui64ToString(eui64, euiString);
   nodeIdToString(nodeId, nodeIdString);
   
   contactSenseJson = cJSON_CreateObject();
+  dataString = createTwoByteHexString(ZCL_IAS_ZONE_CLUSTER_ID);
+  cJSON_AddStringToObject(contactSenseJson, "clusterId", dataString);
+    free(dataString);
+  dataString = 
+    createOneByteHexString(ZCL_ZONE_STATUS_CHANGE_NOTIFICATION_COMMAND_ID);
+  cJSON_AddStringToObject(contactSenseJson, "commandId", dataString);
+  free(dataString);
   cJSON_AddIntegerToObject(contactSenseJson, "contactState", contactState);
   cJSON_AddIntegerToObject(contactSenseJson, "tamperState", tamperState);
   cJSON_AddStringToObject(contactSenseJson, "nodeId", nodeIdString);
@@ -1377,7 +1424,6 @@ void emberAfPluginIASZoneClientContactCallback(uint8_t zoneStatus)
                         >> IAS_ZONE_TAMPER_STATE_BIT;
   getIeeeFromNodeId(nodeId, nodeEui64);
   publishMqttContactSense(nodeId, nodeEui64, contactState, tamperState);
-  publishMqttZclContactSense(nodeId, nodeEui64, contactState, tamperState);
 }
 
 // OTA Callbacks
@@ -1918,7 +1964,7 @@ static void eui64ToString(EmberEUI64 eui, char* euiString)
 
 static void nodeIdToString(EmberNodeId nodeId, char* nodeIdString)
 {
-  sprintf(nodeIdString, "%04X", nodeId);
+  sprintf(nodeIdString, "0x%04X", nodeId);
 }
 
 static int64u getTimeMS(void)

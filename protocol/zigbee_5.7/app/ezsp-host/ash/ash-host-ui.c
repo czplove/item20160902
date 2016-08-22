@@ -33,7 +33,7 @@
 #define txControl (txBuffer[0])     // more descriptive aliases
 #define rxControl (rxBuffer[0])
 
-static const char options[] = "b:f:hv::i:n:o:p:r:s:t:x:";
+static const char options[] = "b:f:hv::i:n:o:p:r:s:t:x:V";
 bool checkSerialPort(const char* portString);
 
 bool ezspInternalProcessCommandOptions(int argc, char *argv[], char *errStr)
@@ -183,6 +183,10 @@ bool ezspInternalProcessCommandOptions(int argc, char *argv[], char *errStr)
         backchannelSerialPortOffset = port;
       }
       break;
+	case 'V':
+		fprintf(stdout,"V1.1.10\n");
+		return false;
+		break;
     case 'x':
       if ( (sscanf(optarg, "%hhu", &enable) != 1) || (enable > 1) ) {
         snprintf(errStr, ERR_LEN, "Invalid randomization choice %s.\n", optarg);
