@@ -164,6 +164,11 @@ static void publishMqttDeviceLeft(EmberEUI64 eui64);
 static void publishMqttTrafficTestResult(uint16_t numDefaultResponses,
                                          uint16_t numTxSendErrors,
                                          uint16_t numTotalMessages);
+static void publishMqttNodeHeartBeat(EmberNodeId nodeId,
+                                 EmberEUI64 eui64,
+                                 EmberAfClusterId clusterId,
+                                 uint8_t* buffer,
+                                 uint16_t bufLen);
 static void publishMqttAttribute(EmberNodeId nodeId,
                                  EmberEUI64 eui64,
                                  EmberAfClusterId clusterId,
@@ -832,15 +837,16 @@ static cJSON* buildNodeJson(EmberNodeId nodeId)
   nodeJson = cJSON_CreateObject();
   cJSON_AddStringToObject(nodeJson, "nodeEui", euiString);
   cJSON_AddStringToObject(nodeJson, "nodeId", nodeIdString);
+  cJSON_AddIntegerToObject(nodeJson, "nodeCapabilities", addressTable[addressTableIndex].capabilities);
   cJSON_AddIntegerToObject(nodeJson, "addressTableIndex", addressTableIndex);
   cJSON_AddIntegerToObject(nodeJson, "deviceState", addressTable[addressTableIndex].state);
-
+  nodeJsonEndpointArray = cJSON_CreateArray();
+  cJSON_AddItemToObject(nodeJson, "endpoints", nodeJsonEndpointArray);
   for (epIndex = 0; epIndex < addressTable[addressTableIndex].endpointCount; epIndex++) {
     endpointNum = getEndpointFromNodeIdAndEndpoint(addressTable[addressTableIndex].nodeId,
                                                    addressTable[addressTableIndex].endpoints[epIndex]);
     if (endpointNum != NULL_INDEX) {
-      nodeJsonEndpointArray = cJSON_CreateArray();
-      cJSON_AddItemToObject(nodeJson, "endpoints", nodeJsonEndpointArray);
+
       endpointJson = cJSON_CreateObject();
       cJSON_AddIntegerToObject(endpointJson, 
                               "endpointNumber", 
@@ -1120,6 +1126,32 @@ static void publishMqttTrafficTestResult(uint16_t numDefaultResponses,
   free(topic);
 }
 
+static void publishMqttNodeHeartBeat(EmberNodeId nodeId,
+                                 EmberEUI64 eui64,
+                                 EmberAfClusterId clusterId,
+                                 uint8_t* buffer,
+                                 uint16_t bufLen) 
+{ 
+  char* topic = allocateAndFormMqttGatewayTopic("nodeheartbeat");
+  uint16_t bufferIndex;
+  char euiString[EUI64_STRING_LENGTH] = {0};
+  char nodeIdString[NODEID_STRING_LENGTH] = {0};
+  cJSON* globalReadJson;
+  char* globalReadJsonString;
+
+  int8_t rssi = buffer[ATTRIBUTE_BUFFER_REPORT_DATA_START];
+  eui64ToString(eui64, euiString);
+  nodeIdToString(nodeId, nodeIdString);
+  globalReadJson = cJSON_CreateObject();
+  cJSON_AddIntegerToObject(globalReadJson, "rssi", rssi);
+  cJSON_AddStringToObject(globalReadJson, "nodeId", nodeIdString);
+  cJSON_AddStringToObject(globalReadJson, "nodeEui", euiString);
+  globalReadJsonString = cJSON_PrintUnformatted(globalReadJson);
+  emberAfPluginTransportMqttPublish(topic, globalReadJsonString);
+  free(globalReadJsonString);
+  cJSON_Delete(globalReadJson);
+  free(topic);
+}
 static void publishMqttAttribute(EmberNodeId nodeId,
                                  EmberEUI64 eui64,
                                  EmberAfClusterId clusterId,
@@ -1641,11 +1673,22 @@ bool emberAfReportAttributesCallback(EmberAfClusterId clusterId,
           bufferTemp[ATTRIBUTE_BUFFER_REPORT_DATA_TYPE]);
 
     emberAfRulesEngineReportAttributeRespones(clusterId, bufferTemp, bufferSizeI);
-    publishMqttAttributeReport(nodeId,
+    if(clusterId == ZCL_DIAGNOSTICS_CLUSTER_ID)
+    {
+        publishMqttNodeHeartBeat(nodeId,
+                                 nodeEui64,
+                                 clusterId,
+                                 bufferTemp,
+                                 bufferSizeI);
+    }
+    else
+    {
+        publishMqttAttributeReport(nodeId,
                                nodeEui64,
                                clusterId,
                                bufferTemp,
                                bufferSizeI);
+    }
     free(bufferTemp);
   }
 

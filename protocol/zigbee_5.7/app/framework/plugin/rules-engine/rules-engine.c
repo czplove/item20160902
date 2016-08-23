@@ -105,14 +105,14 @@ bool emberAfPreCommandReceivedCallback(EmberAfClusterCommand* cmd)
   uint8_t inEndpoint;
   
   // callback for rules engine command received.
-  emberAfPluginRulesEngineRulesPreCommandReceivedCallback(cmd->commandId,
+  /*emberAfPluginRulesEngineRulesPreCommandReceivedCallback(cmd->commandId,
                                                           cmd->clusterSpecific,
                                                           cmd->apsFrame->clusterId,
                                                           cmd->mfgSpecific,
                                                           cmd->mfgCode,
                                                           cmd->buffer,
                                                           cmd->bufLen,
-                                                          cmd->payloadStartIndex);
+                                                          cmd->payloadStartIndex);*/
 
   emberAfPluginDeviceTableMessageReceived(cmd->source);
 

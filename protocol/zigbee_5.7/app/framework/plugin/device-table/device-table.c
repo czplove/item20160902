@@ -34,6 +34,10 @@
 #define newDeviceEventControl emberAfPluginDeviceTableNewDeviceEventEventControl
 #define COMMAND_DELAY_QS  16
 #define PJOIN_BROADCAST_PERIOD 1
+// With device announce there is only the ZDO sequence number, there is no status code.
+#define DEVICE_ANNOUNCE_NODE_ID_OFFSET 1
+#define DEVICE_ANNOUNCE_EUI64_OFFSET   (DEVICE_ANNOUNCE_NODE_ID_OFFSET + 2)
+#define DEVICE_ANNOUNCE_CAPABILITIES_OFFSET (DEVICE_ANNOUNCE_EUI64_OFFSET + EUI64_SIZE)
 
 static PGM_P PGM statusStrings[] = 
 {
@@ -702,14 +706,15 @@ void newDeviceParseEndpointDescriptorResponse(EmberNodeId nodeId,
   emberNewEndpointCallback(p_entry);
 
   index = getAddressIndexFromNodeId(nodeId);
+  currentEndpoint++;
+  if(currentEndpoint == addressTable[index].endpointCount)
+      if (addressTable[index].state < ND_HAVE_EP_DESC) {
 
-  if (addressTable[index].state < ND_HAVE_EP_DESC) {
+        addressTable[index].state = ND_HAVE_EP_DESC;
 
-    addressTable[index].state = ND_HAVE_EP_DESC;
-
-    emberEventControlSetActive(newDeviceEventControl);
-  }
-
+        emberEventControlSetActive(newDeviceEventControl);
+      }
+  //deviceTableSaveCommand();
 }
 
 void newDeviceParseActiveEndpointsResponse(EmberNodeId emberNodeId,
@@ -751,7 +756,23 @@ void newDeviceParseActiveEndpointsResponse(EmberNodeId emberNodeId,
   return;
 
 }
+void newDeviceParseEndDeviceAnnounce(EmberNodeId emberNodeId,
+                                     EmberApsFrame* apsFrame,
+                                     uint8_t* message,
+                                     uint16_t length)
+{
+    EmberEUI64 tempEui64;
+    emberSerialPrintf(APP_SERIAL, "ParseEndDeviceAnnounce\r\n");
 
+    MEMMOVE(tempEui64, &(message[DEVICE_ANNOUNCE_EUI64_OFFSET]), EUI64_SIZE);
+
+    uint16_t index = getAddressIndexFromIeee(tempEui64);
+
+   if (addressTable[index].state < ND_HAVE_ACTIVE) {
+       addressTable[index].capabilities = message[DEVICE_ANNOUNCE_CAPABILITIES_OFFSET];
+	   addressTable[index].nodeId = emberNodeId;
+    }
+}
 void newDeviceJoinHandler(EmberNodeId newNodeId,
                           EmberEUI64 newNodeEui64)
 {
@@ -823,10 +844,10 @@ void newDeviceLeftHandler(EmberEUI64 newNodeEui64)
 {
   uint16_t index = getAddressIndexFromIeee(newNodeEui64);
 
+  emberAfPluginDeviceTableDeviceLeftCallback(newNodeEui64); 
   if (index != NULL_INDEX)
   {
     deleteAddressTableEntry(index);
-    emberAfPluginDeviceTableDeviceLeftCallback(newNodeEui64); 
     // Save on Node Left
     deviceTableSaveCommand();
   }
@@ -1159,7 +1180,7 @@ void emberAfTrustCenterJoinCallback(EmberNodeId newNodeId,
   if (status != EMBER_DEVICE_LEFT) {
     newDeviceJoinHandler(newNodeId, newNodeEui64);
   } else {
-    newDeviceLeftHandler(newNodeEui64);
+    //newDeviceLeftHandler(newNodeEui64);
   }
 }
 
@@ -1215,6 +1236,10 @@ bool emberAfPreZDOMessageReceivedCallback(EmberNodeId emberNodeId,
     break;
   case END_DEVICE_ANNOUNCE:
     emberSerialPrintf(APP_SERIAL,"End Device Announce\r\n");
+    newDeviceParseEndDeviceAnnounce(emberNodeId,
+                                    apsFrame,
+                                    message,
+                                    length);
     break;
   case PERMIT_JOINING_RESPONSE:
     emberSerialPrintf(APP_SERIAL,"Permit Joining Response: ");
@@ -1372,6 +1397,7 @@ void deviceTableSaveCommand(void)
   for (i = 0 ; i < ADDRESS_TABLE_SIZE; i++) {
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       fprintf(fp, "%x %x ", addressTable[i].nodeId, addressTable[i].endpointCount);
+	  fprintf(fp,"%x ",addressTable[i].capabilities);
       for (j = 0; j < 8; j++) {
         fprintf(fp, "%x ", addressTable[i].eui64[j]);
       }
@@ -1430,9 +1456,11 @@ void deviceTableLoadCommand(void)
   }
 
   for (i = 0; i < ADDRESS_TABLE_SIZE && feof(fp) == false; i++) {
-    fscanf(fp, "%x %x", &(addressTable[i].nodeId), &data);
+    fscanf(fp, "%x %x ", &(addressTable[i].nodeId), &data);
     addressTable[i].endpointCount = (uint8_t) data;
 
+	fscanf(fp,"%x ",&data);
+	addressTable[i].capabilities = (uint8_t) data;
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       for (j = 0; j < 8; j++) {
         fscanf(fp, "%x", &data);

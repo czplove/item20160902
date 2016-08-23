@@ -285,6 +285,7 @@ bool emberAfIasZoneClusterZoneEnrollRequestCallback(uint16_t zoneType,
                      responseCode,
                      zoneId,
                      status);
+  readIasZoneServerAttributes(emberAfCurrentCommand()->source);
   return true;
 }
 
@@ -393,7 +394,7 @@ static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
     return;
   }
 
-  EmberStatus status = emberAfFindDevicesByProfileAndCluster(emberNodeId,
+ /* EmberStatus status = emberAfFindDevicesByProfileAndCluster(emberNodeId,
                                                              profileId,
                                                              ZCL_IAS_ZONE_CLUSTER_ID,
                                                              true,  // server cluster?
@@ -402,7 +403,7 @@ static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
   if (status != EMBER_SUCCESS) {
     emberAfIasZoneClusterPrintln("Error: Failed to initiate service discovery for IAS Zone Server 0x%2X", emberNodeId);
     clearState();
-  }
+  }*/
 }
 
 void emberAfPluginIasZoneClientZdoMessageReceivedCallback(EmberNodeId emberNodeId,
@@ -523,8 +524,6 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
               emberAfIasZoneClusterPrintln("CIE Address not set to mine, removing IAS zone server.");
               removeServer(&(buffer[i]));
               clearState();
-            } else {
-              readIasZoneServerAttributes(emberAfCurrentCommand()->source);
             }
             return;
           }

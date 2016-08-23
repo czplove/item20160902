@@ -17,25 +17,17 @@
 #define GENERATED_ATTRIBUTES { \
     { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x02 } }, /* 0 / Basic / ZCL version*/\
     { 0x0007, ZCL_ENUM8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 1 / Basic / power source*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 2 / Basic / cluster revision*/\
-    { 0x0000, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x0000 } }, /* 3 / Identify / identify time*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 4 / Identify / cluster revision*/\
-    { 0x0000, ZCL_BOOLEAN_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 5 / On/off / on/off*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 6 / On/off / cluster revision*/\
-    { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 7 / Level Control / current level*/\
-    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 8 / Level Control / options*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 9 / Level Control / cluster revision*/\
-    { 0x0000, ZCL_UTC_TIME_ATTRIBUTE_TYPE, 4, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { NULL } }, /* 10 / Time / time*/\
-    { 0x0001, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 11 / Time / time status*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 12 / Time / cluster revision*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 13 / Over the Air Bootloading / cluster revision*/\
-    { 0x0003, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x616B } }, /* 14 / Color Control / current x*/\
-    { 0x0004, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x607D } }, /* 15 / Color Control / current y*/\
-    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 16 / Color Control / color control options*/\
-    { 0x400D, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 17 / Color Control / couple color temp to level min-mireds*/\
-    { 0x400E, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 18 / Color Control / start up color temperature mireds*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 19 / Color Control / cluster revision*/\
-    { 0xFFFD, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0001 } }, /* 20 / IAS ACE / cluster revision*/\
+    { 0x0000, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x0000 } }, /* 2 / Identify / identify time*/\
+    { 0x0000, ZCL_BOOLEAN_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 3 / On/off / on/off*/\
+    { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 4 / Level Control / current level*/\
+    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 5 / Level Control / options*/\
+    { 0x0000, ZCL_UTC_TIME_ATTRIBUTE_TYPE, 4, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { NULL } }, /* 6 / Time / time*/\
+    { 0x0001, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 7 / Time / time status*/\
+    { 0x0003, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x616B } }, /* 8 / Color Control / current x*/\
+    { 0x0004, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x607D } }, /* 9 / Color Control / current y*/\
+    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 10 / Color Control / color control options*/\
+    { 0x400D, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 11 / Color Control / couple color temp to level min-mireds*/\
+    { 0x400E, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 12 / Color Control / start up color temperature mireds*/\
   }
 
 
@@ -53,54 +45,54 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 // Clusters defitions
 #define GENERATED_CLUSTERS { \
     { 0x0000, (EmberAfAttributeMetadata*)&(generatedAttributes[0]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0000, (EmberAfAttributeMetadata*)&(generatedAttributes[0]), 3, 2, (CLUSTER_MASK_SERVER), NULL,  },    \
-    { 0x0001, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 2, 4, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION| CLUSTER_MASK_ATTRIBUTE_CHANGED_FUNCTION), emberAfFuncArrayIdentifyClusterServer, },    \
-    { 0x0004, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0005, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 2, 3, (CLUSTER_MASK_SERVER), NULL,  },    \
-    { 0x0007, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 3, 4, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayLevelControlClusterServer, },    \
-    { 0x000A, (EmberAfAttributeMetadata*)&(generatedAttributes[10]), 3, 2, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayTimeClusterServer, },    \
-    { 0x0015, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0019, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 1, 2, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayOtaBootloadClusterServer, },    \
-    { 0x0020, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0100, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0101, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0102, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0200, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0201, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0202, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0203, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0204, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[14]), 6, 11, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayColorControlClusterServer, },    \
-    { 0x0301, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0400, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0401, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0402, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0403, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0404, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0405, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0406, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0500, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayIasZoneClusterClient, },    \
-    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[20]), 1, 2, (CLUSTER_MASK_SERVER), NULL,  },    \
-    { 0x0502, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0702, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_DEFAULT_RESPONSE_FUNCTION), emberAfFuncArraySimpleMeteringClusterClient, },    \
-    { 0x0B04, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0B05, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0xFC01, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0xFC02, (EmberAfAttributeMetadata*)&(generatedAttributes[21]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0000, (EmberAfAttributeMetadata*)&(generatedAttributes[0]), 2, 0, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0001, (EmberAfAttributeMetadata*)&(generatedAttributes[2]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[2]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[2]), 1, 2, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION| CLUSTER_MASK_ATTRIBUTE_CHANGED_FUNCTION), emberAfFuncArrayIdentifyClusterServer, },    \
+    { 0x0004, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0005, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 1, 1, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0007, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 2, 2, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayLevelControlClusterServer, },    \
+    { 0x000A, (EmberAfAttributeMetadata*)&(generatedAttributes[6]), 2, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayTimeClusterServer, },    \
+    { 0x0015, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0019, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayOtaBootloadClusterServer, },    \
+    { 0x0020, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0100, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0101, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0102, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0200, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0201, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0202, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0203, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0204, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 5, 9, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayColorControlClusterServer, },    \
+    { 0x0301, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0400, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0401, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0402, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0403, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0404, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0405, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0406, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0500, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayIasZoneClusterClient, },    \
+    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0502, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0702, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_DEFAULT_RESPONSE_FUNCTION), emberAfFuncArraySimpleMeteringClusterClient, },    \
+    { 0x0B04, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0B05, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0xFC01, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0xFC02, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
   }
 
 
 // Endpoint types
 #define GENERATED_ENDPOINT_TYPES {        \
-    { (EmberAfCluster*)&(generatedClusters[0]), 43, 30 }, \
+    { (EmberAfCluster*)&(generatedClusters[0]), 43, 14 }, \
   }
 
 
@@ -139,7 +131,7 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 #define ATTRIBUTE_SINGLETONS_SIZE (7)
 
 // Total size of attribute storage
-#define ATTRIBUTE_MAX_SIZE 30
+#define ATTRIBUTE_MAX_SIZE 14
 
 // Array of endpoints that are supported
 #define FIXED_ENDPOINT_ARRAY { 1 }

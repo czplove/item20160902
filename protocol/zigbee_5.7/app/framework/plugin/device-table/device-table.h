@@ -21,6 +21,7 @@ typedef struct
 {
   EmberNodeId nodeId;
   EmberEUI64 eui64;
+  uint8_t capabilities;
   uint8_t endpointCount;
   uint8_t endpoints[5];
   NewDeviceState state; 
