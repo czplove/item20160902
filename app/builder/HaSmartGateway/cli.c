@@ -31,6 +31,10 @@ void emAfOtaReloadStorageDevice(void);
 void emAfOtaServerPolicyPrint(void);
 void emAfOtaStorageDataPrint(void);
 void emAfOtaStorageInfoPrint(void);
+void emAfPluginDeviceDatabaseAddDummyDevice(void);
+void emAfPluginDeviceDatabaseErase(void);
+void emAfPluginDeviceDatabasePrintAll(void);
+void emAfPluginDeviceDatabasePrintDevice(void);
 void emAfPluginIasZoneClientClearAllServersCommand(void);
 void emAfPluginIasZoneClientPrintServersCommand(void);
 void emAfPluginIdentifyCliPrint(void);
@@ -50,6 +54,14 @@ void emberAfPluginConcentratorSetRouterBehaviorCommand(void);
 void emberAfPluginConcentratorStartDiscovery(void);
 void emberAfPluginConcentratorStatus(void);
 void emberAfPluginConcentratorStopDiscovery(void);
+void emberAfPluginCounterPrintCounterTypeCommand(void);
+void emberAfPluginCountersClear(void);
+void emberAfPluginCountersPrintCommand(void);
+void emberAfPluginCountersPrintThresholdsCommand(void);
+void emberAfPluginCountersResetThresholds(void);
+void emberAfPluginCountersSendRequestCommand(void);
+void emberAfPluginCountersSetThresholdCommand(void);
+void emberAfPluginCountersSimplePrintCommand(void);
 void emberAfPluginEzModeCommissioningClientCommand(void);
 void emberAfPluginEzModeCommissioningServerCommand(void);
 void emberAfPluginGatewaySupportTimeSyncLocal(void);
@@ -2233,6 +2245,63 @@ EmberCommandEntry emberCommandTablePluginDeviceTableCommands[] = {
   emberCommandEntryTerminator()
 };
 
+PGM_P PGM emberCommandTablePluginDeviceDatabaseDeviceAddDummyCommandArguments[] = {
+  "The address of the dummy device to add.",
+  "The number of dummy endpoints to add.",
+  "The number of dummy clusters to add.",
+  NULL
+};
+
+PGM_P PGM emberCommandTablePluginDeviceDatabaseDeviceEraseCommandArguments[] = {
+  "The address of the device to erase from the database.",
+  NULL
+};
+
+PGM_P PGM emberCommandTablePluginDeviceDatabaseDevicePrintCommandArguments[] = {
+  "The address of the device to be looked up (little endian)",
+  NULL
+};
+
+EmberCommandEntry emberCommandTablePluginDeviceDatabaseDeviceCommands[] = {
+  emberCommandEntryActionWithDetails("add-dummy", emAfPluginDeviceDatabaseAddDummyDevice, "buv", "Add a device with specified EUI64 and a sequential number of clusters  ...", emberCommandTablePluginDeviceDatabaseDeviceAddDummyCommandArguments),
+  emberCommandEntryActionWithDetails("erase", emAfPluginDeviceDatabaseErase, "b", "Erase the device with specified EUI64 from the database.", emberCommandTablePluginDeviceDatabaseDeviceEraseCommandArguments),
+  emberCommandEntryActionWithDetails("print", emAfPluginDeviceDatabasePrintDevice, "b", "Print all the clusters and endpoints known about the specified device  ...", emberCommandTablePluginDeviceDatabaseDevicePrintCommandArguments),
+  emberCommandEntryTerminator()
+};
+
+EmberCommandEntry emberCommandTablePluginDeviceDatabaseCommands[] = {
+  emberCommandEntrySubMenu("device", emberCommandTablePluginDeviceDatabaseDeviceCommands, ""),
+  emberCommandEntryActionWithDetails("print-all", emAfPluginDeviceDatabasePrintAll, "", "Print all devices in the database.", NULL),
+  emberCommandEntryTerminator()
+};
+
+PGM_P PGM emberCommandTablePluginCountersSetThresholdCommandArguments[] = {
+  "type of counter",
+  "Threshold Value",
+  NULL
+};
+
+EmberCommandEntry emberCommandTablePluginCountersCommands[] = {
+  emberCommandEntryActionWithDetails("clear", emberAfPluginCountersClear, "", "Clear all counter values.", NULL),
+  emberCommandEntryActionWithDetails("print", emberAfPluginCountersPrintCommand, "", "Print all counter values and clear them.", NULL),
+  emberCommandEntryActionWithDetails("print-thresholds", emberAfPluginCountersPrintThresholdsCommand, "", "Prints the thresholds of all the counters.", NULL),
+  emberCommandEntryActionWithDetails("reset-threshold", emberAfPluginCountersResetThresholds, "", "Resets all thresholds values to 0xFFFF.", NULL),
+  emberCommandEntryActionWithDetails("send-request", emberAfPluginCountersSendRequestCommand, "", "Sends a request for ota counters", NULL),
+  emberCommandEntryActionWithDetails("set-threshold", emberAfPluginCountersSetThresholdCommand, "uv", "Set a threshold value for a particular type of counter.", emberCommandTablePluginCountersSetThresholdCommandArguments),
+  emberCommandEntryActionWithDetails("simple-print", emberAfPluginCountersSimplePrintCommand, "", "Print all counter values.", NULL),
+  emberCommandEntryTerminator()
+};
+
+PGM_P PGM emberCommandTablePluginCounterPrintCounterTypeCommandArguments[] = {
+  "The counter type       to print.",
+  NULL
+};
+
+EmberCommandEntry emberCommandTablePluginCounterCommands[] = {
+  emberCommandEntryActionWithDetails("print-counter-type", emberAfPluginCounterPrintCounterTypeCommand, "u", "Print value of this particular counter.", emberCommandTablePluginCounterPrintCounterTypeCommandArguments),
+  emberCommandEntryTerminator()
+};
+
 PGM_P PGM emberCommandTablePluginConcentratorSetRouterBehaviorCommandArguments[] = {
   "The value of a EMBER_AF_PLUGIN_CONCENTRATOR_ROUTER_BEHAVIOR_ enum memb ...",
   NULL
@@ -2282,6 +2351,9 @@ EmberCommandEntry emberCommandTablePluginAddressTableCommands[] = {
 EmberCommandEntry emberCommandTablePluginCommands[] = {
   emberCommandEntrySubMenu("address-table", emberCommandTablePluginAddressTableCommands, ""),
   emberCommandEntrySubMenu("concentrator", emberCommandTablePluginConcentratorCommands, ""),
+  emberCommandEntrySubMenu("counter", emberCommandTablePluginCounterCommands, ""),
+  emberCommandEntrySubMenu("counters", emberCommandTablePluginCountersCommands, ""),
+  emberCommandEntrySubMenu("device-database", emberCommandTablePluginDeviceDatabaseCommands, ""),
   emberCommandEntrySubMenu("device-table", emberCommandTablePluginDeviceTableCommands, ""),
   emberCommandEntrySubMenu("ezmode-commissioning", emberCommandTablePluginEzmodeCommissioningCommands, ""),
   emberCommandEntrySubMenu("gateway", emberCommandTablePluginGatewayCommands, ""),

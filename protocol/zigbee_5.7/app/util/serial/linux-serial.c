@@ -550,12 +550,14 @@ uint16_t emberSerialReadAvailable(uint8_t port)
                        NULL, 
                        NULL,
                        &timeout);
+#if(0)
   if (fdsWithData < 0) {
     fprintf(stderr, 
             "Fatal: select() returned error: %s\n", 
             strerror(errno));
     assert(false);
   }
+#endif
   return (fdsWithData > 0 ? 1 : 0);
 }
 

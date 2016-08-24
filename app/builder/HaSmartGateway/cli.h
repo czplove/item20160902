@@ -1062,6 +1062,94 @@
 
 /** @} */ // end group plugin-concentrator
 
+/** @addtogroup plugin-counters Plugin Commands: Counters
+ * @ingroup cli
+ * This plugin provides APIs and CLI commands for reading and manipulating
+ * counters that record different events in the stack.
+ * 
+ * @{
+ */
+
+/** @brief <b>plugin counters print </b>
+ *   - <i>Print all counter values and clear them.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_PRINT
+
+/** @brief <b>plugin counter print-counter-type [type:1] </b>
+ *   - <i>Print value of this particular counter.</i>
+ *     - type - INT8U - The counter type       to print.
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTER_PRINT_COUNTER_TYPE
+
+/** @brief <b>plugin counters simple-print </b>
+ *   - <i>Print all counter values.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SIMPLE_PRINT
+
+/** @brief <b>plugin counters clear </b>
+ *   - <i>Clear all counter values.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_CLEAR
+
+/** @brief <b>plugin counters print-thresholds </b>
+ *   - <i>Prints the thresholds of all the counters.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_PRINT_THRESHOLDS
+
+/** @brief <b>plugin counters set-threshold [type:1] [threshold:2] </b>
+ *   - <i>Set a threshold value for a particular type of counter.</i>
+ *     - type - INT8U - type of counter
+ *     - threshold - INT16U - Threshold Value
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SET_THRESHOLD
+
+/** @brief <b>plugin counters reset-threshold </b>
+ *   - <i>Resets all thresholds values to 0xFFFF.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_RESET_THRESHOLD
+
+/** @brief <b>plugin counters send-request </b>
+ *   - <i>Sends a request for ota counters</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SEND_REQUEST
+
+/** @} */ // end group plugin-counters
+
+/** @addtogroup plugin-device-database Plugin Commands: Device Database
+ * @ingroup cli
+ * This plugin provides a set of CLI commands for printing and manipulating the
+ * device database.
+ * 
+ * @{
+ */
+
+/** @brief <b>plugin device-database print-all </b>
+ *   - <i>Print all devices in the database.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_PRINT_ALL
+
+/** @brief <b>plugin device-database device print [eui64:8] </b>
+ *   - <i>Print all the clusters and endpoints known about the specified device in the database.</i>
+ *     - eui64 - IEEE_ADDRESS - The address of the device to be looked up (little endian)
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_PRINT
+
+/** @brief <b>plugin device-database device erase [eui64:8] </b>
+ *   - <i>Erase the device with specified EUI64 from the database.</i>
+ *     - eui64 - IEEE_ADDRESS - The address of the device to erase from the database.
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_ERASE
+
+/** @brief <b>plugin device-database device add-dummy [eui64:8] [endpoints:1] [clusters:2] </b>
+ *   - <i>Add a device with specified EUI64 and a sequential number of clusters and endpoints.</i>
+ *     - eui64 - IEEE_ADDRESS - The address of the dummy device to add.
+ *     - endpoints - INT8U - The number of dummy endpoints to add.
+ *     - clusters - INT16U - The number of dummy clusters to add.
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_ADD_DUMMY
+
+/** @} */ // end group plugin-device-database
+
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli
  * The device table plugin demonstrates tracking devices as they join the 
@@ -2955,6 +3043,26 @@
  */
 
 /** @} */ // end group plugin-concentrator
+
+/** @addtogroup plugin-counters Plugin Commands: Counters
+ * @ingroup cli
+ * This plugin provides APIs and CLI commands for reading and manipulating
+ * counters that record different events in the stack.
+ * 
+ * @{
+ */
+
+/** @} */ // end group plugin-counters
+
+/** @addtogroup plugin-device-database Plugin Commands: Device Database
+ * @ingroup cli
+ * This plugin provides a set of CLI commands for printing and manipulating the
+ * device database.
+ * 
+ * @{
+ */
+
+/** @} */ // end group plugin-device-database
 
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli

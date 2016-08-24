@@ -156,11 +156,15 @@ APPLICATION_FILES= \
   ../../../platform/base/hal/micro/unix/host/micro.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/address-table/address-table.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/address-table/address-table-cli.c \
-  ../../../protocol/zigbee_5.7/app/framework/plugin/color-control/color-control.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/concentrator/concentrator-support.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/concentrator/concentrator-support-cli.c \
   ../../../protocol/zigbee_5.7/app/util/source-route-common.c \
   ../../../protocol/zigbee_5.7/app/util/source-route-host.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-cli.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-ota-host.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-host.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/device-database/device-database.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/device-database/device-database-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/device-table/device-table.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ezmode-commissioning/ez-mode.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ezmode-commissioning/ez-mode-cli.c \
@@ -168,15 +172,14 @@ APPLICATION_FILES= \
   ../../../protocol/zigbee_5.7/app/util/common/form-and-join.c \
   ../../../protocol/zigbee_5.7/app/util/common/form-and-join-host-adapter.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/gateway-commands/gateway-commands.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/groups-client/groups-client.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/heartbeat/heartbeat.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ias-zone-client/ias-zone-client.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ias-zone-client/ias-zone-client-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/identify/identify.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/identify/identify-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/identify-feedback/identify-feedback.c \
-  ../../../protocol/zigbee_5.7/app/framework/plugin/level-control/level-control.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/network-find/network-find.c \
-  ../../../protocol/zigbee_5.7/app/framework/plugin/on-off/on-off.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ota-common/ota-common.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ota-server/ota-server.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ota-server/ota-server-page-request.c \
@@ -190,6 +193,7 @@ APPLICATION_FILES= \
   ../../../protocol/zigbee_5.7/app/framework/plugin/rules-engine/rules-engine.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/rules-engine/rules-engine-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/rules-engine/rules-engine-actions.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/scenes-client/scenes-client.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/simple-main/simple-main.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/simple-metering-client/simple-metering-client.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/simple-metering-client/simple-metering-client-cli.c \
@@ -203,6 +207,7 @@ APPLICATION_FILES= \
   ../../../protocol/zigbee_5.7/app/framework/plugin/trust-center-nwk-key-update-broadcast/trust-center-nwk-key-update-broadcast.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/trust-center-nwk-key-update-periodic/trust-center-nwk-key-update-periodic.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/trust-center-nwk-key-update-unicast/trust-center-nwk-key-update-unicast.c \
+  ../../../protocol/zigbee_5.7/app/framework/plugin/xmodem-sender/xmodem-sender.c \
   ../../../protocol/zigbee_5.7/app/util/ezsp/ezsp-callbacks.c \
   ../../../protocol/zigbee_5.7/app/util/ezsp/ezsp-enum-decode.c \
   ../../../protocol/zigbee_5.7/app/util/ezsp/ezsp-frame-utilities.c \

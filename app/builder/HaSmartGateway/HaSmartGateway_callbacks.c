@@ -17,9 +17,7 @@
 #include "sys/time.h"
 #include "stdlib.h"
 #include "app/framework/plugin-host/link-list/link-list.h"
-#ifndef EMBEDDED_GATEWAY
-  #include <stdio.h>
-#endif
+
 // cJSON open-source-module include
 #include "build/external/inc/cJSON.h"
 
@@ -34,7 +32,7 @@
 #define PANID_STRING_LENGTH 5 // 4 chars + NULL
 #define CLUSTERID_STRING_LENGTH 5 // 4 chars + NULL
 #define GATEWAY_TOPIC_PREFIX_LENGTH 21 // 21 chars `gw/xxxxxxxxxxxxxxxx/` + NULL
-#define HEARTBEAT_RATE_MS 600000 // milliseconds
+#define HEARTBEAT_RATE_MS 60000 // milliseconds
 #define PROCESS_COMMAND_RATE_MS 20 // milliseconds
 #define BLOCK_SENT_THROTTLE_VALUE 25 // blocks to receive before sending updates
 
@@ -217,7 +215,7 @@ static char* createOneByteHexString(uint8_t value)
 {
   char* outputString = (char *) malloc(ONE_BYTE_HEX_STRING_SIZE);
   
-  sprintf(outputString, "0x%02X", value);
+  sprintf(outputString, "%02X", value);
   
   return outputString;
 }
@@ -226,7 +224,7 @@ static char* createTwoByteHexString(uint16_t value)
 {
   char* outputString = (char *) malloc(TWO_BYTE_HEX_STRING_SIZE);
   
-  sprintf(outputString, "0x%04X", value);
+  sprintf(outputString, "%04X", value);
   
   return outputString;
 }
@@ -1006,7 +1004,7 @@ static void publishMqttZclContactSense(EmberNodeId nodeId,
   
   contactSenseJson = cJSON_CreateObject();
   dataString = createTwoByteHexString(ZCL_IAS_ZONE_CLUSTER_ID);
-  cJSON_AddStringToObject(contactSenseJson, "clusterId", "0500");
+  cJSON_AddStringToObject(contactSenseJson, "clusterId", dataString);
   free(dataString);
   dataString = 
     createOneByteHexString(ZCL_ZONE_STATUS_CHANGE_NOTIFICATION_COMMAND_ID);
@@ -1132,24 +1130,20 @@ static void publishMqttNodeHeartBeat(EmberNodeId nodeId,
                                  uint8_t* buffer,
                                  uint16_t bufLen) 
 { 
-  char* topic = allocateAndFormMqttGatewayTopic("nodeheartbeat");
+  char* topic = allocateAndFormMqttGatewayTopic("heartbeat");
   uint16_t bufferIndex;
   char euiString[EUI64_STRING_LENGTH] = {0};
-  char nodeIdString[NODEID_STRING_LENGTH] = {0};
-  cJSON* globalReadJson;
-  char* globalReadJsonString;
+  cJSON* heartBeatJson;
+  char* heartBeatJsonString;
 
   int8_t rssi = buffer[ATTRIBUTE_BUFFER_REPORT_DATA_START];
   eui64ToString(eui64, euiString);
-  nodeIdToString(nodeId, nodeIdString);
-  globalReadJson = cJSON_CreateObject();
-  cJSON_AddIntegerToObject(globalReadJson, "rssi", rssi);
-  cJSON_AddStringToObject(globalReadJson, "nodeId", nodeIdString);
-  cJSON_AddStringToObject(globalReadJson, "nodeEui", euiString);
-  globalReadJsonString = cJSON_PrintUnformatted(globalReadJson);
-  emberAfPluginTransportMqttPublish(topic, globalReadJsonString);
-  free(globalReadJsonString);
-  cJSON_Delete(globalReadJson);
+  heartBeatJson = cJSON_CreateObject();
+  cJSON_AddStringToObject(heartBeatJson, "nodeEui", euiString);
+  heartBeatJsonString = cJSON_PrintUnformatted(heartBeatJson);
+  emberAfPluginTransportMqttPublish(topic, heartBeatJsonString);
+  free(heartBeatJsonString);
+  cJSON_Delete(heartBeatJson);
   free(topic);
 }
 static void publishMqttAttribute(EmberNodeId nodeId,
@@ -2007,7 +2001,7 @@ static void eui64ToString(EmberEUI64 eui, char* euiString)
 
 static void nodeIdToString(EmberNodeId nodeId, char* nodeIdString)
 {
-  sprintf(nodeIdString, "0x%04X", nodeId);
+  sprintf(nodeIdString, "%04X", nodeId);
 }
 
 static int64u getTimeMS(void)

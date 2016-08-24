@@ -20120,22 +20120,6 @@ bool emberAfMfglibClusterToneCallback(uint8_t channel,
 /** @} END MFGLIB Cluster Cluster Callbacks */
 
 
-/** @name Color Control Cluster (deprecated) Plugin Callbacks */
-// @{
-
-/** @brief Is Color Supported
- *
- * This function will be called to determine whether a color is supported by a
- * device. The color will be specified by hue and saturation.
- *
- * @param hue   Ver.: always
- * @param saturation   Ver.: always
- */
-bool emberAfPluginColorControlIsColorSupportedCallback(uint8_t hue,
-                                                       uint8_t saturation);
-/** @} END Color Control Cluster (deprecated) Plugin Callbacks */
-
-
 /** @name Concentrator Support Plugin Callbacks */
 // @{
 
@@ -20147,6 +20131,19 @@ bool emberAfPluginColorControlIsColorSupportedCallback(uint8_t hue,
  */
 void emberAfPluginConcentratorBroadcastSentCallback(void);
 /** @} END Concentrator Support Plugin Callbacks */
+
+
+/** @name Counters Plugin Callbacks */
+// @{
+
+/** @brief Rollover
+ *
+ * This function is called every time a counter exceeds its threshold.
+ *
+ * @param type The counter that rolled over Ver.: always
+ */
+void emberAfPluginCountersRolloverCallback(EmberCounterType type);
+/** @} END Counters Plugin Callbacks */
 
 
 /** @name Device Table Plugin Callbacks */
@@ -20466,6 +20463,21 @@ bool emberAfPluginTransportMqttMessageArrivedCallback(const char* topic,
                                                          const char* payload);
 
 /** @} END Gateway MQTT Transport Plugin Callbacks */
+
+
+/** @name Device Database Plugin Callbacks */
+// @{
+
+/** @brief Discovery Complete
+ *
+ * This function is called when a device in the database has been set to
+ * EMBER_AF_DEVICE_DISCOVERY_STATUS_DONE.
+ *
+ * @param device A pointer to the information struct about the device.
+ * Ver.: always
+ */
+void emberAfPluginDeviceDatabaseDiscoveryCompleteCallback(const EmberAfDeviceInfo*device);
+/** @} END Device Database Plugin Callbacks */
 
 
 /** @} END addtogroup */

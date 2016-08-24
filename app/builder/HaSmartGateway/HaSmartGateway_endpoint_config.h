@@ -18,26 +18,16 @@
     { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x02 } }, /* 0 / Basic / ZCL version*/\
     { 0x0007, ZCL_ENUM8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 1 / Basic / power source*/\
     { 0x0000, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x0000 } }, /* 2 / Identify / identify time*/\
-    { 0x0000, ZCL_BOOLEAN_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 3 / On/off / on/off*/\
-    { 0x0000, ZCL_INT8U_ATTRIBUTE_TYPE, 1, (0x00), { (uint8_t*)0x00 } }, /* 4 / Level Control / current level*/\
-    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 5 / Level Control / options*/\
-    { 0x0000, ZCL_UTC_TIME_ATTRIBUTE_TYPE, 4, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { NULL } }, /* 6 / Time / time*/\
-    { 0x0001, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 7 / Time / time status*/\
-    { 0x0003, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x616B } }, /* 8 / Color Control / current x*/\
-    { 0x0004, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x607D } }, /* 9 / Color Control / current y*/\
-    { 0x000F, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE), { (uint8_t*)0x00 } }, /* 10 / Color Control / color control options*/\
-    { 0x400D, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 11 / Color Control / couple color temp to level min-mireds*/\
-    { 0x400E, ZCL_INT16U_ATTRIBUTE_TYPE, 2, (0x00), { (uint8_t*)0x0000UL } }, /* 12 / Color Control / start up color temperature mireds*/\
+    { 0x0000, ZCL_UTC_TIME_ATTRIBUTE_TYPE, 4, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { NULL } }, /* 3 / Time / time*/\
+    { 0x0001, ZCL_BITMAP8_ATTRIBUTE_TYPE, 1, (ATTRIBUTE_MASK_WRITABLE|ATTRIBUTE_MASK_SINGLETON), { (uint8_t*)0x00 } }, /* 4 / Time / time status*/\
   }
 
 
 // Cluster function static arrays
 #define GENERATED_FUNCTION_ARRAYS \
 PGM EmberAfGenericClusterFunction emberAfFuncArrayIdentifyClusterServer[] = { (EmberAfGenericClusterFunction)emberAfIdentifyClusterServerInitCallback,(EmberAfGenericClusterFunction)emberAfIdentifyClusterServerAttributeChangedCallback}; \
-PGM EmberAfGenericClusterFunction emberAfFuncArrayLevelControlClusterServer[] = { (EmberAfGenericClusterFunction)emberAfLevelControlClusterServerInitCallback}; \
 PGM EmberAfGenericClusterFunction emberAfFuncArrayTimeClusterServer[] = { (EmberAfGenericClusterFunction)emberAfTimeClusterServerInitCallback}; \
 PGM EmberAfGenericClusterFunction emberAfFuncArrayOtaBootloadClusterServer[] = { (EmberAfGenericClusterFunction)emberAfOtaBootloadClusterServerInitCallback}; \
-PGM EmberAfGenericClusterFunction emberAfFuncArrayColorControlClusterServer[] = { (EmberAfGenericClusterFunction)emberAfColorControlClusterServerInitCallback}; \
 PGM EmberAfGenericClusterFunction emberAfFuncArrayIasZoneClusterClient[] = { (EmberAfGenericClusterFunction)emberAfIasZoneClusterClientInitCallback}; \
 PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] = { (EmberAfGenericClusterFunction)emberAfSimpleMeteringClusterClientDefaultResponseCallback}; \
 
@@ -52,47 +42,45 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
     { 0x0004, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
     { 0x0005, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
     { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0006, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 1, 1, (CLUSTER_MASK_SERVER), NULL,  },    \
-    { 0x0007, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 2, 2, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayLevelControlClusterServer, },    \
-    { 0x000A, (EmberAfAttributeMetadata*)&(generatedAttributes[6]), 2, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayTimeClusterServer, },    \
-    { 0x0015, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0019, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayOtaBootloadClusterServer, },    \
-    { 0x0020, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0100, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0101, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0102, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0200, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0201, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0202, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0203, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0204, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[8]), 5, 9, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayColorControlClusterServer, },    \
-    { 0x0301, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0400, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0401, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0402, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0403, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0404, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0405, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0406, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0500, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayIasZoneClusterClient, },    \
-    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_SERVER), NULL,  },    \
-    { 0x0502, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0702, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_DEFAULT_RESPONSE_FUNCTION), emberAfFuncArraySimpleMeteringClusterClient, },    \
-    { 0x0B04, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0x0B05, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0xFC01, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
-    { 0xFC02, (EmberAfAttributeMetadata*)&(generatedAttributes[13]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0007, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0008, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0009, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x000A, (EmberAfAttributeMetadata*)&(generatedAttributes[3]), 2, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayTimeClusterServer, },    \
+    { 0x0015, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0019, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayOtaBootloadClusterServer, },    \
+    { 0x0020, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0100, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0101, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0102, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0200, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0201, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0202, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0203, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0204, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0300, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0301, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0400, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0401, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0402, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0403, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0404, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0405, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0406, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0500, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayIasZoneClusterClient, },    \
+    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0501, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0502, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0702, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT| CLUSTER_MASK_DEFAULT_RESPONSE_FUNCTION), emberAfFuncArraySimpleMeteringClusterClient, },    \
+    { 0x0B04, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0B05, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0xFC01, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0xFC02, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 0, 0, (CLUSTER_MASK_CLIENT), NULL,  },    \
   }
 
 
 // Endpoint types
 #define GENERATED_ENDPOINT_TYPES {        \
-    { (EmberAfCluster*)&(generatedClusters[0]), 43, 14 }, \
+    { (EmberAfCluster*)&(generatedClusters[0]), 41, 2 }, \
   }
 
 
@@ -113,8 +101,8 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 
 // Cluster manufacturer codes
 #define GENERATED_CLUSTER_MANUFACTURER_CODES {      \
-{0x002A, 0x1002}, \
-{0x0029, 0x1002}, \
+{0x0027, 0x1002}, \
+{0x0028, 0x1002}, \
   }
 #define GENERATED_CLUSTER_MANUFACTURER_CODE_COUNT (2)
 
@@ -131,7 +119,7 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 #define ATTRIBUTE_SINGLETONS_SIZE (7)
 
 // Total size of attribute storage
-#define ATTRIBUTE_MAX_SIZE 14
+#define ATTRIBUTE_MAX_SIZE 2
 
 // Array of endpoints that are supported
 #define FIXED_ENDPOINT_ARRAY { 1 }
@@ -155,10 +143,8 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 // Code used to configure the cluster event mechanism
 #define EMBER_AF_GENERATED_EVENT_CODE \
   EmberEventControl emberAfIdentifyClusterServerTickCallbackControl1; \
-  EmberEventControl emberAfLevelControlClusterServerTickCallbackControl1; \
   EmberEventControl emberAfTimeClusterServerTickCallbackControl1; \
   EmberEventControl emberAfOtaBootloadClusterServerTickCallbackControl1; \
-  EmberEventControl emberAfColorControlClusterServerTickCallbackControl1; \
   extern EmberEventControl emberAfPluginConcentratorUpdateEventControl; \
   extern void emberAfPluginConcentratorUpdateEventHandler(void); \
   extern EmberEventControl emberAfPluginDeviceTableNewDeviceEventEventControl; \
@@ -191,6 +177,8 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
   extern void emberAfPluginTrustCenterNwkKeyUpdatePeriodicMyEventHandler(void); \
   extern EmberEventControl emberAfPluginTrustCenterNwkKeyUpdateUnicastMyEventControl; \
   extern void emberAfPluginTrustCenterNwkKeyUpdateUnicastMyEventHandler(void); \
+  extern EmberEventControl emberAfPluginXmodemSenderMyEventEventControl; \
+  extern void emberAfPluginXmodemSenderMyEventEventHandler(void); \
   extern EmberEventControl routeRepairEventControl; \
   extern void routeRepairEventFunction(void); \
   extern EmberEventControl heartbeatEventControl; \
@@ -207,19 +195,15 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
     emberAfPopNetworkIndex(); \
   } \
   void emberAfIdentifyClusterServerTickCallbackWrapperFunction1(void) { clusterTickWrapper(&emberAfIdentifyClusterServerTickCallbackControl1, emberAfIdentifyClusterServerTickCallback, 1); } \
-  void emberAfLevelControlClusterServerTickCallbackWrapperFunction1(void) { clusterTickWrapper(&emberAfLevelControlClusterServerTickCallbackControl1, emberAfLevelControlClusterServerTickCallback, 1); } \
   void emberAfTimeClusterServerTickCallbackWrapperFunction1(void) { clusterTickWrapper(&emberAfTimeClusterServerTickCallbackControl1, emberAfTimeClusterServerTickCallback, 1); } \
   void emberAfOtaBootloadClusterServerTickCallbackWrapperFunction1(void) { clusterTickWrapper(&emberAfOtaBootloadClusterServerTickCallbackControl1, emberAfOtaBootloadClusterServerTickCallback, 1); } \
-  void emberAfColorControlClusterServerTickCallbackWrapperFunction1(void) { clusterTickWrapper(&emberAfColorControlClusterServerTickCallbackControl1, emberAfColorControlClusterServerTickCallback, 1); } \
 
 
 // EmberEventData structs used to populate the EmberEventData table
 #define EMBER_AF_GENERATED_EVENTS   \
   { &emberAfIdentifyClusterServerTickCallbackControl1, emberAfIdentifyClusterServerTickCallbackWrapperFunction1 }, \
-  { &emberAfLevelControlClusterServerTickCallbackControl1, emberAfLevelControlClusterServerTickCallbackWrapperFunction1 }, \
   { &emberAfTimeClusterServerTickCallbackControl1, emberAfTimeClusterServerTickCallbackWrapperFunction1 }, \
   { &emberAfOtaBootloadClusterServerTickCallbackControl1, emberAfOtaBootloadClusterServerTickCallbackWrapperFunction1 }, \
-  { &emberAfColorControlClusterServerTickCallbackControl1, emberAfColorControlClusterServerTickCallbackWrapperFunction1 }, \
   { &emberAfPluginConcentratorUpdateEventControl, emberAfPluginConcentratorUpdateEventHandler }, \
   { &emberAfPluginDeviceTableNewDeviceEventEventControl, emberAfPluginDeviceTableNewDeviceEventEventHandler }, \
   { &emberAfPluginEzmodeCommissioningStateEventControl, emberAfPluginEzmodeCommissioningStateEventHandler }, \
@@ -236,6 +220,7 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
   { &emberAfPluginTrustCenterNwkKeyUpdateBroadcastMyEventControl, emberAfPluginTrustCenterNwkKeyUpdateBroadcastMyEventHandler }, \
   { &emberAfPluginTrustCenterNwkKeyUpdatePeriodicMyEventControl, emberAfPluginTrustCenterNwkKeyUpdatePeriodicMyEventHandler }, \
   { &emberAfPluginTrustCenterNwkKeyUpdateUnicastMyEventControl, emberAfPluginTrustCenterNwkKeyUpdateUnicastMyEventHandler }, \
+  { &emberAfPluginXmodemSenderMyEventEventControl, emberAfPluginXmodemSenderMyEventEventHandler }, \
   { &routeRepairEventControl, routeRepairEventFunction }, \
   { &heartbeatEventControl, heartbeatEventFunction }, \
   { &processCommandEventControl, processCommandEventFunction }, \
@@ -244,10 +229,8 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 
 #define EMBER_AF_GENERATED_EVENT_STRINGS   \
   "Identify Cluster Server EP 1",  \
-  "Level Control Cluster Server EP 1",  \
   "Time Cluster Server EP 1",  \
   "Over the Air Bootloading Cluster Server EP 1",  \
-  "Color Control Cluster Server EP 1",  \
   "Concentrator Support Plugin Update",  \
   "Device Table Plugin NewDeviceEvent",  \
   "EZ-Mode Commissioning Plugin State",  \
@@ -264,6 +247,7 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
   "Trust Center Network Key Update Broadcast Plugin My",  \
   "Trust Center Network Key Update Periodic Plugin My",  \
   "Trust Center Network Key Update Unicast Plugin My",  \
+  "Xmodem Sender Plugin MyEvent",  \
   "routeRepair Custom",  \
   "heartbeat Custom",  \
   "processCommand Custom",  \
@@ -271,34 +255,36 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
 
 
 // The length of the event context table used to track and retrieve cluster events
-#define EMBER_AF_EVENT_CONTEXT_LENGTH 5
+#define EMBER_AF_EVENT_CONTEXT_LENGTH 3
 
 // EmberAfEventContext structs used to populate the EmberAfEventContext table
 #define EMBER_AF_GENERATED_EVENT_CONTEXT { 0x1, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl1}, \
-{ 0x1, 0x8, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfLevelControlClusterServerTickCallbackControl1}, \
 { 0x1, 0xa, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfTimeClusterServerTickCallbackControl1}, \
-{ 0x1, 0x19, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfOtaBootloadClusterServerTickCallbackControl1}, \
-{ 0x1, 0x300, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfColorControlClusterServerTickCallbackControl1}
+{ 0x1, 0x19, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfOtaBootloadClusterServerTickCallbackControl1}
 
 
 #define EMBER_AF_GENERATED_PLUGIN_INIT_FUNCTION_DECLARATIONS \
   void emberAfPluginConcentratorInitCallback(void); \
+  void emberAfPluginCountersInitCallback(void); \
   void emberAfPluginDeviceTableInitCallback(void); \
   void emberAfPluginGatewayInitCallback(void); \
   void emberAfPluginNetworkFindInitCallback(void); \
   void emberAfPluginRulesEngineInitCallback(void); \
   void emberAfPluginTransportMqttInitCallback(void); \
   void emberAfPluginTrustCenterNwkKeyUpdatePeriodicInitCallback(void); \
+  void emberAfPluginDeviceDatabaseInitCallback(void); \
 
 
 #define EMBER_AF_GENERATED_PLUGIN_INIT_FUNCTION_CALLS \
   emberAfPluginConcentratorInitCallback(); \
+  emberAfPluginCountersInitCallback(); \
   emberAfPluginDeviceTableInitCallback(); \
   emberAfPluginGatewayInitCallback(); \
   emberAfPluginNetworkFindInitCallback(); \
   emberAfPluginRulesEngineInitCallback(); \
   emberAfPluginTransportMqttInitCallback(); \
   emberAfPluginTrustCenterNwkKeyUpdatePeriodicInitCallback(); \
+  emberAfPluginDeviceDatabaseInitCallback(); \
 
 
 #define EMBER_AF_GENERATED_PLUGIN_NCP_INIT_FUNCTION_DECLARATIONS \
@@ -368,29 +354,41 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
     { 0x0003, 0x00, COMMAND_MASK_OUTGOING_SERVER | COMMAND_MASK_INCOMING_CLIENT }, /* Identify / IdentifyQueryResponse */ \
     { 0x0003, 0x01, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Identify / IdentifyQuery */ \
     { 0x0004, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / AddGroup */ \
+    { 0x0004, 0x00, COMMAND_MASK_INCOMING_CLIENT }, /* Groups / AddGroupResponse */ \
     { 0x0004, 0x01, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / ViewGroup */ \
+    { 0x0004, 0x01, COMMAND_MASK_INCOMING_CLIENT }, /* Groups / ViewGroupResponse */ \
     { 0x0004, 0x02, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / GetGroupMembership */ \
+    { 0x0004, 0x02, COMMAND_MASK_INCOMING_CLIENT }, /* Groups / GetGroupMembershipResponse */ \
     { 0x0004, 0x03, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / RemoveGroup */ \
+    { 0x0004, 0x03, COMMAND_MASK_INCOMING_CLIENT }, /* Groups / RemoveGroupResponse */ \
     { 0x0004, 0x04, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / RemoveAllGroups */ \
     { 0x0004, 0x05, COMMAND_MASK_OUTGOING_CLIENT }, /* Groups / AddGroupIfIdentifying */ \
     { 0x0005, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / AddScene */ \
+    { 0x0005, 0x00, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / AddSceneResponse */ \
     { 0x0005, 0x01, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / ViewScene */ \
+    { 0x0005, 0x01, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / ViewSceneResponse */ \
     { 0x0005, 0x02, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / RemoveScene */ \
+    { 0x0005, 0x02, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / RemoveSceneResponse */ \
     { 0x0005, 0x03, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / RemoveAllScenes */ \
+    { 0x0005, 0x03, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / RemoveAllScenesResponse */ \
     { 0x0005, 0x04, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / StoreScene */ \
+    { 0x0005, 0x04, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / StoreSceneResponse */ \
     { 0x0005, 0x05, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / RecallScene */ \
     { 0x0005, 0x06, COMMAND_MASK_OUTGOING_CLIENT }, /* Scenes / GetSceneMembership */ \
-    { 0x0006, 0x00, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* On/off / Off */ \
-    { 0x0006, 0x01, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* On/off / On */ \
-    { 0x0006, 0x02, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* On/off / Toggle */ \
-    { 0x0008, 0x00, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / MoveToLevel */ \
-    { 0x0008, 0x01, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / Move */ \
-    { 0x0008, 0x02, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / Step */ \
-    { 0x0008, 0x03, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / Stop */ \
-    { 0x0008, 0x04, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / MoveToLevelWithOnOff */ \
-    { 0x0008, 0x05, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / MoveWithOnOff */ \
-    { 0x0008, 0x06, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / StepWithOnOff */ \
-    { 0x0008, 0x07, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_INCOMING_SERVER }, /* Level Control / StopWithOnOff */ \
+    { 0x0005, 0x06, COMMAND_MASK_INCOMING_CLIENT }, /* Scenes / GetSceneMembershipResponse */ \
+    { 0x0006, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* On/off / Off */ \
+    { 0x0006, 0x01, COMMAND_MASK_OUTGOING_CLIENT }, /* On/off / On */ \
+    { 0x0006, 0x02, COMMAND_MASK_OUTGOING_CLIENT }, /* On/off / Toggle */ \
+    { 0x0008, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / MoveToLevel */ \
+    { 0x0008, 0x01, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / Move */ \
+    { 0x0008, 0x02, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / Step */ \
+    { 0x0008, 0x03, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / Stop */ \
+    { 0x0008, 0x04, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / MoveToLevelWithOnOff */ \
+    { 0x0008, 0x05, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / MoveWithOnOff */ \
+    { 0x0008, 0x06, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / StepWithOnOff */ \
+    { 0x0008, 0x07, COMMAND_MASK_OUTGOING_CLIENT }, /* Level Control / StopWithOnOff */ \
+    { 0x0009, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* Alarms / ResetAlarm */ \
+    { 0x0009, 0x01, COMMAND_MASK_OUTGOING_CLIENT }, /* Alarms / ResetAllAlarms */ \
     { 0x0015, 0x00, COMMAND_MASK_OUTGOING_CLIENT }, /* Commissioning / RestartDevice */ \
     { 0x0015, 0x03, COMMAND_MASK_OUTGOING_CLIENT }, /* Commissioning / ResetStartupParameters */ \
     { 0x0019, 0x00, COMMAND_MASK_OUTGOING_SERVER }, /* Over the Air Bootloading / ImageNotify */ \
@@ -410,13 +408,6 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
     { 0x0201, 0x02, COMMAND_MASK_OUTGOING_CLIENT }, /* Thermostat / GetWeeklySchedule */ \
     { 0x0201, 0x03, COMMAND_MASK_OUTGOING_CLIENT }, /* Thermostat / ClearWeeklySchedule */ \
     { 0x0201, 0x04, COMMAND_MASK_OUTGOING_CLIENT }, /* Thermostat / GetRelayStatusLog */ \
-    { 0x0300, 0x00, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / MoveToHue */ \
-    { 0x0300, 0x01, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / MoveHue */ \
-    { 0x0300, 0x02, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / StepHue */ \
-    { 0x0300, 0x03, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / MoveToSaturation */ \
-    { 0x0300, 0x04, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / MoveSaturation */ \
-    { 0x0300, 0x05, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / StepSaturation */ \
-    { 0x0300, 0x06, COMMAND_MASK_INCOMING_SERVER }, /* Color Control / MoveToHueAndSaturation */ \
     { 0x0300, 0x07, COMMAND_MASK_OUTGOING_CLIENT }, /* Color Control / MoveToColor */ \
     { 0x0300, 0x08, COMMAND_MASK_OUTGOING_CLIENT }, /* Color Control / MoveColor */ \
     { 0x0300, 0x09, COMMAND_MASK_OUTGOING_CLIENT }, /* Color Control / StepColor */ \
@@ -457,5 +448,5 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
     { 0xFC02, 0x01, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_MANUFACTURER_SPECIFIC }, /* MFGLIB Cluster / tone */ \
     { 0xFC02, 0x02, COMMAND_MASK_OUTGOING_CLIENT | COMMAND_MASK_MANUFACTURER_SPECIFIC }, /* MFGLIB Cluster / rxMode */ \
   }
-#define EMBER_AF_GENERATED_COMMAND_COUNT (92)
+#define EMBER_AF_GENERATED_COMMAND_COUNT (97)
 #endif // __AF_ENDPOINT_CONFIG__
