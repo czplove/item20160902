@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<callback prefix="emberAf" postfix="Callback">
+  <function id="TRAFFIC_TEST_MESSAGE_BUILT" name="MessageBuilt" returnType="void">
+    <description>
+      Called when an on/off test in the traffic test plugin is built to be sent.
+    </description>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="TRAFFIC_TEST_REPORT_RESULTS" name="ReportResults" returnType="void">
+    <description>
+      Called when results from the traffic test plugin are ready for reporting.
+    </description>
+    <arg name="numDefaultResponses" type="uint16_t"/>
+    <arg name="numTxSendErrors" type="uint16_t"/>
+    <arg name="numTotalMessages" type="uint16_t"/>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="TRAFFIC_TEST_DEFAULT_RESPONSE" name="DefaultResponse" returnType="void">
+    <description>
+      Called when a response is returned from a message sent using the traffic test plugin.
+    </description>
+    <arg name="status" type="EmberStatus"/>
+    <arg name="clusterId" type="EmberAfClusterId"/>
+    <arg name="commandId" type="uint8_t"/>
+    <codeForStub>
+    </codeForStub>
+  </function>
+</callback>

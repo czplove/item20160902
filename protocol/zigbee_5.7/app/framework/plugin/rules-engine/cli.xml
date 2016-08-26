@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<cli>
+  <group id="plugin-rules-engine" name="Plugin Commands: Rules Engine">
+    <description>
+      The drlc plugin contributes CLI commands to the application framework for adding rules to the
+	  local rules engine on the gateway.  
+    </description>
+  </group>
+  <command cli="plugin rules-engine bind" functionName="emberAfPluginRulesEngineBindCommand" group="plugin-rules-engine">
+    <description>
+      Bind inDevice to outDevice so the gateway will re-transmit any incoming command from device in to device out.
+    </description>
+    <arg name="inDevice" type="INT16U" description = "Incoming device table entry." />
+    <arg name="outDevice" type="INT16U" description = "Outgoing device table entry." />
+  </command>
+  <command cli="plugin rules-engine epbind" functionName="emberAfPluginRulesEngineEndpointBindCommand" group="plugin-rules-engine">
+    <description>
+      Bind inDevice to outDevice so the gateway will re-transmit any incoming command from device in to device out.  Uses endpoint
+    </description>
+    <arg name="inDevice" type="INT16U" description = "Incoming device table entry." />
+	<arg name="inEndpoint" type="INT8U" description = "Incoming device endpoint." />
+    <arg name="outDevice" type="INT16U" description = "Outgoing device table entry." />
+	<arg name="inEndpoint" type="INT8U" description = "Incoming device endpoint." />
+  </command>
+  <command cli="plugin rules-engine epaction" functionName="emberAfPluginRulesEngineEndpointActionCommand" group="plugin-rules-engine">
+    <description>
+      Create an action-based rule that includes endpoints in the lookup mechanism.
+    </description>
+    <arg name="inNodeId"  type="INT16U" description = "Incoming Table Entry." />
+	<arg name="inEndpoint" type="INT8U" description = "Incoming device endpoint." />
+    <arg name="outNodeId" type="INT16U" description = "Outgoing Table Entry." />
+	<arg name="outEndpoint" type="INT8U" description = "Outgoing device endpoint." />
+    <arg name="inAction"  type="INT8U"  description = "Incoming action." />
+    <arg name="outAction" type="INT8U"  description = "Outgoing action." />
+    <arg name="inData"    type="OCTET_STRING"  description = "In Action data." />
+    <arg name="outData"   type="OCTET_STRING"  description = "Out Action data." />
+  </command>
+  <command cli="plugin rules-engine save" functionName="rulesEngineSaveCommand" group="plugin-rules-engine">
+    <description>
+      Save the file.
+    </description>
+  </command>
+  <command cli="plugin rules-engine load" functionName="rulesEngineLoadCommand" group="plugin-rules-engine">
+    <description>
+      Load the file.
+    </description>
+  </command>
+  <command cli="plugin rules-engine print" functionName="rulesEnginePrintCommand" group="plugin-rules-engine">
+    <description>
+      Print the action table.
+    </description>
+  </command>
+  <command cli="plugin rules-engine clear" functionName="rulesEngineClearCommand" group="plugin-rules-engine">
+    <description>
+      Clear the action table.
+    </description>
+  </command>
+  <command cli="plugin rules-engine bsave" functionName="rulesEngineBindSaveCommand" group="plugin-rules-engine">
+    <description>
+      Save the file.
+    </description>
+  </command>
+  <command cli="plugin rules-engine bload" functionName="rulesEngineBindLoadCommand" group="plugin-rules-engine">
+    <description>
+      Load the file.
+    </description>
+  </command>
+  <command cli="plugin rules-engine bprint" functionName="rulesEngineBprintCommand" group="plugin-rules-engine">
+    <description>
+      Print the binding table.
+    </description>
+  </command>
+  <command cli="plugin rules-engine bclear" functionName="rulesEngineBclearCommand" group="plugin-rules-engine">
+    <description>
+      Clear the binding table.
+    </description>
+  </command>
+  <command cli="plugin rules-engine bdelete" functionName="rulesEngineBdeleteCommand" group="plugin-rules-engine">
+    <description>
+      Deletes a rule
+    </description>
+    <arg name="inDevice" type="INT16U" description = "Incoming device table entry." />
+    <arg name="outDevice" type="INT16U" description = "Outgoing device table entry." />
+  </command>
+</cli>

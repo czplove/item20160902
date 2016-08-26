@@ -475,7 +475,7 @@ void emberSerialCommandCompletionInit(EmberCommandEntry listOfCommands[])
 #if READLINE_SUPPORT
   allCommands = listOfCommands;
   rl_attempted_completion_function = commandCompletion;
-  rl_completion_entry_function = (Function *)filenameCompletion;
+  rl_completion_entry_function = (rl_compentry_func_t *)filenameCompletion;
 #endif
   usingCommandInterpreter = true;
 }

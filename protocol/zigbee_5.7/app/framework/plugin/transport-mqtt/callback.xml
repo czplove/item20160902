@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<callback prefix="emberAf" postfix="Callback">
+  <function id="GATEWAY_TRANSPORT_MQTT_CONNECTED" name="Connected" returnType="void">
+    <description>
+      Called when gateway transport successfully connects to the MQTT broker.
+    </description>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="GATEWAY_TRANSPORT_MQTT_DISCONNECTED" name="Disconnected" returnType="void">
+    <description>
+      Called when gateway transport disconnects from the MQTT broker.
+    </description>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="GATEWAY_TRANSPORT_MQTT_MESSAGE_ARRIVED" name="MessageArrived" returnType="boolean">
+    <description>
+      Called when a message is ready for processing. Return `true` if the message is processed, otherwise return false.
+    </description>
+    <arg name="topic" type="const char*"/>
+    <arg name="payload" type="const char*"/>
+    <codeForStub>
+    </codeForStub>
+  </function>
+</callback>

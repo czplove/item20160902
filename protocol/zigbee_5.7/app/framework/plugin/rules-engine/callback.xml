@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<callback prefix="emberAf" postfix="Callback">
+  <function id="RULES_ENGINE_CHANGED" name="Changed" returnType="void">
+    <description>
+      Called when rules engine changes.
+    </description>
+    <codeForStub>
+    </codeForStub>
+  </function>
+  <function id="RULES_PRE_COMMAND_RECEIVED" name="RulesPreCommandReceived" returnType="void">
+    <description>
+      Called when rules engine sees a pre command received callback
+    </description>
+    <arg name="commandId" type="uint8_t"/>
+    <arg name="clusterSpecific" type="bool"/>
+    <arg name="clusterId" type="uint16_t"/>
+    <arg name="mfgSpecific" type="bool"/>
+    <arg name="mfgCode" type="uint16_t"/>
+    <arg name="buffer" type="uint8_t*"/>
+    <arg name="bufLen" type="uint8_t"/>
+    <arg name="payloadStartIndex" type="uint8_t"/>
+    <codeForStub>
+    </codeForStub>
+  </function>
+</callback>
