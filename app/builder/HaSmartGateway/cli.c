@@ -50,9 +50,24 @@ void emberAfPluginConcentratorSetRouterBehaviorCommand(void);
 void emberAfPluginConcentratorStartDiscovery(void);
 void emberAfPluginConcentratorStatus(void);
 void emberAfPluginConcentratorStopDiscovery(void);
+void emberAfPluginCounterPrintCounterTypeCommand(void);
+void emberAfPluginCountersClear(void);
+void emberAfPluginCountersPrintCommand(void);
+void emberAfPluginCountersPrintThresholdsCommand(void);
+void emberAfPluginCountersResetThresholds(void);
+void emberAfPluginCountersSendRequestCommand(void);
+void emberAfPluginCountersSetThresholdCommand(void);
+void emberAfPluginCountersSimplePrintCommand(void);
 void emberAfPluginEzModeCommissioningClientCommand(void);
 void emberAfPluginEzModeCommissioningServerCommand(void);
+void emberAfPluginGatewaySupportBoardName(void);
+void emberAfPluginGatewaySupportMfgCode(void);
+void emberAfPluginGatewaySupportMfgString(void);
+void emberAfPluginGatewaySupportPing(void);
+void emberAfPluginGatewaySupportPjoinCommand(void);
 void emberAfPluginGatewaySupportTimeSyncLocal(void);
+void emberAfPluginGatewaySupportTxPower(void);
+void emberAfPluginGatewaySupportVersion(void);
 void emberAfPluginRulesEngineBindCommand(void);
 void emberAfPluginRulesEngineEndpointActionCommand(void);
 void emberAfPluginRulesEngineEndpointBindCommand(void);
@@ -2190,8 +2205,25 @@ EmberCommandEntry emberCommandTablePluginIasZoneClientCommands[] = {
   emberCommandEntryTerminator()
 };
 
+PGM_P PGM emberCommandTablePluginGatewayPjoinCommandArguments[] = {
+  "Number of seconds during which devices will be allowed to join the net ...",
+  NULL
+};
+
+PGM_P PGM emberCommandTablePluginGatewayTxPowerCommandArguments[] = {
+  "the tx power value to set for the radio",
+  NULL
+};
+
 EmberCommandEntry emberCommandTablePluginGatewayCommands[] = {
+  emberCommandEntryActionWithDetails("board-name", emberAfPluginGatewaySupportBoardName, "", "This command be used to get gateway board name.", NULL),
+  emberCommandEntryActionWithDetails("mfg-code", emberAfPluginGatewaySupportMfgCode, "", "This command be used to get gateway mfg code.", NULL),
+  emberCommandEntryActionWithDetails("mfg-string", emberAfPluginGatewaySupportMfgString, "", "This command be used to get gateway mfg String.", NULL),
+  emberCommandEntryActionWithDetails("ping", emberAfPluginGatewaySupportPing, "", "Ping the Gateway for the manufacturing information", NULL),
+  emberCommandEntryActionWithDetails("pjoin", emberAfPluginGatewaySupportPjoinCommand, "u", "Gateway permit joining on the network for a given number of seconds", emberCommandTablePluginGatewayPjoinCommandArguments),
   emberCommandEntryActionWithDetails("time-sync-local", emberAfPluginGatewaySupportTimeSyncLocal, "", "This command will sync the ZCL device's local time attribute with the  ...", NULL),
+  emberCommandEntryActionWithDetails("txPower", emberAfPluginGatewaySupportTxPower, "s", "This command will set radio tx power.", emberCommandTablePluginGatewayTxPowerCommandArguments),
+  emberCommandEntryActionWithDetails("version", emberAfPluginGatewaySupportVersion, "", "This command be used to get gateway version number.", NULL),
   emberCommandEntryTerminator()
 };
 
@@ -2230,6 +2262,33 @@ EmberCommandEntry emberCommandTablePluginDeviceTableCommands[] = {
   emberCommandEntryActionWithDetails("load", deviceTableLoadCommand, "", "Load the file.", NULL),
   emberCommandEntryActionWithDetails("save", deviceTableSaveCommand, "", "Save the file.", NULL),
   emberCommandEntryActionWithDetails("send", deviceTableSendCommand, "u", "Send to device in device table.", emberCommandTablePluginDeviceTableSendCommandArguments),
+  emberCommandEntryTerminator()
+};
+
+PGM_P PGM emberCommandTablePluginCountersSetThresholdCommandArguments[] = {
+  "type of counter",
+  "Threshold Value",
+  NULL
+};
+
+EmberCommandEntry emberCommandTablePluginCountersCommands[] = {
+  emberCommandEntryActionWithDetails("clear", emberAfPluginCountersClear, "", "Clear all counter values.", NULL),
+  emberCommandEntryActionWithDetails("print", emberAfPluginCountersPrintCommand, "", "Print all counter values and clear them.", NULL),
+  emberCommandEntryActionWithDetails("print-thresholds", emberAfPluginCountersPrintThresholdsCommand, "", "Prints the thresholds of all the counters.", NULL),
+  emberCommandEntryActionWithDetails("reset-threshold", emberAfPluginCountersResetThresholds, "", "Resets all thresholds values to 0xFFFF.", NULL),
+  emberCommandEntryActionWithDetails("send-request", emberAfPluginCountersSendRequestCommand, "", "Sends a request for ota counters", NULL),
+  emberCommandEntryActionWithDetails("set-threshold", emberAfPluginCountersSetThresholdCommand, "uv", "Set a threshold value for a particular type of counter.", emberCommandTablePluginCountersSetThresholdCommandArguments),
+  emberCommandEntryActionWithDetails("simple-print", emberAfPluginCountersSimplePrintCommand, "", "Print all counter values.", NULL),
+  emberCommandEntryTerminator()
+};
+
+PGM_P PGM emberCommandTablePluginCounterPrintCounterTypeCommandArguments[] = {
+  "The counter type       to print.",
+  NULL
+};
+
+EmberCommandEntry emberCommandTablePluginCounterCommands[] = {
+  emberCommandEntryActionWithDetails("print-counter-type", emberAfPluginCounterPrintCounterTypeCommand, "u", "Print value of this particular counter.", emberCommandTablePluginCounterPrintCounterTypeCommandArguments),
   emberCommandEntryTerminator()
 };
 
@@ -2282,6 +2341,8 @@ EmberCommandEntry emberCommandTablePluginAddressTableCommands[] = {
 EmberCommandEntry emberCommandTablePluginCommands[] = {
   emberCommandEntrySubMenu("address-table", emberCommandTablePluginAddressTableCommands, ""),
   emberCommandEntrySubMenu("concentrator", emberCommandTablePluginConcentratorCommands, ""),
+  emberCommandEntrySubMenu("counter", emberCommandTablePluginCounterCommands, ""),
+  emberCommandEntrySubMenu("counters", emberCommandTablePluginCountersCommands, ""),
   emberCommandEntrySubMenu("device-table", emberCommandTablePluginDeviceTableCommands, ""),
   emberCommandEntrySubMenu("ezmode-commissioning", emberCommandTablePluginEzmodeCommissioningCommands, ""),
   emberCommandEntrySubMenu("gateway", emberCommandTablePluginGatewayCommands, ""),

@@ -282,4 +282,5 @@
   <mapping code="0x1115" translation="Intel Corporation"/>
   <mapping code="0x1116" translation="Trend Electronics Limited"/>
   <mapping code="0x1117" translation="Moxa"/>
+  <mapping code="0x1171" translation="Wulian"/>
 </map>

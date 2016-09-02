@@ -21,6 +21,8 @@ typedef struct
 {
   EmberNodeId nodeId;
   EmberEUI64 eui64;
+  EmberNodeType nodeType;
+  uint8_t capabilities;
   uint8_t endpointCount;
   uint8_t endpoints[5];
   NewDeviceState state; 
@@ -39,6 +41,22 @@ typedef struct
   uint16_t deviceId;
   uint8_t deviceJoinState;
 } EndpointDescriptor;
+// node descriptor structure
+typedef struct 
+{
+  uint8_t logicalType:3;
+  uint8_t complexDescriptorAvailable:1;
+  uint8_t userDescriptorAvailable:1;
+  uint8_t reserved:3;
+  uint8_t apsFlags:3;
+  uint8_t frequencyBand:5;
+  uint8_t macCapabilityFlags;
+  uint16_t manufacturerCode;
+  uint8_t maximumBufferSize;
+  uint16_t maximumIncomingTransferSize;
+  uint16_t maximumOutgoingTransferSize;
+  uint8_t descriptorCapabilityFlags;
+} NodeDescriptor;
 
 #define ADDRESS_TABLE_SIZE 250
 #define MAX_ENDPOINTS (ADDRESS_TABLE_SIZE * 2)

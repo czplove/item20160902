@@ -9,5 +9,42 @@
     <description>
       This command will sync the ZCL device's local time attribute with the local PC clock.
     </description>
+  </command>  
+  <command cli="plugin gateway version" functionName="emberAfPluginGatewaySupportVersion" group="plugin-gateway">
+    <description>
+      This command be used to get gateway version number.
+    </description>
   </command>
+  <command cli="plugin gateway board-name" functionName="emberAfPluginGatewaySupportBoardName" group="plugin-gateway">
+    <description>
+      This command be used to get gateway board name.
+    </description>
+	</command>   
+  <command cli="plugin gateway mfg-code" functionName="emberAfPluginGatewaySupportMfgCode" group="plugin-gateway">
+    <description>
+      This command be used to get gateway mfg code.
+    </description>
+  </command>   
+  <command cli="plugin gateway mfg-string" functionName="emberAfPluginGatewaySupportMfgString" group="plugin-gateway">
+    <description>
+      This command be used to get gateway mfg String.
+    </description>
+  </command>     
+  <command cli="plugin gateway txPower" functionName="emberAfPluginGatewaySupportTxPower" group="plugin-gateway">
+    <description>
+      This command will set radio tx power.
+    </description>
+    <arg name="dBm" type="INT8S" description="the tx power value to set for the radio" />
+  </command>     
+  <command cli="plugin gateway pjoin" functionName="emberAfPluginGatewaySupportPjoinCommand" group="plugin-gateway">
+    <description>
+      Gateway permit joining on the network for a given number of seconds
+    </description>
+    <arg name="seconds" type="INT8U" description="Number of seconds during which devices will be allowed to join the network. A value of 0xff turns permit joining on permanently" />
+  </command>
+  <command cli="plugin gateway ping" functionName="emberAfPluginGatewaySupportPing" group="plugin-gateway">
+    <description>
+      Ping the Gateway for the manufacturing information
+    </description>
+  </command>     
 </cli>

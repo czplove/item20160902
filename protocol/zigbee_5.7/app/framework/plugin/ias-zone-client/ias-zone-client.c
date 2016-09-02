@@ -285,6 +285,7 @@ bool emberAfIasZoneClusterZoneEnrollRequestCallback(uint16_t zoneType,
                      responseCode,
                      zoneId,
                      status);
+  readIasZoneServerAttributes(emberAfCurrentCommand()->source);
   return true;
 }
 
@@ -523,8 +524,6 @@ void emberAfPluginIasZoneClientReadAttributesResponseCallback(EmberAfClusterId c
               emberAfIasZoneClusterPrintln("CIE Address not set to mine, removing IAS zone server.");
               removeServer(&(buffer[i]));
               clearState();
-            } else {
-              readIasZoneServerAttributes(emberAfCurrentCommand()->source);
             }
             return;
           }

@@ -1062,6 +1062,59 @@
 
 /** @} */ // end group plugin-concentrator
 
+/** @addtogroup plugin-counters Plugin Commands: Counters
+ * @ingroup cli
+ * This plugin provides APIs and CLI commands for reading and manipulating
+ * counters that record different events in the stack.
+ * 
+ * @{
+ */
+
+/** @brief <b>plugin counters print </b>
+ *   - <i>Print all counter values and clear them.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_PRINT
+
+/** @brief <b>plugin counter print-counter-type [type:1] </b>
+ *   - <i>Print value of this particular counter.</i>
+ *     - type - INT8U - The counter type       to print.
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTER_PRINT_COUNTER_TYPE
+
+/** @brief <b>plugin counters simple-print </b>
+ *   - <i>Print all counter values.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SIMPLE_PRINT
+
+/** @brief <b>plugin counters clear </b>
+ *   - <i>Clear all counter values.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_CLEAR
+
+/** @brief <b>plugin counters print-thresholds </b>
+ *   - <i>Prints the thresholds of all the counters.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_PRINT_THRESHOLDS
+
+/** @brief <b>plugin counters set-threshold [type:1] [threshold:2] </b>
+ *   - <i>Set a threshold value for a particular type of counter.</i>
+ *     - type - INT8U - type of counter
+ *     - threshold - INT16U - Threshold Value
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SET_THRESHOLD
+
+/** @brief <b>plugin counters reset-threshold </b>
+ *   - <i>Resets all thresholds values to 0xFFFF.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_RESET_THRESHOLD
+
+/** @brief <b>plugin counters send-request </b>
+ *   - <i>Sends a request for ota counters</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_COUNTERS_PLUGIN_COUNTERS_SEND_REQUEST
+
+/** @} */ // end group plugin-counters
+
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli
  * The device table plugin demonstrates tracking devices as they join the 
@@ -1132,6 +1185,43 @@
  *   - <i>This command will sync the ZCL device's local time attribute with the local PC clock.</i>
  */
 #define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_TIME_SYNC_LOCAL
+
+/** @brief <b>plugin gateway version </b>
+ *   - <i>This command be used to get gateway version number.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_VERSION
+
+/** @brief <b>plugin gateway board-name </b>
+ *   - <i>This command be used to get gateway board name.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_BOARD_NAME
+
+/** @brief <b>plugin gateway mfg-code </b>
+ *   - <i>This command be used to get gateway mfg code.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_MFG_CODE
+
+/** @brief <b>plugin gateway mfg-string </b>
+ *   - <i>This command be used to get gateway mfg String.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_MFG_STRING
+
+/** @brief <b>plugin gateway txPower [dBm:1] </b>
+ *   - <i>This command will set radio tx power.</i>
+ *     - dBm - INT8S - the tx power value to set for the radio
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_TX_POWER
+
+/** @brief <b>plugin gateway pjoin [seconds:1] </b>
+ *   - <i>Gateway permit joining on the network for a given number of seconds</i>
+ *     - seconds - INT8U - Number of seconds during which devices will be allowed to join the network. A value of 0xff turns permit joining on permanently
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_PJOIN
+
+/** @brief <b>plugin gateway ping </b>
+ *   - <i>Ping the Gateway for the manufacturing information</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_PING
 
 /** @} */ // end group plugin-gateway
 
@@ -2955,6 +3045,16 @@
  */
 
 /** @} */ // end group plugin-concentrator
+
+/** @addtogroup plugin-counters Plugin Commands: Counters
+ * @ingroup cli
+ * This plugin provides APIs and CLI commands for reading and manipulating
+ * counters that record different events in the stack.
+ * 
+ * @{
+ */
+
+/** @} */ // end group plugin-counters
 
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli

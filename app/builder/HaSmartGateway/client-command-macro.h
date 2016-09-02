@@ -68,7 +68,8 @@
                                                                      readAttributeStatusRecords, \
                                                                      readAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_READ_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -87,7 +88,8 @@
                                                                      readAttributeStatusRecords, \
                                                                      readAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_READ_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -182,7 +184,8 @@
                                                                       writeAttributeStatusRecords, \
                                                                       writeAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -201,7 +204,8 @@
                                                                       writeAttributeStatusRecords, \
                                                                       writeAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -220,7 +224,8 @@
                                                                         writeAttributeRecords, \
                                                                         writeAttributeRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_NO_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -239,7 +244,8 @@
                                                                         writeAttributeRecords, \
                                                                         writeAttributeRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_NO_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -296,7 +302,8 @@
                                                                          configureReportingStatusRecords, \
                                                                          configureReportingStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_CONFIGURE_REPORTING_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -315,7 +322,8 @@
                                                                          configureReportingStatusRecords, \
                                                                          configureReportingStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_CONFIGURE_REPORTING_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -372,7 +380,8 @@
                                                                                  readReportingConfigurationRecords, \
                                                                                  readReportingConfigurationRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_READ_REPORTING_CONFIGURATION_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -391,7 +400,8 @@
                                                                                  readReportingConfigurationRecords, \
                                                                                  readReportingConfigurationRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_READ_REPORTING_CONFIGURATION_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -448,7 +458,8 @@
                                                               commandId, \
                                                               status) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DEFAULT_RESPONSE_COMMAND_ID, \
                             "uu", \
@@ -467,7 +478,8 @@
                                                               commandId, \
                                                               status) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DEFAULT_RESPONSE_COMMAND_ID, \
                             "uu", \
@@ -526,7 +538,8 @@
                                                                          discoverAttributesInfoRecords, \
                                                                          discoverAttributesInfoRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -548,7 +561,8 @@
                                                                          discoverAttributesInfoRecords, \
                                                                          discoverAttributesInfoRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_ATTRIBUTES_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -644,7 +658,8 @@
                                                                                 writeStructuredAttributeStatusRecords, \
                                                                                 writeStructuredAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_STRUCTURED_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -663,7 +678,8 @@
                                                                                 writeStructuredAttributeStatusRecords, \
                                                                                 writeStructuredAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_WRITE_ATTRIBUTES_STRUCTURED_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -722,7 +738,8 @@
                                                                                commandIds, \
                                                                                commandIdsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_COMMANDS_RECEIVED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -744,7 +761,8 @@
                                                                                commandIds, \
                                                                                commandIdsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_COMMANDS_RECEIVED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -804,7 +822,8 @@
                                                                                 commandIds, \
                                                                                 commandIdsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_COMMANDS_GENERATED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -826,7 +845,8 @@
                                                                                 commandIds, \
                                                                                 commandIdsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_COMMANDS_GENERATED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -886,7 +906,8 @@
                                                                                  extendedDiscoverAttributesInfoRecords, \
                                                                                  extendedDiscoverAttributesInfoRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_ATTRIBUTES_EXTENDED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -908,7 +929,8 @@
                                                                                  extendedDiscoverAttributesInfoRecords, \
                                                                                  extendedDiscoverAttributesInfoRecordsLen) \
   emberAfFillExternalBuffer((ZCL_GLOBAL_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             clusterId, \
                             ZCL_DISCOVER_ATTRIBUTES_EXTENDED_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -1020,7 +1042,8 @@
  */
 #define emberAfFillCommandIdentifyClusterIdentifyQueryResponse(timeout) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IDENTIFY_CLUSTER_ID, \
                             ZCL_IDENTIFY_QUERY_RESPONSE_COMMAND_ID, \
                             "v", \
@@ -1160,7 +1183,8 @@
 #define emberAfFillCommandGroupsClusterAddGroupResponse(status, \
                                                         groupId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GROUPS_CLUSTER_ID, \
                             ZCL_ADD_GROUP_RESPONSE_COMMAND_ID, \
                             "uv", \
@@ -1180,7 +1204,8 @@
                                                          groupId, \
                                                          groupName) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GROUPS_CLUSTER_ID, \
                             ZCL_VIEW_GROUP_RESPONSE_COMMAND_ID, \
                             "uvs", \
@@ -1203,7 +1228,8 @@
                                                                   groupList, \
                                                                   groupListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GROUPS_CLUSTER_ID, \
                             ZCL_GET_GROUP_MEMBERSHIP_RESPONSE_COMMAND_ID, \
                             "uub", \
@@ -1223,7 +1249,8 @@
 #define emberAfFillCommandGroupsClusterRemoveGroupResponse(status, \
                                                            groupId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GROUPS_CLUSTER_ID, \
                             ZCL_REMOVE_GROUP_RESPONSE_COMMAND_ID, \
                             "uv", \
@@ -1380,7 +1407,8 @@
                                                         groupId, \
                                                         sceneId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_ADD_SCENE_RESPONSE_COMMAND_ID, \
                             "uvu", \
@@ -1409,7 +1437,8 @@
                                                          extensionFieldSets, \
                                                          extensionFieldSetsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_VIEW_SCENE_RESPONSE_COMMAND_ID, \
                             "uvuvsb", \
@@ -1434,7 +1463,8 @@
                                                            groupId, \
                                                            sceneId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_REMOVE_SCENE_RESPONSE_COMMAND_ID, \
                             "uvu", \
@@ -1453,7 +1483,8 @@
 #define emberAfFillCommandScenesClusterRemoveAllScenesResponse(status, \
                                                                groupId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_REMOVE_ALL_SCENES_RESPONSE_COMMAND_ID, \
                             "uv", \
@@ -1473,7 +1504,8 @@
                                                           groupId, \
                                                           sceneId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_STORE_SCENE_RESPONSE_COMMAND_ID, \
                             "uvu", \
@@ -1500,7 +1532,8 @@
                                                                   sceneList, \
                                                                   sceneListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_GET_SCENE_MEMBERSHIP_RESPONSE_COMMAND_ID, \
                             "uuvub", \
@@ -1599,7 +1632,8 @@
                                                                 groupId, \
                                                                 sceneId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_ENHANCED_ADD_SCENE_RESPONSE_COMMAND_ID, \
                             "uvu", \
@@ -1628,7 +1662,8 @@
                                                                  extensionFieldSets, \
                                                                  extensionFieldSetsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_ENHANCED_VIEW_SCENE_RESPONSE_COMMAND_ID, \
                             "uvuvsb", \
@@ -1653,7 +1688,8 @@
                                                          groupIdFrom, \
                                                          sceneIdFrom) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SCENES_CLUSTER_ID, \
                             ZCL_COPY_SCENE_RESPONSE_COMMAND_ID, \
                             "uvu", \
@@ -2050,7 +2086,8 @@
                                                        clusterId, \
                                                        timeStamp) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ALARM_CLUSTER_ID, \
                             ZCL_GET_ALARM_RESPONSE_COMMAND_ID, \
                             "uuvw", \
@@ -2178,7 +2215,8 @@
                                                           rssi, \
                                                           numberRssiMeasurements) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_RSSI_LOCATION_CLUSTER_ID, \
                             ZCL_RSSI_RESPONSE_COMMAND_ID, \
                             "8vvvuu", \
@@ -2253,7 +2291,8 @@
                                                                          numberRssiMeasurements, \
                                                                          reportingPeriod) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_RSSI_LOCATION_CLUSTER_ID, \
                             ZCL_DEVICE_CONFIGURATION_RESPONSE_COMMAND_ID, \
                             "uvvvuv", \
@@ -2291,7 +2330,8 @@
                                                                   qualityMeasure, \
                                                                   locationAge) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_RSSI_LOCATION_CLUSTER_ID, \
                             ZCL_LOCATION_DATA_RESPONSE_COMMAND_ID, \
                             "uuvvvvvuuv", \
@@ -2536,7 +2576,8 @@
  */
 #define emberAfFillCommandCommissioningClusterRestartDeviceResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_RESTART_DEVICE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -2551,7 +2592,8 @@
  */
 #define emberAfFillCommandCommissioningClusterSaveStartupParametersResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_SAVE_STARTUP_PARAMETERS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -2566,7 +2608,8 @@
  */
 #define emberAfFillCommandCommissioningClusterRestoreStartupParametersResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_RESTORE_STARTUP_PARAMETERS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -2581,7 +2624,8 @@
  */
 #define emberAfFillCommandCommissioningClusterResetStartupParametersResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_RESET_STARTUP_PARAMETERS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -2689,7 +2733,8 @@
                                                                      readAttributeStatusRecords, \
                                                                      readAttributeStatusRecordsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_PARTITION_CLUSTER_ID, \
                             ZCL_READ_HANDSHAKE_PARAM_RESPONSE_COMMAND_ID, \
                             "vb", \
@@ -2773,7 +2818,8 @@
                                                                    fileVersion, \
                                                                    imageSize) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_OTA_BOOTLOAD_CLUSTER_ID, \
                             ZCL_QUERY_NEXT_IMAGE_RESPONSE_COMMAND_ID, \
                             "uvvww", \
@@ -2878,7 +2924,8 @@
                                                                imageData, \
                                                                imageDataLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_OTA_BOOTLOAD_CLUSTER_ID, \
                             ZCL_IMAGE_BLOCK_RESPONSE_COMMAND_ID, \
                             "uvvwwub", \
@@ -2932,7 +2979,8 @@
                                                                currentTime, \
                                                                upgradeTime) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_OTA_BOOTLOAD_CLUSTER_ID, \
                             ZCL_UPGRADE_END_RESPONSE_COMMAND_ID, \
                             "vvwww", \
@@ -2986,7 +3034,8 @@
                                                                       fileVersion, \
                                                                       imageSize) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_OTA_BOOTLOAD_CLUSTER_ID, \
                             ZCL_QUERY_SPECIFIC_FILE_RESPONSE_COMMAND_ID, \
                             "uvvww", \
@@ -3044,7 +3093,8 @@
                                                                           price, \
                                                                           priceTrailingDigit) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_GET_POWER_PROFILE_PRICE_RESPONSE_COMMAND_ID, \
                             "uvwu", \
@@ -3066,7 +3116,8 @@
                                                                              price, \
                                                                              priceTrailingDigit) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_GET_OVERALL_SCHEDULE_PRICE_RESPONSE_COMMAND_ID, \
                             "vwu", \
@@ -3113,7 +3164,8 @@
                                                                           scheduledPhases, \
                                                                           scheduledPhasesLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_ENERGY_PHASES_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "uub", \
@@ -3167,7 +3219,8 @@
                                                                                   price, \
                                                                                   priceTrailingDigit) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_GET_POWER_PROFILE_PRICE_EXTENDED_RESPONSE_COMMAND_ID, \
                             "uvwu", \
@@ -3220,7 +3273,8 @@
                                                                   transferredPhases, \
                                                                   transferredPhasesLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_POWER_PROFILE_RESPONSE_COMMAND_ID, \
                             "uuub", \
@@ -3243,7 +3297,8 @@
                                                                        powerProfileRecords, \
                                                                        powerProfileRecordsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_POWER_PROFILE_STATE_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -3330,7 +3385,8 @@
                                                                                scheduledPhases, \
                                                                                scheduledPhasesLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_ENERGY_PHASES_SCHEDULE_STATE_RESPONSE_COMMAND_ID, \
                             "uub", \
@@ -3397,7 +3453,8 @@
                                                                                      startAfter, \
                                                                                      stopBefore) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POWER_PROFILE_CLUSTER_ID, \
                             ZCL_POWER_PROFILE_SCHEDULE_CONSTRAINTS_RESPONSE_COMMAND_ID, \
                             "uvv", \
@@ -3537,7 +3594,8 @@
                                                                      remoteEnableFlagsAndDeviceStatus2, \
                                                                      applianceStatus2) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_APPLIANCE_CONTROL_CLUSTER_ID, \
                             ZCL_SIGNAL_STATE_RESPONSE_COMMAND_ID, \
                             "uux", \
@@ -3595,7 +3653,8 @@
 #define emberAfFillCommandPollControlClusterCheckInResponse(startFastPolling, \
                                                             fastPollTimeout) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_POLL_CONTROL_CLUSTER_ID, \
                             ZCL_CHECK_IN_RESPONSE_COMMAND_ID, \
                             "uv", \
@@ -4684,7 +4743,8 @@
  */
 #define emberAfFillCommandDoorLockClusterLockDoorResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_LOCK_DOOR_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4699,7 +4759,8 @@
  */
 #define emberAfFillCommandDoorLockClusterUnlockDoorResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_UNLOCK_DOOR_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4714,7 +4775,8 @@
  */
 #define emberAfFillCommandDoorLockClusterToggleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_TOGGLE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4729,7 +4791,8 @@
  */
 #define emberAfFillCommandDoorLockClusterUnlockWithTimeoutResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_UNLOCK_WITH_TIMEOUT_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4756,7 +4819,8 @@
                                                               userId, \
                                                               pin) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_LOG_RECORD_RESPONSE_COMMAND_ID, \
                             "vwuuuvs", \
@@ -4777,7 +4841,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetPinResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_PIN_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4798,7 +4863,8 @@
                                                         userType, \
                                                         pin) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_PIN_RESPONSE_COMMAND_ID, \
                             "vuus", \
@@ -4816,7 +4882,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearPinResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_PIN_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4831,7 +4898,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearAllPinsResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_ALL_PINS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4846,7 +4914,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetUserStatusResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_USER_STATUS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4863,7 +4932,8 @@
 #define emberAfFillCommandDoorLockClusterGetUserStatusResponse(userId, \
                                                                status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_USER_STATUS_RESPONSE_COMMAND_ID, \
                             "vu", \
@@ -4879,7 +4949,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetWeekdayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_WEEKDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4908,7 +4979,8 @@
                                                                     endHour, \
                                                                     endMinute) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_WEEKDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "uvuuuuuu", \
@@ -4930,7 +5002,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearWeekdayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_WEEKDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4945,7 +5018,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetYeardayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_YEARDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -4968,7 +5042,8 @@
                                                                     localStartTime, \
                                                                     localEndTime) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_YEARDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "uvuww", \
@@ -4987,7 +5062,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearYeardayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_YEARDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5002,7 +5078,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetHolidayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_HOLIDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5025,7 +5102,8 @@
                                                                     localEndTime, \
                                                                     operatingModeDuringHoliday) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_HOLIDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "uuwwu", \
@@ -5044,7 +5122,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearHolidayScheduleResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_HOLIDAY_SCHEDULE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5059,7 +5138,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetUserTypeResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_USER_TYPE_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5076,7 +5156,8 @@
 #define emberAfFillCommandDoorLockClusterGetUserTypeResponse(userId, \
                                                              userType) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_USER_TYPE_RESPONSE_COMMAND_ID, \
                             "vu", \
@@ -5092,7 +5173,8 @@
  */
 #define emberAfFillCommandDoorLockClusterSetRfidResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_SET_RFID_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5113,7 +5195,8 @@
                                                          userType, \
                                                          rfid) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_GET_RFID_RESPONSE_COMMAND_ID, \
                             "vuus", \
@@ -5131,7 +5214,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearRfidResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_RFID_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5146,7 +5230,8 @@
  */
 #define emberAfFillCommandDoorLockClusterClearAllRfidsResponse(status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DOOR_LOCK_CLUSTER_ID, \
                             ZCL_CLEAR_ALL_RFIDS_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -5942,7 +6027,8 @@
 #define emberAfFillCommandIasZoneClusterZoneEnrollResponse(enrollResponseCode, \
                                                            zoneId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ZONE_CLUSTER_ID, \
                             ZCL_ZONE_ENROLL_RESPONSE_COMMAND_ID, \
                             "uu", \
@@ -6030,7 +6116,8 @@
  */
 #define emberAfFillCommandIasZoneClusterInitiateNormalOperationModeResponse() \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ZONE_CLUSTER_ID, \
                             ZCL_INITIATE_NORMAL_OPERATION_MODE_RESPONSE_COMMAND_ID, \
                             "");
@@ -6043,7 +6130,8 @@
  */
 #define emberAfFillCommandIasZoneClusterInitiateTestModeResponse() \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ZONE_CLUSTER_ID, \
                             ZCL_INITIATE_TEST_MODE_RESPONSE_COMMAND_ID, \
                             "");
@@ -6224,7 +6312,8 @@
  */
 #define emberAfFillCommandIasAceClusterArmResponse(armNotification) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_ARM_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -6269,7 +6358,8 @@
                                                             section14, \
                                                             section15) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_GET_ZONE_ID_MAP_RESPONSE_COMMAND_ID, \
                             "vvvvvvvvvvvvvvvv", \
@@ -6305,7 +6395,8 @@
                                                                   ieeeAddress, \
                                                                   zoneLabel) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_GET_ZONE_INFORMATION_RESPONSE_COMMAND_ID, \
                             "uv8s", \
@@ -6377,7 +6468,8 @@
                                                               audibleNotification, \
                                                               alarmStatus) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_GET_PANEL_STATUS_RESPONSE_COMMAND_ID, \
                             "uuuu", \
@@ -6420,7 +6512,8 @@
                                                       bypassResult, \
                                                       bypassResultLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_BYPASS_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -6443,7 +6536,8 @@
                                                              zoneStatusResult, \
                                                              zoneStatusResultLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_IAS_ACE_CLUSTER_ID, \
                             ZCL_GET_ZONE_STATUS_RESPONSE_COMMAND_ID, \
                             "uub", \
@@ -6527,7 +6621,8 @@
 #define emberAfFillCommandGenericTunnelClusterMatchProtocolAddressResponse(deviceIeeeAddress, \
                                                                            protocolAddress) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GENERIC_TUNNEL_CLUSTER_ID, \
                             ZCL_MATCH_PROTOCOL_ADDRESS_RESPONSE_COMMAND_ID, \
                             "8s", \
@@ -7554,7 +7649,8 @@
 #define emberAfFillCommandPriceClusterCppEventResponse(issuerEventId, \
                                                        cppAuth) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_PRICE_CLUSTER_ID, \
                             ZCL_CPP_EVENT_RESPONSE_COMMAND_ID, \
                             "wu", \
@@ -7794,7 +7890,8 @@
                                                                   intervals, \
                                                                   intervalsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_GET_PROFILE_RESPONSE_COMMAND_ID, \
                             "wuuub", \
@@ -7842,7 +7939,8 @@
 #define emberAfFillCommandSimpleMeteringClusterRequestFastPollModeResponse(appliedUpdatePeriod, \
                                                                            fastPollModeEndtime) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_REQUEST_FAST_POLL_MODE_RESPONSE_COMMAND_ID, \
                             "uw", \
@@ -7862,7 +7960,8 @@
                                                                         snapshotResponsePayload, \
                                                                         snapshotResponsePayloadLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_SCHEDULE_SNAPSHOT_RESPONSE_COMMAND_ID, \
                             "wb", \
@@ -7881,7 +7980,8 @@
 #define emberAfFillCommandSimpleMeteringClusterTakeSnapshotResponse(snapshotId, \
                                                                     snapshotConfirmation) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_TAKE_SNAPSHOT_RESPONSE_COMMAND_ID, \
                             "wu", \
@@ -7948,7 +8048,8 @@
                                                                       samples, \
                                                                       samplesLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_GET_SAMPLED_DATA_RESPONSE_COMMAND_ID, \
                             "vwuvvb", \
@@ -8077,7 +8178,8 @@
                                                                     implementationDateTime, \
                                                                     supplyStatus) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_SUPPLY_STATUS_RESPONSE_COMMAND_ID, \
                             "wwwu", \
@@ -8095,7 +8197,8 @@
  */
 #define emberAfFillCommandSimpleMeteringClusterStartSamplingResponse(sampleId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_START_SAMPLING_RESPONSE_COMMAND_ID, \
                             "v", \
@@ -8131,7 +8234,8 @@
  */
 #define emberAfFillCommandSimpleMeteringClusterRequestMirrorResponse(endpointId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_REQUEST_MIRROR_RESPONSE_COMMAND_ID, \
                             "v", \
@@ -8300,7 +8404,8 @@
                                                                              notificationFlags, \
                                                                              notificationFlagsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_SIMPLE_METERING_CLUSTER_ID, \
                             ZCL_MIRROR_REPORT_ATTRIBUTE_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -8731,7 +8836,8 @@
                                                                 tunnelStatus, \
                                                                 maximumIncomingTransferSize) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_TUNNELING_CLUSTER_ID, \
                             ZCL_REQUEST_TUNNEL_RESPONSE_COMMAND_ID, \
                             "vuv", \
@@ -8829,7 +8935,8 @@
                                                                            protocolList, \
                                                                            protocolListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_TUNNELING_CLUSTER_ID, \
                             ZCL_SUPPORTED_TUNNEL_PROTOCOLS_RESPONSE_COMMAND_ID, \
                             "uub", \
@@ -9194,7 +9301,8 @@
                                                                      emergencyCreditLimit, \
                                                                      emergencyCreditThreshold) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_PREPAYMENT_CLUSTER_ID, \
                             ZCL_CHANGE_PAYMENT_MODE_RESPONSE_COMMAND_ID, \
                             "uwww", \
@@ -9218,7 +9326,8 @@
                                                                  sourceOfTopUp, \
                                                                  creditRemaining) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_PREPAYMENT_CLUSTER_ID, \
                             ZCL_CONSUMER_TOP_UP_RESPONSE_COMMAND_ID, \
                             "uwuw", \
@@ -9882,7 +9991,8 @@
                                                                             passwordType, \
                                                                             password) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DEVICE_MANAGEMENT_CLUSTER_ID, \
                             ZCL_REQUEST_NEW_PASSWORD_RESPONSE_COMMAND_ID, \
                             "wwvus", \
@@ -10101,7 +10211,8 @@
  */
 #define emberAfFillCommandEventsClusterClearEventLogResponse(clearedEventsLogs) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_EVENTS_CLUSTER_ID, \
                             ZCL_CLEAR_EVENT_LOG_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -10131,7 +10242,8 @@
                                                            eui64s, \
                                                            eui64sLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_MDU_PAIRING_CLUSTER_ID, \
                             ZCL_PAIRING_RESPONSE_COMMAND_ID, \
                             "wuuub", \
@@ -10278,7 +10390,8 @@
                                                                                   confirmKeyGenerateTime, \
                                                                                   identity) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_KEY_ESTABLISHMENT_CLUSTER_ID, \
                             ZCL_INITIATE_KEY_ESTABLISHMENT_RESPONSE_COMMAND_ID, \
                             "vuub", \
@@ -10297,7 +10410,8 @@
  */
 #define emberAfFillCommandKeyEstablishmentClusterEphemeralDataResponse(ephemeralData) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_KEY_ESTABLISHMENT_CLUSTER_ID, \
                             ZCL_EPHEMERAL_DATA_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -10313,7 +10427,8 @@
  */
 #define emberAfFillCommandKeyEstablishmentClusterConfirmKeyDataResponse(secureMessageAuthenticationCode) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_KEY_ESTABLISHMENT_CLUSTER_ID, \
                             ZCL_CONFIRM_KEY_DATA_RESPONSE_COMMAND_ID, \
                             "G", \
@@ -10359,7 +10474,8 @@
 #define emberAfFillCommandInformationClusterPushInformationResponse(notificationList, \
                                                                     notificationListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_PUSH_INFORMATION_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -10402,7 +10518,8 @@
                                                                       preferencePayload, \
                                                                       preferencePayloadLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_REQUEST_PREFERENCE_RESPONSE_COMMAND_ID, \
                             "uvb", \
@@ -10529,7 +10646,8 @@
                                                                        buffer, \
                                                                        bufferLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_REQUEST_INFORMATION_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -10566,7 +10684,8 @@
 #define emberAfFillCommandInformationClusterSendPreferenceResponse(statusFeedbackList, \
                                                                    statusFeedbackListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_SEND_PREFERENCE_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -10615,7 +10734,8 @@
 #define emberAfFillCommandInformationClusterUpdateResponse(notificationList, \
                                                            notificationListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_UPDATE_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -10633,7 +10753,8 @@
 #define emberAfFillCommandInformationClusterDeleteResponse(notificationList, \
                                                            notificationListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_INFORMATION_CLUSTER_ID, \
                             ZCL_DELETE_RESPONSE_COMMAND_ID, \
                             "b", \
@@ -10700,7 +10821,8 @@
                                                               fileIndex, \
                                                               fileIndexLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_DATA_SHARING_CLUSTER_ID, \
                             ZCL_WRITE_FILE_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -10997,7 +11119,8 @@
                                                        status, \
                                                        message) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_GAMING_CLUSTER_ID, \
                             ZCL_GENERAL_RESPONSE_COMMAND_ID, \
                             "uus", \
@@ -11169,7 +11292,8 @@
  */
 #define emberAfFillCommandVoiceOverZigbeeClusterControlResponse(ackNack) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_VOICE_OVER_ZIGBEE_CLUSTER_ID, \
                             ZCL_CONTROL_RESPONSE_COMMAND_ID, \
                             "u", \
@@ -11186,7 +11310,8 @@
 #define emberAfFillCommandVoiceOverZigbeeClusterEstablishmentResponse(ackNack, \
                                                                       codecType) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_VOICE_OVER_ZIGBEE_CLUSTER_ID, \
                             ZCL_ESTABLISHMENT_RESPONSE_COMMAND_ID, \
                             "uu", \
@@ -11204,7 +11329,8 @@
 #define emberAfFillCommandVoiceOverZigbeeClusterVoiceTransmissionResponse(sequenceNumber, \
                                                                           errorFlag) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_VOICE_OVER_ZIGBEE_CLUSTER_ID, \
                             ZCL_VOICE_TRANSMISSION_RESPONSE_COMMAND_ID, \
                             "uu", \
@@ -11294,7 +11420,8 @@
 #define emberAfFillCommandChattingClusterSwitchChairmanResponse(cid, \
                                                                 uid) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER), \
+                             | ZCL_FRAME_CONTROL_CLIENT_TO_SERVER\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_CHATTING_CLUSTER_ID, \
                             ZCL_SWITCH_CHAIRMAN_RESPONSE_COMMAND_ID, \
                             "vv", \
@@ -11378,7 +11505,8 @@
 #define emberAfFillCommandChattingClusterStartChatResponse(status, \
                                                            cid) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_CHATTING_CLUSTER_ID, \
                             ZCL_START_CHAT_RESPONSE_COMMAND_ID, \
                             "uv", \
@@ -11400,7 +11528,8 @@
                                                           chatParticipantList, \
                                                           chatParticipantListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_CHATTING_CLUSTER_ID, \
                             ZCL_JOIN_CHAT_RESPONSE_COMMAND_ID, \
                             "uvb", \
@@ -11464,7 +11593,8 @@
                                                             chatRoomList, \
                                                             chatRoomListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_CHATTING_CLUSTER_ID, \
                             ZCL_SEARCH_CHAT_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -11549,7 +11679,8 @@
                                                                     addressEndpointAndNickname, \
                                                                     addressEndpointAndNicknameLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_CHATTING_CLUSTER_ID, \
                             ZCL_GET_NODE_INFORMATION_RESPONSE_COMMAND_ID, \
                             "uvvb", \
@@ -11928,7 +12059,8 @@
                                                                           alertStructures, \
                                                                           alertStructuresLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_APPLIANCE_EVENTS_AND_ALERT_CLUSTER_ID, \
                             ZCL_GET_ALERTS_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -12024,7 +12156,8 @@
                                                                 logPayload, \
                                                                 logPayloadLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_APPLIANCE_STATISTICS_CLUSTER_ID, \
                             ZCL_LOG_RESPONSE_COMMAND_ID, \
                             "wwwb", \
@@ -12047,7 +12180,8 @@
                                                                      logIds, \
                                                                      logIdsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_APPLIANCE_STATISTICS_CLUSTER_ID, \
                             ZCL_LOG_QUEUE_RESPONSE_COMMAND_ID, \
                             "ub", \
@@ -12126,7 +12260,8 @@
                                                                                     listOfAttributes, \
                                                                                     listOfAttributesLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ELECTRICAL_MEASUREMENT_CLUSTER_ID, \
                             ZCL_GET_PROFILE_INFO_RESPONSE_COMMAND_COMMAND_ID, \
                             "uuub", \
@@ -12157,7 +12292,8 @@
                                                                                            intervals, \
                                                                                            intervalsLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ELECTRICAL_MEASUREMENT_CLUSTER_ID, \
                             ZCL_GET_MEASUREMENT_PROFILE_RESPONSE_COMMAND_COMMAND_ID, \
                             "wuuuvb", \
@@ -12553,7 +12689,8 @@
                                                               version, \
                                                               groupIdCount) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_SCAN_RESPONSE_COMMAND_ID, \
                             "wuuuvw8uuvvuuuvvuu", \
@@ -12595,7 +12732,8 @@
                                                                            deviceInformationRecordList, \
                                                                            deviceInformationRecordListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_DEVICE_INFORMATION_RESPONSE_COMMAND_ID, \
                             "wuuub", \
@@ -12625,7 +12763,8 @@
                                                                       logicalChannel, \
                                                                       panId) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_NETWORK_START_RESPONSE_COMMAND_ID, \
                             "wu8uuv", \
@@ -12647,7 +12786,8 @@
 #define emberAfFillCommandZllCommissioningClusterNetworkJoinRouterResponse(transaction, \
                                                                            status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_NETWORK_JOIN_ROUTER_RESPONSE_COMMAND_ID, \
                             "wu", \
@@ -12665,7 +12805,8 @@
 #define emberAfFillCommandZllCommissioningClusterNetworkJoinEndDeviceResponse(transaction, \
                                                                               status) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_NETWORK_JOIN_END_DEVICE_RESPONSE_COMMAND_ID, \
                             "wu", \
@@ -12719,7 +12860,8 @@
                                                                              groupInformationRecordList, \
                                                                              groupInformationRecordListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_GET_GROUP_IDENTIFIERS_RESPONSE_COMMAND_ID, \
                             "uuub", \
@@ -12746,7 +12888,8 @@
                                                                          endpointInformationRecordList, \
                                                                          endpointInformationRecordListLen) \
   emberAfFillExternalBuffer((ZCL_CLUSTER_SPECIFIC_COMMAND \
-                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT), \
+                             | ZCL_FRAME_CONTROL_SERVER_TO_CLIENT\
+                             | ZCL_DISABLE_DEFAULT_RESPONSE_MASK), \
                             ZCL_ZLL_COMMISSIONING_CLUSTER_ID, \
                             ZCL_GET_ENDPOINT_LIST_RESPONSE_COMMAND_ID, \
                             "uuub", \

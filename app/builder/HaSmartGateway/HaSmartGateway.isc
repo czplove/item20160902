@@ -42,7 +42,7 @@ OverrideClient:7,include,Primary
 
 OverrideClient:8,include,Primary
 
-OverrideClient:9,exclude,Primary
+OverrideClient:9,include,Primary
 
 OverrideClient:a,exclude,Primary
 
@@ -153,11 +153,11 @@ OverrideServer:4,exclude,Primary
 
 OverrideServer:5,exclude,Primary
 
-OverrideServer:6,include,Primary
+OverrideServer:6,exclude,Primary
 
 OverrideServer:7,exclude,Primary
 
-OverrideServer:8,include,Primary
+OverrideServer:8,exclude,Primary
 
 OverrideServer:9,exclude,Primary
 
@@ -193,7 +193,7 @@ OverrideServer:203,exclude,Primary
 
 OverrideServer:204,exclude,Primary
 
-OverrideServer:300,include,Primary
+OverrideServer:300,exclude,Primary
 
 OverrideServer:301,exclude,Primary
 
@@ -299,7 +299,7 @@ AddressTableSize:2
 TrustCenterCacheSize:2
 
 #  Manufacturing code user in reporting.
-ManufacturingCode:4098
+ManufacturingCode:4465
 
 #  Maximum number of supported reported attributes.
 ReportTableSize:5
@@ -330,7 +330,7 @@ FragmentationMaxSize:255
 SourceRouteTableSize:7
 
 #  Default response policy.
-DefaultResponsePolicy:0
+DefaultResponsePolicy:1
 
 #  The level of debugging supported.
 DebugLevel:1
@@ -353,7 +353,7 @@ EnableInterPanSend:false
 EnableInterPanReceive:false
 
 #  Enable serial commands for ZDO.
-EnableZdoSerialCommands:true
+EnableZdoSerialCommands:false
 
 #  Enable this option if you wish to enable device bindings.
 EnableBindings:true
@@ -418,10 +418,10 @@ HandleEndpointZdoRequests:false
 HandleBindingZdoRequests:false
 
 #  Use token for TX power mode.
-TxPowerModeUseToken:true
+TxPowerModeUseToken:false
 
 #  Enable boost power mode.
-BoostMode:false
+BoostMode:true
 
 #  Enable the alternate transmitter output.
 AlternatePowerMode:false
@@ -538,7 +538,7 @@ appPlugin:comms-hub-function,false
 
 appPlugin:concentrator,true
 
-appPlugin:counters,false
+appPlugin:counters,true
 
 appPlugin:device-database,false
 
@@ -600,7 +600,7 @@ appPlugin:green-power-server,false
 
 appPlugin:green-power-test-device,false
 
-appPlugin:groups-client,false
+appPlugin:groups-client,true
 
 appPlugin:groups-server,false
 
@@ -724,7 +724,7 @@ appPlugin:scan-dispatch,false
 
 appPlugin:scenes,false
 
-appPlugin:scenes-client,false
+appPlugin:scenes-client,true
 
 appPlugin:simple-clock,false
 
@@ -774,7 +774,7 @@ appPlugin:tunneling-server,false
 
 appPlugin:update-tc-link-key,false
 
-appPlugin:xmodem-sender,false
+appPlugin:xmodem-sender,true
 
 appPlugin:zll-commissioning,false
 
@@ -829,15 +829,23 @@ AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_CONCENTRATOR_DELIVERY_FAILURE_T
 
 AppPluginOption(unix+em357-ezsp):EMBER_SOURCE_ROUTE_TABLE_SIZE,100
 
-AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_CONCENTRATOR_NCP_SUPPORT,FALSE
-
 AppPluginOption(unix+em357-ezsp):EMBER_BINDING_TABLE_SIZE,2
 
-AppPluginOption(unix+em357-ezsp):EMBER_KEY_TABLE_SIZE,0
+AppPluginOption(unix+em357-ezsp):EMBER_KEY_TABLE_SIZE,2
 
 AppPluginOption(unix+em357-ezsp):EMBER_MAX_END_DEVICE_CHILDREN,32
 
 AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_OTA_SERVER_MIN_BLOCK_REQUEST_SUPPORT,TRUE
 
 AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_IAS_ZONE_CLIENT_MAX_DEVICES,40
+
+AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_NETWORK_FIND_CHANNEL_MASK,0x07FFF800UL
+
+AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_NETWORK_FIND_RADIO_TX_POWER,8
+
+AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_CONCENTRATOR_NCP_SUPPORT,true
+
+AppPluginOption(unix+em357-ezsp):EMBER_AF_PLUGIN_CONCENTRATOR_DEFAULT_ROUTER_BEHAVIOR,FULL
+
+AppPluginOption(unix+em357-ezsp):EMBER_END_DEVICE_POLL_TIMEOUT,60
 
