@@ -117,7 +117,7 @@
 #define EMBER_AF_TX_POWER_MODE EMBER_TX_POWER_MODE_BOOST
 
 /**** HAL Section ****/
-//#define ZA_CLI_FULL
+#define ZA_CLI_FULL
 
 /**** Callback Section ****/
 #define EMBER_CALLBACK_READ_ATTRIBUTES_RESPONSE
@@ -214,7 +214,7 @@
 /**** Debug printing section ****/
 
 // Global switch
-// #define EMBER_AF_PRINT_ENABLE
+#define EMBER_AF_PRINT_ENABLE
 // Individual areas
 #define EMBER_AF_PRINT_CORE 0x0001
 #define EMBER_AF_PRINT_APP 0x0002
@@ -261,13 +261,6 @@
 // Use this macro to check if Counters plugin is included
 #define EMBER_AF_PLUGIN_COUNTERS
 // User options for plugin Counters
-
-// Use this macro to check if Device Database plugin is included
-#define EMBER_AF_PLUGIN_DEVICE_DATABASE
-// User options for plugin Device Database
-#define EMBER_AF_PLUGIN_DEVICE_DATABASE_MAX_DEVICES 20
-#define EMBER_AF_MAX_ENDPOINTS_PER_DEVICE 5
-#define EMBER_AF_MAX_CLUSTERS_PER_ENDPOINT 10
 
 // Use this macro to check if Device Table plugin is included
 #define EMBER_AF_PLUGIN_DEVICE_TABLE
@@ -417,7 +410,7 @@
 #define EMBER_MAX_END_DEVICE_CHILDREN 32
 #define EMBER_END_DEVICE_POLL_TIMEOUT 60
 #define EMBER_END_DEVICE_POLL_TIMEOUT_SHIFT 6
-#define EMBER_KEY_TABLE_SIZE 0
+#define EMBER_KEY_TABLE_SIZE 2
 #define EMBER_RF4CE_PAIRING_TABLE_SIZE 1
 #define EMBER_RF4CE_PENDING_OUTGOING_PACKET_TABLE_SIZE 8
 #define EMBER_ZLL_GROUP_ADDRESSES 0

@@ -31,10 +31,6 @@ void emAfOtaReloadStorageDevice(void);
 void emAfOtaServerPolicyPrint(void);
 void emAfOtaStorageDataPrint(void);
 void emAfOtaStorageInfoPrint(void);
-void emAfPluginDeviceDatabaseAddDummyDevice(void);
-void emAfPluginDeviceDatabaseErase(void);
-void emAfPluginDeviceDatabasePrintAll(void);
-void emAfPluginDeviceDatabasePrintDevice(void);
 void emAfPluginIasZoneClientClearAllServersCommand(void);
 void emAfPluginIasZoneClientPrintServersCommand(void);
 void emAfPluginIdentifyCliPrint(void);
@@ -64,7 +60,14 @@ void emberAfPluginCountersSetThresholdCommand(void);
 void emberAfPluginCountersSimplePrintCommand(void);
 void emberAfPluginEzModeCommissioningClientCommand(void);
 void emberAfPluginEzModeCommissioningServerCommand(void);
+void emberAfPluginGatewaySupportBoardName(void);
+void emberAfPluginGatewaySupportMfgCode(void);
+void emberAfPluginGatewaySupportMfgString(void);
+void emberAfPluginGatewaySupportPing(void);
+void emberAfPluginGatewaySupportPjoinCommand(void);
 void emberAfPluginGatewaySupportTimeSyncLocal(void);
+void emberAfPluginGatewaySupportTxPower(void);
+void emberAfPluginGatewaySupportVersion(void);
 void emberAfPluginRulesEngineBindCommand(void);
 void emberAfPluginRulesEngineEndpointActionCommand(void);
 void emberAfPluginRulesEngineEndpointBindCommand(void);
@@ -2202,8 +2205,25 @@ EmberCommandEntry emberCommandTablePluginIasZoneClientCommands[] = {
   emberCommandEntryTerminator()
 };
 
+PGM_P PGM emberCommandTablePluginGatewayPjoinCommandArguments[] = {
+  "Number of seconds during which devices will be allowed to join the net ...",
+  NULL
+};
+
+PGM_P PGM emberCommandTablePluginGatewayTxPowerCommandArguments[] = {
+  "the tx power value to set for the radio",
+  NULL
+};
+
 EmberCommandEntry emberCommandTablePluginGatewayCommands[] = {
+  emberCommandEntryActionWithDetails("board-name", emberAfPluginGatewaySupportBoardName, "", "This command be used to get gateway board name.", NULL),
+  emberCommandEntryActionWithDetails("mfg-code", emberAfPluginGatewaySupportMfgCode, "", "This command be used to get gateway mfg code.", NULL),
+  emberCommandEntryActionWithDetails("mfg-string", emberAfPluginGatewaySupportMfgString, "", "This command be used to get gateway mfg String.", NULL),
+  emberCommandEntryActionWithDetails("ping", emberAfPluginGatewaySupportPing, "", "Ping the Gateway for the manufacturing information", NULL),
+  emberCommandEntryActionWithDetails("pjoin", emberAfPluginGatewaySupportPjoinCommand, "u", "Gateway permit joining on the network for a given number of seconds", emberCommandTablePluginGatewayPjoinCommandArguments),
   emberCommandEntryActionWithDetails("time-sync-local", emberAfPluginGatewaySupportTimeSyncLocal, "", "This command will sync the ZCL device's local time attribute with the  ...", NULL),
+  emberCommandEntryActionWithDetails("txPower", emberAfPluginGatewaySupportTxPower, "s", "This command will set radio tx power.", emberCommandTablePluginGatewayTxPowerCommandArguments),
+  emberCommandEntryActionWithDetails("version", emberAfPluginGatewaySupportVersion, "", "This command be used to get gateway version number.", NULL),
   emberCommandEntryTerminator()
 };
 
@@ -2242,36 +2262,6 @@ EmberCommandEntry emberCommandTablePluginDeviceTableCommands[] = {
   emberCommandEntryActionWithDetails("load", deviceTableLoadCommand, "", "Load the file.", NULL),
   emberCommandEntryActionWithDetails("save", deviceTableSaveCommand, "", "Save the file.", NULL),
   emberCommandEntryActionWithDetails("send", deviceTableSendCommand, "u", "Send to device in device table.", emberCommandTablePluginDeviceTableSendCommandArguments),
-  emberCommandEntryTerminator()
-};
-
-PGM_P PGM emberCommandTablePluginDeviceDatabaseDeviceAddDummyCommandArguments[] = {
-  "The address of the dummy device to add.",
-  "The number of dummy endpoints to add.",
-  "The number of dummy clusters to add.",
-  NULL
-};
-
-PGM_P PGM emberCommandTablePluginDeviceDatabaseDeviceEraseCommandArguments[] = {
-  "The address of the device to erase from the database.",
-  NULL
-};
-
-PGM_P PGM emberCommandTablePluginDeviceDatabaseDevicePrintCommandArguments[] = {
-  "The address of the device to be looked up (little endian)",
-  NULL
-};
-
-EmberCommandEntry emberCommandTablePluginDeviceDatabaseDeviceCommands[] = {
-  emberCommandEntryActionWithDetails("add-dummy", emAfPluginDeviceDatabaseAddDummyDevice, "buv", "Add a device with specified EUI64 and a sequential number of clusters  ...", emberCommandTablePluginDeviceDatabaseDeviceAddDummyCommandArguments),
-  emberCommandEntryActionWithDetails("erase", emAfPluginDeviceDatabaseErase, "b", "Erase the device with specified EUI64 from the database.", emberCommandTablePluginDeviceDatabaseDeviceEraseCommandArguments),
-  emberCommandEntryActionWithDetails("print", emAfPluginDeviceDatabasePrintDevice, "b", "Print all the clusters and endpoints known about the specified device  ...", emberCommandTablePluginDeviceDatabaseDevicePrintCommandArguments),
-  emberCommandEntryTerminator()
-};
-
-EmberCommandEntry emberCommandTablePluginDeviceDatabaseCommands[] = {
-  emberCommandEntrySubMenu("device", emberCommandTablePluginDeviceDatabaseDeviceCommands, ""),
-  emberCommandEntryActionWithDetails("print-all", emAfPluginDeviceDatabasePrintAll, "", "Print all devices in the database.", NULL),
   emberCommandEntryTerminator()
 };
 
@@ -2353,7 +2343,6 @@ EmberCommandEntry emberCommandTablePluginCommands[] = {
   emberCommandEntrySubMenu("concentrator", emberCommandTablePluginConcentratorCommands, ""),
   emberCommandEntrySubMenu("counter", emberCommandTablePluginCounterCommands, ""),
   emberCommandEntrySubMenu("counters", emberCommandTablePluginCountersCommands, ""),
-  emberCommandEntrySubMenu("device-database", emberCommandTablePluginDeviceDatabaseCommands, ""),
   emberCommandEntrySubMenu("device-table", emberCommandTablePluginDeviceTableCommands, ""),
   emberCommandEntrySubMenu("ezmode-commissioning", emberCommandTablePluginEzmodeCommissioningCommands, ""),
   emberCommandEntrySubMenu("gateway", emberCommandTablePluginGatewayCommands, ""),

@@ -394,7 +394,7 @@ static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
     return;
   }
 
- /* EmberStatus status = emberAfFindDevicesByProfileAndCluster(emberNodeId,
+  EmberStatus status = emberAfFindDevicesByProfileAndCluster(emberNodeId,
                                                              profileId,
                                                              ZCL_IAS_ZONE_CLUSTER_ID,
                                                              true,  // server cluster?
@@ -403,7 +403,7 @@ static void checkForIasZoneServer(EmberNodeId emberNodeId, uint8_t* ieeeAddress)
   if (status != EMBER_SUCCESS) {
     emberAfIasZoneClusterPrintln("Error: Failed to initiate service discovery for IAS Zone Server 0x%2X", emberNodeId);
     clearState();
-  }*/
+  }
 }
 
 void emberAfPluginIasZoneClientZdoMessageReceivedCallback(EmberNodeId emberNodeId,

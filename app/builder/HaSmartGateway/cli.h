@@ -1115,41 +1115,6 @@
 
 /** @} */ // end group plugin-counters
 
-/** @addtogroup plugin-device-database Plugin Commands: Device Database
- * @ingroup cli
- * This plugin provides a set of CLI commands for printing and manipulating the
- * device database.
- * 
- * @{
- */
-
-/** @brief <b>plugin device-database print-all </b>
- *   - <i>Print all devices in the database.</i>
- */
-#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_PRINT_ALL
-
-/** @brief <b>plugin device-database device print [eui64:8] </b>
- *   - <i>Print all the clusters and endpoints known about the specified device in the database.</i>
- *     - eui64 - IEEE_ADDRESS - The address of the device to be looked up (little endian)
- */
-#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_PRINT
-
-/** @brief <b>plugin device-database device erase [eui64:8] </b>
- *   - <i>Erase the device with specified EUI64 from the database.</i>
- *     - eui64 - IEEE_ADDRESS - The address of the device to erase from the database.
- */
-#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_ERASE
-
-/** @brief <b>plugin device-database device add-dummy [eui64:8] [endpoints:1] [clusters:2] </b>
- *   - <i>Add a device with specified EUI64 and a sequential number of clusters and endpoints.</i>
- *     - eui64 - IEEE_ADDRESS - The address of the dummy device to add.
- *     - endpoints - INT8U - The number of dummy endpoints to add.
- *     - clusters - INT16U - The number of dummy clusters to add.
- */
-#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_DEVICE_DATABASE_PLUGIN_DEVICE_DATABASE_DEVICE_ADD_DUMMY
-
-/** @} */ // end group plugin-device-database
-
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli
  * The device table plugin demonstrates tracking devices as they join the 
@@ -1220,6 +1185,43 @@
  *   - <i>This command will sync the ZCL device's local time attribute with the local PC clock.</i>
  */
 #define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_TIME_SYNC_LOCAL
+
+/** @brief <b>plugin gateway version </b>
+ *   - <i>This command be used to get gateway version number.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_VERSION
+
+/** @brief <b>plugin gateway board-name </b>
+ *   - <i>This command be used to get gateway board name.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_BOARD_NAME
+
+/** @brief <b>plugin gateway mfg-code </b>
+ *   - <i>This command be used to get gateway mfg code.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_MFG_CODE
+
+/** @brief <b>plugin gateway mfg-string </b>
+ *   - <i>This command be used to get gateway mfg String.</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_MFG_STRING
+
+/** @brief <b>plugin gateway txPower [dBm:1] </b>
+ *   - <i>This command will set radio tx power.</i>
+ *     - dBm - INT8S - the tx power value to set for the radio
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_TX_POWER
+
+/** @brief <b>plugin gateway pjoin [seconds:1] </b>
+ *   - <i>Gateway permit joining on the network for a given number of seconds</i>
+ *     - seconds - INT8U - Number of seconds during which devices will be allowed to join the network. A value of 0xff turns permit joining on permanently
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_PJOIN
+
+/** @brief <b>plugin gateway ping </b>
+ *   - <i>Ping the Gateway for the manufacturing information</i>
+ */
+#define EMBER_AF_DOXYGEN_CLI_COMMAND_PLUGIN_GATEWAY_PLUGIN_GATEWAY_PING
 
 /** @} */ // end group plugin-gateway
 
@@ -3053,16 +3055,6 @@
  */
 
 /** @} */ // end group plugin-counters
-
-/** @addtogroup plugin-device-database Plugin Commands: Device Database
- * @ingroup cli
- * This plugin provides a set of CLI commands for printing and manipulating the
- * device database.
- * 
- * @{
- */
-
-/** @} */ // end group plugin-device-database
 
 /** @addtogroup plugin-device-table Plugin Commands: Device Table
  * @ingroup cli

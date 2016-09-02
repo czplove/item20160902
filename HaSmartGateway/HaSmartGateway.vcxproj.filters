@@ -160,9 +160,6 @@
     <Filter Include="源文件\protocol\app\framework\plugin\level-control">
       <UniqueIdentifier>{315f37fd-d190-4284-9c99-1d98256e0c7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="源文件\protocol\app\framework\plugin\network-find">
-      <UniqueIdentifier>{06043d19-9bd1-48b9-b7b5-7a2ea5a847b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="源文件\protocol\app\framework\plugin\on-off">
       <UniqueIdentifier>{dfa61fda-edca-43cf-a6d3-4702ddea1238}</UniqueIdentifier>
     </Filter>
@@ -259,6 +256,9 @@
     <Filter Include="源文件\protocol\app\framework\plugin\counters">
       <UniqueIdentifier>{34599913-e5dd-4cab-9a08-80c686cbce02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\network-find">
+      <UniqueIdentifier>{06043d19-9bd1-48b9-b7b5-7a2ea5a847b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\app\builder\HaSmartGateway\HaSmartGateway.isc">
@@ -346,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="..\platform\base\hal\micro\unix\compiler\gcc.h">
       <Filter>源文件\platform\base\hal\micro\unix\compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database.h">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -726,6 +729,12 @@
     </ClCompile>
     <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-ota-host.c">
       <Filter>源文件\protocol\app\framework\plugin\counters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database.c">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

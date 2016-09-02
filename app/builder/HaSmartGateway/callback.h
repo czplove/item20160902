@@ -20465,20 +20465,5 @@ bool emberAfPluginTransportMqttMessageArrivedCallback(const char* topic,
 /** @} END Gateway MQTT Transport Plugin Callbacks */
 
 
-/** @name Device Database Plugin Callbacks */
-// @{
-
-/** @brief Discovery Complete
- *
- * This function is called when a device in the database has been set to
- * EMBER_AF_DEVICE_DISCOVERY_STATUS_DONE.
- *
- * @param device A pointer to the information struct about the device.
- * Ver.: always
- */
-void emberAfPluginDeviceDatabaseDiscoveryCompleteCallback(const EmberAfDeviceInfo*device);
-/** @} END Device Database Plugin Callbacks */
-
-
 /** @} END addtogroup */
 #endif // __EMBER_AF_CALLBACK_PROTOTYPES__

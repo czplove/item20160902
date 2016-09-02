@@ -272,7 +272,6 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
   void emberAfPluginRulesEngineInitCallback(void); \
   void emberAfPluginTransportMqttInitCallback(void); \
   void emberAfPluginTrustCenterNwkKeyUpdatePeriodicInitCallback(void); \
-  void emberAfPluginDeviceDatabaseInitCallback(void); \
 
 
 #define EMBER_AF_GENERATED_PLUGIN_INIT_FUNCTION_CALLS \
@@ -284,7 +283,6 @@ PGM EmberAfGenericClusterFunction emberAfFuncArraySimpleMeteringClusterClient[] 
   emberAfPluginRulesEngineInitCallback(); \
   emberAfPluginTransportMqttInitCallback(); \
   emberAfPluginTrustCenterNwkKeyUpdatePeriodicInitCallback(); \
-  emberAfPluginDeviceDatabaseInitCallback(); \
 
 
 #define EMBER_AF_GENERATED_PLUGIN_NCP_INIT_FUNCTION_DECLARATIONS \

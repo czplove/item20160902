@@ -163,8 +163,6 @@ APPLICATION_FILES= \
   ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-ota-host.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/counters/counters-host.c \
-  ../../../protocol/zigbee_5.7/app/framework/plugin/device-database/device-database.c \
-  ../../../protocol/zigbee_5.7/app/framework/plugin/device-database/device-database-cli.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/device-table/device-table.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ezmode-commissioning/ez-mode.c \
   ../../../protocol/zigbee_5.7/app/framework/plugin/ezmode-commissioning/ez-mode-cli.c \

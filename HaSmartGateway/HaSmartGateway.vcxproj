@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <SourcePath>..\;$(SourcePath)</SourcePath>
-    <IncludePath>..\;..\protocol;..\protocol\zigbee_5.7;..\protocol\zigbee_5.7\app;..\protocol\zigbee_5.7\app\framework;..\protocol\zigbee_5.7\stack;..\protocol\zigbee_5.7\app\util\;..\protocol\zigbee_5.7\app\util\common;..\protocol\zigbee_5.7\app\util\ezsp;..\protocol\zigbee_5.7\app\util\serial;..\protocol\zigbee_5.7\app\util\zigbee-framework;..\protocol\zigbee_5.7\app\framework\util;..\protocol\zigbee_5.7\app\framework\security;..\protocol\zigbee_5.7\app\framework\include;..\protocol\zigbee_5.7\app\framework\cli;..\app\builder\HaSmartGateway;..\platform\base;..\platform\base\hal;..\platform\base\hal\plugin;..\platform\base\hal\micro\unix\host;$(IncludePath)</IncludePath>
+    <IncludePath>..\;..\protocol;..\protocol\zigbee_5.7;..\protocol\zigbee_5.7\app;..\protocol\zigbee_5.7\app\framework;..\protocol\zigbee_5.7\stack;..\protocol\zigbee_5.7\app\util\;..\protocol\zigbee_5.7\app\util\common;..\protocol\zigbee_5.7\app\util\ezsp;..\protocol\zigbee_5.7\app\util\serial;..\protocol\zigbee_5.7\app\util\zigbee-framework;..\protocol\zigbee_5.7\app\framework\util;..\protocol\zigbee_5.7\app\framework\security;..\protocol\zigbee_5.7\app\framework\include;..\protocol\zigbee_5.7\app\framework\cli;..\app\builder\HaSmartGateway;..\platform\base;..\platform\base\hal;..\platform\base\hal\plugin;..\platform\base\hal\micro\unix\host;..\build\external\inc;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

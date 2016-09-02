@@ -336,7 +336,7 @@ DefaultResponsePolicy:1
 DebugLevel:1
 
 #  Configuration of command-line interface.
-CLIMode:-1
+CLIMode:2
 
 #  Configuration of heartbeat.
 HeartbeatLed:2
@@ -461,7 +461,7 @@ NetworkKey2:ABCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 {setupId:callbackConfiguration
 }
 {setupId:debugConfiguration
-off
+on
 area name off
 appSerial=1
 compile,OTA_BOOTLOAD_CLUSTER
@@ -540,7 +540,7 @@ appPlugin:concentrator,true
 
 appPlugin:counters,true
 
-appPlugin:device-database,true
+appPlugin:device-database,false
 
 appPlugin:device-management-client,false
 
@@ -831,7 +831,7 @@ AppPluginOption(unix+em357-ezsp):EMBER_SOURCE_ROUTE_TABLE_SIZE,100
 
 AppPluginOption(unix+em357-ezsp):EMBER_BINDING_TABLE_SIZE,2
 
-AppPluginOption(unix+em357-ezsp):EMBER_KEY_TABLE_SIZE,0
+AppPluginOption(unix+em357-ezsp):EMBER_KEY_TABLE_SIZE,2
 
 AppPluginOption(unix+em357-ezsp):EMBER_MAX_END_DEVICE_CHILDREN,32
 
