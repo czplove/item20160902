@@ -436,7 +436,7 @@ AddCustomCli:true
 IncludeCommandDescriptions:true
 
 #  If set, then project-specific callbacks file will be generated.
-GenerateCallbacksFile:false
+GenerateCallbacksFile:true
 
 #  The manufacturer code for this app defaults to 0.
 ManufacturerCodeDefaultIsZero:true

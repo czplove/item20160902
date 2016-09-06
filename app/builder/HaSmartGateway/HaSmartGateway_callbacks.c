@@ -252,8 +252,8 @@ void emberAfMainInitCallback(void)
 {
   EmberNodeType nodeTypeResult = 0xFF;
   EmberNetworkParameters networkParams;
-  cJSON* heartbeatJson;
-  char* heartbeatJsonString;
+  cJSON* gatewayJson;
+  char* gatewayJsonString;
   char panIdString[7] = {0};
   char nodeIdString[7] = {0};
   char xpanString[17] = {0};
@@ -268,30 +268,34 @@ void emberAfMainInitCallback(void)
   nodeIdToString(networkParams.panId,panIdString);
 
 
-  heartbeatJson = cJSON_CreateObject();
-  cJSON_AddStringToObject(heartbeatJson, "gatewayEui",gatewayEui64String);
-  cJSON_AddStringToObject(heartbeatJson, "nodeID",nodeIdString);
-  cJSON_AddStringToObject(heartbeatJson, "panID",panIdString);
-  cJSON_AddIntegerToObject(heartbeatJson, "channel",networkParams.radioChannel);
-  cJSON_AddIntegerToObject(heartbeatJson, "radioTxPower",networkParams.radioTxPower);
-  cJSON_AddStringToObject(heartbeatJson, "xpan",xpanString);
-  cJSON_AddIntegerToObject(heartbeatJson, "nodeType",nodeTypeResult);
-  cJSON_AddIntegerToObject(heartbeatJson, "Security level",emberAfGetSecurityLevel());
-  cJSON_AddIntegerToObject(heartbeatJson, "network state",emberNetworkState());
-  heartbeatJsonString = cJSON_PrintUnformatted(heartbeatJson);
+  gatewayJson = cJSON_CreateObject();
+  cJSON_AddStringToObject(gatewayJson, "gatewayEui",gatewayEui64String);
+  cJSON_AddStringToObject(gatewayJson, "nodeID",nodeIdString);
+  cJSON_AddStringToObject(gatewayJson, "panID",panIdString);
+  cJSON_AddIntegerToObject(gatewayJson, "channel",networkParams.radioChannel);
+  cJSON_AddIntegerToObject(gatewayJson, "radioTxPower",networkParams.radioTxPower);
+  cJSON_AddStringToObject(gatewayJson, "xpan",xpanString);
+  cJSON_AddIntegerToObject(gatewayJson, "nodeType",nodeTypeResult);
+  cJSON_AddIntegerToObject(gatewayJson, "Security level",emberAfGetSecurityLevel());
+  cJSON_AddIntegerToObject(gatewayJson, "network state",emberNetworkState());
+  gatewayJsonString = cJSON_PrintUnformatted(gatewayJson);
 #ifndef EMBEDDED_GATEWAY
   FILE *fp;
   uint16_t i;
-
+#if defined(__mips__)
   // save EUI address into file
-  fp = fopen("/etc/env/gwcfg.json", "w");
-        fprintf(fp, "%s ",heartbeatJsonString);
+  fp = fopen("/etc/env/gateway.json", "w");
+  emberAfAppPrintln("rite the gateway basic infomation to the path \"/etc/env/gateway.json\"");
+#elif defined(__x86_64__) || defined(__i386__)
+  fp = fopen("/etc/gateway.json", "w");
+  emberAfAppPrintln("write the gateway basic infomation to the path \"/etc/gateway.json\"");
+#endif
+        fprintf(fp, "%s ",gatewayJsonString);
   // write something to mark the end
-  //fprintf(fp, "\r\nffff\r\n");
   fclose(fp);
  #endif
-  free(heartbeatJsonString);
-  cJSON_Delete(heartbeatJson);
+  free(gatewayJsonString);
+  cJSON_Delete(gatewayJson);
 
   strcat(gatewayTopicUriPrefix, "gw/");
   strcat(gatewayTopicUriPrefix, gatewayEui64String);
@@ -770,7 +774,7 @@ static void publishMqttHeartbeat(void)
   sprintf(panIdString, "%04X", parameters.panId);
 
   heartbeatJson = cJSON_CreateObject();
-    cJSON_AddIntegerToObject(heartbeatJson, "nodeType", nodeType);
+    cJSON_AddIntegerToObject(heartbeatJson, "logicalType", nodeType-1);
 	cJSON_AddStringToObject(heartbeatJson, "gwEui", gatewayEui64String);
   if (!emberAfNcpNeedsReset() && status == EMBER_SUCCESS) {
     cJSON_AddStringToObject(heartbeatJson, "networkState", "up");
@@ -837,7 +841,7 @@ static cJSON* buildNodeJson(EmberNodeId nodeId)
   cJSON_AddStringToObject(nodeJson, "nodeEui", euiString);
   cJSON_AddStringToObject(nodeJson, "nodeId", nodeIdString);
   cJSON_AddIntegerToObject(nodeJson, "nodeCapabilities", addressTable[addressTableIndex].capabilities);
-  cJSON_AddIntegerToObject(nodeJson, "nodeType", addressTable[addressTableIndex].nodeType);
+  cJSON_AddIntegerToObject(nodeJson, "logicalType", addressTable[addressTableIndex].logicalType);
   cJSON_AddIntegerToObject(nodeJson, "addressTableIndex", addressTableIndex);
   cJSON_AddIntegerToObject(nodeJson, "deviceState", addressTable[addressTableIndex].state);
   nodeJsonEndpointArray = cJSON_CreateArray();
@@ -1142,7 +1146,7 @@ static void publishMqttNodeHeartbeat(EmberNodeId nodeId,
   eui64ToString(eui64, euiString);
   heartBeatJson = cJSON_CreateObject();
   uint16_t addressTableIndex = getAddressIndexFromIeee(eui64);
-  cJSON_AddIntegerToObject(heartBeatJson, "nodeType",addressTable[addressTableIndex].nodeType);
+  cJSON_AddIntegerToObject(heartBeatJson, "logicalType",addressTable[addressTableIndex].logicalType);
   cJSON_AddStringToObject(heartBeatJson, "nodeEui", euiString);
   heartBeatJsonString = cJSON_PrintUnformatted(heartBeatJson);
   emberAfPluginTransportMqttPublish(topic, heartBeatJsonString);
@@ -1176,7 +1180,7 @@ static void publishMqttAttribute(EmberNodeId nodeId,
        bufferIndex++) {
     sprintf(&bufferString[2 * (bufferIndex - ATTRIBUTE_BUFFER_DATA_START)],
             "%02X",
-            buffer[bufferIndex]);
+            buffer[bufLen+ATTRIBUTE_BUFFER_DATA_START-bufferIndex-1]);
   }
 
   eui64ToString(eui64, euiString);
@@ -1230,7 +1234,7 @@ static void publishMqttAttributeReport(EmberNodeId nodeId,
        bufferIndex++) {
     sprintf(&bufferString[2 * (bufferIndex - ATTRIBUTE_BUFFER_REPORT_DATA_START)],
             "%02X",
-            buffer[bufferIndex]);
+            buffer[bufLen+ATTRIBUTE_BUFFER_DATA_START-bufferIndex-1]);
   }
 
   eui64ToString(eui64, euiString);
@@ -2359,4 +2363,3 @@ void emberAfPluginRulesEngineRulesPreCommandReceivedCallback(
   cJSON_Delete(cmdResponseJson);
   free(topic); 
 }
-

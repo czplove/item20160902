@@ -782,7 +782,7 @@ void newDeviceParseNodeDescriptorResponse(EmberNodeId emberNodeId,
 
 	NodeDescriptor *p_node =  (NodeDescriptor*)&(message[4]);
 	if (addressTable[index].state <= ND_JOINED) {
-		addressTable[index].nodeType = p_node->logicalType;
+		addressTable[index].logicalType = p_node->logicalType;
 	}
 }
 
@@ -1407,7 +1407,8 @@ void deviceTableSaveCommand(void)
   for (i = 0 ; i < ADDRESS_TABLE_SIZE; i++) {
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       fprintf(fp, "%x %x ", addressTable[i].nodeId, addressTable[i].endpointCount);
-	  fprintf(fp,"%x ",addressTable[i].capabilities);
+      fprintf(fp,"%x ",addressTable[i].logicalType);
+      fprintf(fp,"%x ",addressTable[i].capabilities);
       for (j = 0; j < 8; j++) {
         fprintf(fp, "%x ", addressTable[i].eui64[j]);
       }
@@ -1468,9 +1469,10 @@ void deviceTableLoadCommand(void)
   for (i = 0; i < ADDRESS_TABLE_SIZE && feof(fp) == false; i++) {
     fscanf(fp, "%x %x ", &(addressTable[i].nodeId), &data);
     addressTable[i].endpointCount = (uint8_t) data;
-
-	fscanf(fp,"%x ",&data);
-	addressTable[i].capabilities = (uint8_t) data;
+    fscanf(fp,"%x ",&data);
+    addressTable[i].logicalType = (uint8_t) data;
+    fscanf(fp,"%x ",&data);
+    addressTable[i].capabilities = (uint8_t) data;
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       for (j = 0; j < 8; j++) {
         fscanf(fp, "%x", &data);
