@@ -105,14 +105,14 @@ bool emberAfPreCommandReceivedCallback(EmberAfClusterCommand* cmd)
   uint8_t inEndpoint;
   
   // callback for rules engine command received.
-  emberAfPluginRulesEngineRulesPreCommandReceivedCallback(cmd->commandId,
+  /*emberAfPluginRulesEngineRulesPreCommandReceivedCallback(cmd->commandId,
                                                           cmd->clusterSpecific,
                                                           cmd->apsFrame->clusterId,
                                                           cmd->mfgSpecific,
                                                           cmd->mfgCode,
                                                           cmd->buffer,
                                                           cmd->bufLen,
-                                                          cmd->payloadStartIndex);
+                                                          cmd->payloadStartIndex);*/
 
   emberAfPluginDeviceTableMessageReceived(cmd->source);
 
@@ -329,7 +329,7 @@ void emberAfPluginRulesEngineInitCallback(void)
   rulesEngineLoadCommand();
 
   // Publish a change to esatablish the new rules engine
-  emberAfPluginRulesEngineChangedCallback();
+  //emberAfPluginRulesEngineChangedCallback();
 }
 
 uint16_t findEmptyBindEntry( void )

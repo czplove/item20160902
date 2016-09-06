@@ -16,17 +16,14 @@ EmberAfStatus emberAfIdentifyClusterClientCommandParse(EmberAfClusterCommand *cm
 // Cluster: Identify, server
 EmberAfStatus emberAfIdentifyClusterServerCommandParse(EmberAfClusterCommand *cmd);
 
-// Cluster: On/off, server
-EmberAfStatus emberAfOnOffClusterServerCommandParse(EmberAfClusterCommand *cmd);
+// Cluster: Groups, client
+EmberAfStatus emberAfGroupsClusterClientCommandParse(EmberAfClusterCommand *cmd);
 
-// Cluster: Level Control, server
-EmberAfStatus emberAfLevelControlClusterServerCommandParse(EmberAfClusterCommand *cmd);
+// Cluster: Scenes, client
+EmberAfStatus emberAfScenesClusterClientCommandParse(EmberAfClusterCommand *cmd);
 
 // Cluster: Poll Control, client
 EmberAfStatus emberAfPollControlClusterClientCommandParse(EmberAfClusterCommand *cmd);
-
-// Cluster: Color Control, server
-EmberAfStatus emberAfColorControlClusterServerCommandParse(EmberAfClusterCommand *cmd);
 
 // Cluster: IAS Zone, client
 EmberAfStatus emberAfIasZoneClusterClientCommandParse(EmberAfClusterCommand *cmd);

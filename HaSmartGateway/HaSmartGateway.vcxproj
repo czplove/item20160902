@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{20273C93-6F05-407D-8030-A3BF705BBB95}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HaSmartGateway</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <SourcePath>..\;$(SourcePath)</SourcePath>
+    <IncludePath>..\;..\protocol;..\protocol\zigbee_5.7;..\protocol\zigbee_5.7\app;..\protocol\zigbee_5.7\app\framework;..\protocol\zigbee_5.7\stack;..\protocol\zigbee_5.7\app\util\;..\protocol\zigbee_5.7\app\util\common;..\protocol\zigbee_5.7\app\util\ezsp;..\protocol\zigbee_5.7\app\util\serial;..\protocol\zigbee_5.7\app\util\zigbee-framework;..\protocol\zigbee_5.7\app\framework\util;..\protocol\zigbee_5.7\app\framework\security;..\protocol\zigbee_5.7\app\framework\include;..\protocol\zigbee_5.7\app\framework\cli;..\app\builder\HaSmartGateway;..\platform\base;..\platform\base\hal;..\platform\base\hal\plugin;..\platform\base\hal\micro\unix\host;..\build\external\inc;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>UNIX;UNIX_HOST;PHY_NULL;CONFIGURATION_HEADER="../protocol/zigbee_5.7/app/framework/util/config.h";EZSP_HOST;GATEWAY_APP;ZA_GENERATED_HEADER="../app/builder/HaSmartGateway/HaSmartGateway.h";ATTRIBUTE_STORAGE_CONFIGURATION="../app/builder/HaSmartGateway/HaSmartGateway_endpoint_config.h";PLATFORM_HEADER="../platform/base/hal/micro/unix/compiler/gcc.h";BOARD_HEADER="../platform/base/hal/micro/unix/host/board/host.h";EM_AF_TEST_HARNESS_CODE=1;EMBER_AF_API_EMBER_TYPES="../protocol/zigbee_5.7/stack/include/ember-types.h";EMBER_AF_ENABLE_CUSTOM_COMMANDS_bad=1;EMBER_MAX_END_DEVICE_CHILDREN=32;EZSP_ASH=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\app\builder\HaSmartGateway\HaSmartGateway.isc" />
+    <None Include="..\app\builder\HaSmartGateway\Makefile" />
+    <None Include="..\build\external\lib\cjson\libcjson.so" />
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so" />
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so.1" />
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\app\builder\HaSmartGateway\af-structs.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\att-storage.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-id.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-size.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-type.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\call-command-handler.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\callback.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\cli.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\client-command-macro.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\cluster-id.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\command-id.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\debug-printing-test.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\debug-printing.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\enums.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway_board.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway_endpoint_config.h" />
+    <ClInclude Include="..\app\builder\HaSmartGateway\print-cluster.h" />
+    <ClInclude Include="..\build\external\inc\cJSON.h" />
+    <ClInclude Include="..\build\external\inc\MQTTAsync.h" />
+    <ClInclude Include="..\build\external\inc\MQTTClientPersistence.h" />
+    <ClInclude Include="..\platform\base\hal\micro\unix\compiler\gcc.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app\builder\HaSmartGateway\call-command-handler.c" />
+    <ClCompile Include="..\app\builder\HaSmartGateway\callback-stub.c" />
+    <ClCompile Include="..\app\builder\HaSmartGateway\cli.c" />
+    <ClCompile Include="..\app\builder\HaSmartGateway\HaSmartGateway_callbacks.c" />
+    <ClCompile Include="..\app\builder\HaSmartGateway\stack-handler-stub.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\antenna-stub.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\ash-common.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\buzzer-stub.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\crc.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\led-stub.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\mem-util.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\random.c" />
+    <ClCompile Include="..\platform\base\hal\micro\generic\system-timer.c" />
+    <ClCompile Include="..\platform\base\hal\micro\unix\host\micro.c" />
+    <ClCompile Include="..\platform\base\hal\plugin\serial\ember-printf-convert.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ash\ash-host-ui.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ash\ash-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-io-sim.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-io.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-queues.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-ui.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\core-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\network-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\option-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\plugin-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\security-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\zcl-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\zdo-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\file-descriptor-dispatch\file-descriptor-dispatch.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\backchannel-support.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\gateway-support-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\gateway-support.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\link-list\link-list.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\ncp-configuration\ncp-configuration.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\address-table\address-table-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\address-table\address-table.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\color-control\color-control.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\concentrator\concentrator-support-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\concentrator\concentrator-support.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-ota-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-table\device-table.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ezmode-commissioning\ez-mode-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ezmode-commissioning\ez-mode.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\form-and-join\form-and-join-afv2.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\gateway-commands\gateway-commands.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\groups-client\groups-client.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\heartbeat\heartbeat.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ias-zone-client\ias-zone-client-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ias-zone-client\ias-zone-client.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify-feedback\identify-feedback.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify\identify-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify\identify.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\level-control\level-control.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\network-find\network-find.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\on-off\on-off.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-common\ota-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server-policy\ota-server-policy.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server-page-request.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-common\ota-storage-common-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-common\ota-storage-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-posix-filesystem\ota-storage-linux.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\poll-control-client\poll-control-client-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\poll-control-client\poll-control-client.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine-actions.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\scenes-client\scenes-client.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-main\simple-main.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-metering-client\simple-metering-client-cli.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-metering-client\simple-metering-client.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\stack-diagnostics\stack-diagnostics.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\test-harness\test-harness-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\test-harness\test-harness.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\time-server\time-server.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\traffic-test\traffic-test.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\transport-mqtt\transport-mqtt.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-broadcast\trust-center-nwk-key-update-broadcast.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-periodic\trust-center-nwk-key-update-periodic.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-unicast\trust-center-nwk-key-update-unicast.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\xmodem-sender\xmodem-sender.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-node.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-security-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-trust-center.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\crypto-state.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-event.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-main-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-main-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-size.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-storage.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-table.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\client-api.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\message.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\multi-network.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\print-formatter.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\print.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\process-cluster-message.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\process-global-message.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\service-discovery-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\service-discovery-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\time-util.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\util.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\common-onboard.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\form-and-join-host-adapter.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\form-and-join.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\library.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\print-stack-tables.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-callbacks.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-enum-decode.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-frame-utilities.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-utils.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\serial-interface-uart.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\serial\command-interpreter2.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\serial\linux-serial.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\zigbee-framework\zigbee-device-common.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\zigbee-framework\zigbee-device-host.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\stack\framework\byte-utilities.c" />
+    <ClCompile Include="..\protocol\zigbee_5.7\stack\framework\event-control.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -144,7 +144,7 @@
       <arg name="discoveryComplete" type="INT8U"/>
       <arg name="extendedDiscoverAttributesInfoRecords" type="ExtendedDiscoverAttributesInfoRecord" array="true"/>
     </command>
-    <attribute side="server" code="0xFFFD" define="CLUSTER_REVISION" type="INT16U" min="0x0001" max="0xFFFE" writable="false" default="0x0001" optional="false" introducedIn="zcl-6.0-15-02017-001">cluster revision</attribute>
+    <attribute side="server" code="0xFFFD" define="CLUSTER_REVISION" type="INT16U" min="0x0001" max="0xFFFE" writable="false" default="0x0001" optional="true" introducedIn="zcl-6.0-15-02017-001">cluster revision</attribute>
     <attribute side="server" code="0xFFFE" define="REPORTING_STATUS" type="INT16U" min="0x00"   max="0xFF"   writable="false" default="0x00"   optional="true"  introducedIn="zcl-6.0-15-02017-001">reporting status</attribute>
   </global>
   <cluster singleton="true">

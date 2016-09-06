@@ -34,6 +34,10 @@
 #define newDeviceEventControl emberAfPluginDeviceTableNewDeviceEventEventControl
 #define COMMAND_DELAY_QS  16
 #define PJOIN_BROADCAST_PERIOD 1
+// With device announce there is only the ZDO sequence number, there is no status code.
+#define DEVICE_ANNOUNCE_NODE_ID_OFFSET 1
+#define DEVICE_ANNOUNCE_EUI64_OFFSET   (DEVICE_ANNOUNCE_NODE_ID_OFFSET + 2)
+#define DEVICE_ANNOUNCE_CAPABILITIES_OFFSET (DEVICE_ANNOUNCE_EUI64_OFFSET + EUI64_SIZE)
 
 static PGM_P PGM statusStrings[] = 
 {
@@ -366,18 +370,21 @@ EmberEventControl newDeviceEventControl;
 enum
 {
   DEVICE_DISCOVERY_STATE_IDLE = 0x00,
-  DEVICE_DISCOVERY_STATE_ENDPOINTS_RETRY = 0x01,
-  DEVICE_DISCOVERY_STATE_ENDPOINTS_WAITING = 0x02,
-  DEVICE_DISCOVERY_STATE_ENDPOINTS_RECEIVED = 0x03,
-  DEVICE_DISCOVERY_STATE_SIMPLE_RETRY = 0x04,
-  DEVICE_DISCOVERY_STATE_SIMPLE_WAITING = 0x05,
-  DEVICE_DISCOVERY_STATE_SIMPLE_RECEIVED = 0x06,
-  DEVICE_DISCOVERY_STATE_ATTRIBUTES_RETRY = 0x07,
-  DEVICE_DISCOVERY_STATE_ATTRIBUTES_WAITING = 0x08,
-  DEVICE_DISCOVERY_STATE_ATTRIBUTES_RECEIVED = 0x09,
-  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_RETRY = 0x0a,
-  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_WAITING = 0x0b,
-  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_ACK_RECEIVED = 0x0c
+  DEVICE_DISCOVERY_STATE_NODE_RETRY = 0x01,
+  DEVICE_DISCOVERY_STATE_NODE_WAITING = 0x02,
+  DEVICE_DISCOVERY_STATE_NODE_RECEIVED = 0x03,
+  DEVICE_DISCOVERY_STATE_ENDPOINTS_RETRY = 0x04,
+  DEVICE_DISCOVERY_STATE_ENDPOINTS_WAITING = 0x05,
+  DEVICE_DISCOVERY_STATE_ENDPOINTS_RECEIVED = 0x06,
+  DEVICE_DISCOVERY_STATE_SIMPLE_RETRY = 0x07,
+  DEVICE_DISCOVERY_STATE_SIMPLE_WAITING = 0x08,
+  DEVICE_DISCOVERY_STATE_SIMPLE_RECEIVED = 0x09,
+  DEVICE_DISCOVERY_STATE_ATTRIBUTES_RETRY = 0x0a,
+  DEVICE_DISCOVERY_STATE_ATTRIBUTES_WAITING = 0x0b,
+  DEVICE_DISCOVERY_STATE_ATTRIBUTES_RECEIVED = 0x0c,
+  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_RETRY = 0x0d,
+  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_WAITING = 0x0e,
+  DEVICE_DISCOVERY_STATE_REPORT_CONFIG_ACK_RECEIVED = 0x0f
 };
 
 // function to determine if the queried node ID is the current nodeId
@@ -524,7 +531,9 @@ void emberAfPluginDeviceTableNewDeviceEventEventHandler(void)
 
   switch (newDeviceEventState) {
     case DEVICE_DISCOVERY_STATE_IDLE:
-      emberEventControlSetDelayQS(newDeviceEventControl, 1);
+		// Request the node descriptor for the new device
+	  emberNodeDescriptorRequest(addressTable[currentDevice].nodeId,EMBER_AF_DEFAULT_APS_OPTIONS);
+      emberEventControlSetDelayQS(newDeviceEventControl, 4);
       newDeviceEventState = DEVICE_DISCOVERY_STATE_ENDPOINTS_RETRY;
       break;
     case DEVICE_DISCOVERY_STATE_ENDPOINTS_RETRY:
@@ -702,14 +711,13 @@ void newDeviceParseEndpointDescriptorResponse(EmberNodeId nodeId,
   emberNewEndpointCallback(p_entry);
 
   index = getAddressIndexFromNodeId(nodeId);
+  currentEndpoint++;
+  if(currentEndpoint == addressTable[index].endpointCount)
+      if (addressTable[index].state < ND_HAVE_EP_DESC) {
 
-  if (addressTable[index].state < ND_HAVE_EP_DESC) {
-
-    addressTable[index].state = ND_HAVE_EP_DESC;
-
-    emberEventControlSetActive(newDeviceEventControl);
-  }
-
+        addressTable[index].state = ND_HAVE_EP_DESC;
+        emberEventControlSetActive(newDeviceEventControl);
+      }
 }
 
 void newDeviceParseActiveEndpointsResponse(EmberNodeId emberNodeId,
@@ -720,21 +728,18 @@ void newDeviceParseActiveEndpointsResponse(EmberNodeId emberNodeId,
   uint16_t index = getAddressIndexFromNodeId(emberNodeId);
   uint16_t i;
 
-  emberSerialPrintf(APP_SERIAL, "ParseActiveEndpoint A\r\n");
-
   if (getCurrentNodeId(emberNodeId)) {
     newDeviceEventState = DEVICE_DISCOVERY_STATE_ENDPOINTS_RECEIVED;
   }
 
-  emberSerialPrintf(APP_SERIAL, "ParseActiveEndpoint B\r\n");
+  emberSerialPrintf(APP_SERIAL, "ParseActiveEndpoint\r\n");
 
   if (index == NULL_NODE_ID) {
     emberSerialPrintf(APP_SERIAL, "Error:  No Valid Address Table Entry\r\n");
     // do IEEE discovery
     return;
   }
-
-  emberSerialPrintf(APP_SERIAL, "%d\r\n", message[4]);
+  emberSerialPrintf(APP_SERIAL, "Active Endpoint Count: %d\r\n", message[4]);
 
   // make sure I have not used the redundant endpoint response
   if (addressTable[index].state < ND_HAVE_ACTIVE) {
@@ -747,9 +752,38 @@ void newDeviceParseActiveEndpointsResponse(EmberNodeId emberNodeId,
       addressTable[index].endpoints[i] = message[5+i];
     }
   }
-
   return;
 
+}
+void newDeviceParseEndDeviceAnnounce(EmberNodeId emberNodeId,
+                                     EmberApsFrame* apsFrame,
+                                     uint8_t* message,
+                                     uint16_t length)
+{
+    EmberEUI64 eui64;
+    emberSerialPrintf(APP_SERIAL, "ParseEndDeviceAnnounce\r\n");
+
+    MEMMOVE(eui64, &(message[DEVICE_ANNOUNCE_EUI64_OFFSET]), EUI64_SIZE);
+
+    uint16_t index = getAddressIndexFromIeee(eui64);
+
+   if (addressTable[index].state < ND_HAVE_ACTIVE) {
+       addressTable[index].capabilities = message[DEVICE_ANNOUNCE_CAPABILITIES_OFFSET];
+	   addressTable[index].nodeId = emberNodeId;
+    }
+}
+void newDeviceParseNodeDescriptorResponse(EmberNodeId emberNodeId,
+                                          EmberApsFrame* apsFrame,
+                                          uint8_t* message,
+                                          uint16_t length)
+{
+    uint16_t index = getAddressIndexFromNodeId(emberNodeId);
+    emberSerialPrintf(APP_SERIAL, "ParseNodeDescriptorResponse\r\n");
+
+	NodeDescriptor *p_node =  (NodeDescriptor*)&(message[4]);
+	if (addressTable[index].state <= ND_JOINED) {
+		addressTable[index].logicalType = p_node->logicalType;
+	}
 }
 
 void newDeviceJoinHandler(EmberNodeId newNodeId,
@@ -759,10 +793,8 @@ void newDeviceJoinHandler(EmberNodeId newNodeId,
 
   uint16_t index = getAddressIndexFromIeee(newNodeEui64);
 
-  emberSerialPrintf(APP_SERIAL, "INDEX 1:  %d 0x%2x\r\n", index, newNodeId);
-
   if (index == NULL_INDEX) {
-    emberSerialPrintf(APP_SERIAL,"new-device:604\r\n");
+    emberSerialPrintf(APP_SERIAL," New Device Index: %d 0x%2x\r\n",index, newNodeId);
 
     index = findFreeAddressTableIndex();
     if (index == NULL_INDEX) {
@@ -777,6 +809,7 @@ void newDeviceJoinHandler(EmberNodeId newNodeId,
 
     haveNewDevice(index);
   } else {
+	emberSerialPrintf(APP_SERIAL, " Device Index:  %d 0x%2x\r\n",index, newNodeId);
     // is this a new node ID?
     if (newNodeId != addressTable[index].nodeId) {
       emberSerialPrintf(APP_SERIAL, 
@@ -823,10 +856,10 @@ void newDeviceLeftHandler(EmberEUI64 newNodeEui64)
 {
   uint16_t index = getAddressIndexFromIeee(newNodeEui64);
 
+  emberAfPluginDeviceTableDeviceLeftCallback(newNodeEui64); 
   if (index != NULL_INDEX)
   {
     deleteAddressTableEntry(index);
-    emberAfPluginDeviceTableDeviceLeftCallback(newNodeEui64); 
     // Save on Node Left
     deviceTableSaveCommand();
   }
@@ -1131,8 +1164,10 @@ void emberAfTrustCenterJoinCallback(EmberNodeId newNodeId,
 
   switch (status) {
   case EMBER_STANDARD_SECURITY_UNSECURED_JOIN:
+    // If a new device did an unsecure join, we need to turn on permit joining, as
+    // there may be more coming
     // broadcast permit joining to new router as it joins.  
-    broadcastPermitJoin(254);
+//    broadcastPermitJoin(40);
     newDeviceJoinHandler(newNodeId, newNodeEui64);
     break;
   case EMBER_DEVICE_LEFT:
@@ -1147,19 +1182,6 @@ void emberAfTrustCenterJoinCallback(EmberNodeId newNodeId,
       newDeviceJoinHandler(newNodeId, newNodeEui64);
     }
     break;
-  }
-
-  // If a new device did an unsecure join, we need to turn on permit joining, as
-  // there may be more coming
-  if (status == EMBER_STANDARD_SECURITY_UNSECURED_JOIN) {
-    // broadcast permit joining to new router as it joins.  
-    broadcastPermitJoin(254);
-  }
-
-  if (status != EMBER_DEVICE_LEFT) {
-    newDeviceJoinHandler(newNodeId, newNodeEui64);
-  } else {
-    newDeviceLeftHandler(newNodeEui64);
   }
 }
 
@@ -1202,7 +1224,6 @@ bool emberAfPreZDOMessageReceivedCallback(EmberNodeId emberNodeId,
                                            apsFrame,
                                            message,
                                            length);
-    return false;
     break;
   case SIMPLE_DESCRIPTOR_RESPONSE:
     emberSerialPrintf(APP_SERIAL,"Simple Descriptor Response\r\n");
@@ -1211,11 +1232,22 @@ bool emberAfPreZDOMessageReceivedCallback(EmberNodeId emberNodeId,
                                              apsFrame,
                                              message,
                                              length);
-    return false;
     break;
   case END_DEVICE_ANNOUNCE:
     emberSerialPrintf(APP_SERIAL,"End Device Announce\r\n");
+    newDeviceParseEndDeviceAnnounce(emberNodeId,
+                                    apsFrame,
+                                    message,
+                                    length);
     break;
+  case NODE_DESCRIPTOR_RESPONSE:
+    emberSerialPrintf(APP_SERIAL,"Node Descriptor Response\r\n");
+	newDeviceParseNodeDescriptorResponse(emberNodeId,
+                                         apsFrame,
+                                         message,
+                                         length);
+	return false;
+	break;
   case PERMIT_JOINING_RESPONSE:
     emberSerialPrintf(APP_SERIAL,"Permit Joining Response: ");
     printBuffer(message, length);
@@ -1241,12 +1273,13 @@ bool emberAfPreZDOMessageReceivedCallback(EmberNodeId emberNodeId,
     break;
   
   }
-
+/*
   emberSerialPrintf(APP_SERIAL,
                     "%2x ",
                     emberNodeId);
 
   printBuffer(message, length);
+  */
 
   return false;
 }
@@ -1296,7 +1329,9 @@ void emberNewEndpointCallback( EndpointDescriptor *p_entry )
 
     if (p_entry->inClustersList[i] == ZCL_IAS_ZONE_CLUSTER_ID) {
       // write IEEE address to CIE address location
-      sendCieAddressWrite(p_entry->nodeId, p_entry->endpoint);
+      //sendCieAddressWrite(p_entry->nodeId, p_entry->endpoint);
+		//uint8_t addrIndex = getAddressIndexFromNodeId(p_entry->nodeId);
+		//checkForIasZoneServer(p_entry->nodeId,addressTable[addrIndex].eui64);
       break;
     }
   }
@@ -1372,6 +1407,8 @@ void deviceTableSaveCommand(void)
   for (i = 0 ; i < ADDRESS_TABLE_SIZE; i++) {
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       fprintf(fp, "%x %x ", addressTable[i].nodeId, addressTable[i].endpointCount);
+      fprintf(fp,"%x ",addressTable[i].logicalType);
+      fprintf(fp,"%x ",addressTable[i].capabilities);
       for (j = 0; j < 8; j++) {
         fprintf(fp, "%x ", addressTable[i].eui64[j]);
       }
@@ -1430,9 +1467,12 @@ void deviceTableLoadCommand(void)
   }
 
   for (i = 0; i < ADDRESS_TABLE_SIZE && feof(fp) == false; i++) {
-    fscanf(fp, "%x %x", &(addressTable[i].nodeId), &data);
+    fscanf(fp, "%x %x ", &(addressTable[i].nodeId), &data);
     addressTable[i].endpointCount = (uint8_t) data;
-
+    fscanf(fp,"%x ",&data);
+    addressTable[i].logicalType = (uint8_t) data;
+    fscanf(fp,"%x ",&data);
+    addressTable[i].capabilities = (uint8_t) data;
     if (addressTable[i].nodeId != NULL_NODE_ID) {
       for (j = 0; j < 8; j++) {
         fscanf(fp, "%x", &data);
@@ -1518,7 +1558,6 @@ static void handleUnknownDevcie(EmberNodeId nodeId)
 static NewDeviceState getCurrentState(EmberNodeId nodeId)
 {
   uint16_t index = getAddressIndexFromNodeId(nodeId);
-  NewDeviceState originalState;
 
   if (index == 0xffff) {
     return ND_UNKNOWN;

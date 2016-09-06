@@ -53,7 +53,10 @@ void ezspTrustCenterJoinHandler(EmberNodeId newNodeId,
 
 #ifndef EZSP_APPLICATION_HAS_ZIGBEE_KEY_ESTABLISHMENT_HANDLER
 void ezspZigbeeKeyEstablishmentHandler(EmberEUI64 partner, EmberKeyStatus status)
-{}
+{
+
+
+}
 #endif
 
 #ifndef EZSP_APPLICATION_HAS_SWITCH_NETWORK_KEY_HANDLER

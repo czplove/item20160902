@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\app">
+      <UniqueIdentifier>{4790220b-54fb-444f-b69e-f24473773949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build">
+      <UniqueIdentifier>{5811b59e-51b5-4788-bbd7-118a0f95d75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\hardware">
+      <UniqueIdentifier>{095bad07-19d4-429b-853f-4b6f2f0e948b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform">
+      <UniqueIdentifier>{b4ecf12e-0888-4b05-a0d0-616627a26fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol">
+      <UniqueIdentifier>{ca264edf-bf4a-43bd-b76c-694af1b7577e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\builder">
+      <UniqueIdentifier>{696befba-77b7-4b4f-8c33-cc51af8f36ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\builder\HaSmartGateway">
+      <UniqueIdentifier>{0565929d-ca0a-46af-8b23-1a506f82cac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\esf_common">
+      <UniqueIdentifier>{2d0f989c-6ff8-4787-853f-7b30bb68a18d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\esf_common\setup">
+      <UniqueIdentifier>{303b4f29-2660-4ff0-8488-c1bb83e703a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\esf_common\template">
+      <UniqueIdentifier>{b6c1daef-aca1-40b9-ba4c-8d3883a6e62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\esf_common\setup\hwConfig">
+      <UniqueIdentifier>{b0f8900f-7ded-4813-91f6-3b39e04dace6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\app\esf_common\template\unix">
+      <UniqueIdentifier>{bf3c89b2-9e66-4d19-896b-be1de080feef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build\external">
+      <UniqueIdentifier>{3ec976dd-0f27-4353-8276-38856b7432f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build\external\inc">
+      <UniqueIdentifier>{f830958e-0ca8-44de-b614-5c0e3b0059d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build\external\lib">
+      <UniqueIdentifier>{2383ff76-74c9-45eb-9ad0-5f55a2f2d981}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build\external\lib\cjson">
+      <UniqueIdentifier>{4f87d8b3-1e35-4eb7-ae5b-040c2da16266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\build\external\lib\paho-mqtt">
+      <UniqueIdentifier>{5fe38a22-7ab6-4b10-a772-ad268b41948f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app">
+      <UniqueIdentifier>{6abdad6f-906f-441b-8e13-f5ede504d7c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\build">
+      <UniqueIdentifier>{ed7baf61-ab1f-42d3-a405-e3cf431c6436}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\stack">
+      <UniqueIdentifier>{829faa3c-fdb7-4609-a1f8-20b528174244}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base">
+      <UniqueIdentifier>{42c5f3df-fe04-41c0-95c8-7509cc0f1a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal">
+      <UniqueIdentifier>{5d6c1799-8cbe-4128-836e-152308cc0385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework">
+      <UniqueIdentifier>{02c6ecfe-2714-4f7a-bed4-2a816d1a8613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\cli">
+      <UniqueIdentifier>{4337a865-054b-4219-b029-9825618ec057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\security">
+      <UniqueIdentifier>{792256a2-fde8-46a4-a953-69a25035dd1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\util">
+      <UniqueIdentifier>{e554362d-ab4d-42c0-a2dd-13413e595b28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\util">
+      <UniqueIdentifier>{ffb0e9ee-19f4-4dc7-8984-2208344844ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\util\common">
+      <UniqueIdentifier>{515aabeb-1219-4e72-bdf8-7459b9e61c71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\util\serial">
+      <UniqueIdentifier>{4c04efc4-df7e-4f66-b257-b6101fe41d18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\util\zigbee-framework">
+      <UniqueIdentifier>{e22933fc-d128-4666-8345-56dc6c95bc59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\stack\framework">
+      <UniqueIdentifier>{2d675bf8-8982-42c8-a269-1d5ff482120a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\micro">
+      <UniqueIdentifier>{bad404a5-a70a-4de7-b9bb-675b3defd527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\micro\generic">
+      <UniqueIdentifier>{d267794a-c16e-411b-afad-e93ea6a933b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\micro\unix">
+      <UniqueIdentifier>{4ea0de93-c77d-48df-961c-f67027428582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\micro\unix\host">
+      <UniqueIdentifier>{85b3856f-5053-4d8a-bbf0-541fa9385bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\micro\unix\compiler">
+      <UniqueIdentifier>{98b0811c-8feb-4a71-9b50-3d3f969c7d36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin">
+      <UniqueIdentifier>{0d906e53-442e-41a0-be12-5e4a04244f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\address-table">
+      <UniqueIdentifier>{82d24e5e-bdd4-44f5-8a16-308c84274760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\color-control">
+      <UniqueIdentifier>{8cd9649a-80a6-4108-ae79-90fb844c9f9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\concentrator">
+      <UniqueIdentifier>{badd628b-1421-4937-bddd-eb3a2ac20a1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\device-table">
+      <UniqueIdentifier>{65a7ae2b-26fb-4fce-8181-924b5926aecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ezmode-commissioning">
+      <UniqueIdentifier>{07c7d37e-7f61-43e2-a324-09a0c3d48213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\form-and-join">
+      <UniqueIdentifier>{b92500ec-f81b-46f9-bc95-a4273bc15175}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\gateway-commands">
+      <UniqueIdentifier>{a9de92fc-b522-4544-929c-f399b18375ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\heartbeat">
+      <UniqueIdentifier>{e48d7e0c-a728-49da-8a95-dc35872d66c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ias-zone-client">
+      <UniqueIdentifier>{639725a7-9870-41b6-b313-f742c2c7e538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\identify">
+      <UniqueIdentifier>{5f5241da-d58d-46e6-a99b-0f7db47afbf5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\identify-feedback">
+      <UniqueIdentifier>{1abd8660-ad9e-4f6b-98e1-84c6f8bf0b67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\level-control">
+      <UniqueIdentifier>{315f37fd-d190-4284-9c99-1d98256e0c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\on-off">
+      <UniqueIdentifier>{dfa61fda-edca-43cf-a6d3-4702ddea1238}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ota-common">
+      <UniqueIdentifier>{41f8d054-09cd-4e16-b07f-d35a8eb2e88d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ota-server">
+      <UniqueIdentifier>{dcf053f4-034e-4a40-b251-6400ce4f2d5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ota-server-policy">
+      <UniqueIdentifier>{cb416098-bc77-4ca0-8ea5-f663583648f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ota-storage-common">
+      <UniqueIdentifier>{ba5ed4f5-5fcf-4933-a6a5-bfecc77ccb0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\ota-storage-posix-filesystem">
+      <UniqueIdentifier>{f7ea9403-c19c-4ad3-a079-68332a84d6e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\poll-control-client">
+      <UniqueIdentifier>{c83d36cd-e4dc-4c6e-9027-56be009a6bd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\rules-engine">
+      <UniqueIdentifier>{532db20f-c1ed-4fbb-8a84-4c6bc4b10b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\simple-main">
+      <UniqueIdentifier>{ac9bcbd9-0c98-40c5-925e-57326afc3424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\simple-metering-client">
+      <UniqueIdentifier>{40ed9e7b-2277-484c-b499-3df4cdd8b662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\stack-diagnostics">
+      <UniqueIdentifier>{fe6ff287-e5fb-4224-a0b3-fc310cbe5d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\test-harness">
+      <UniqueIdentifier>{9a8c4326-4356-4d3d-a64e-804ee1d85ff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\time-server">
+      <UniqueIdentifier>{40884de7-235a-4a3d-80f7-dffa3bacdeca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\traffic-test">
+      <UniqueIdentifier>{5b5eb912-c837-4525-89d6-41e14ec7aa37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\transport-mqtt">
+      <UniqueIdentifier>{a3f82dc4-b5a5-473d-9da7-2dce7b4dfabe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-broadcast">
+      <UniqueIdentifier>{02d47cb3-27a3-4f5c-939d-c57c672f5c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-periodic">
+      <UniqueIdentifier>{4843a8fb-d917-4241-b05c-021b773eeea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-unicast">
+      <UniqueIdentifier>{5145a580-bd36-4191-b578-fbd1776e00c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\ezsp-host">
+      <UniqueIdentifier>{cf9e5828-ca2f-4d94-8535-6ceb3fff228d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\ezsp-host\ash">
+      <UniqueIdentifier>{38d51893-4295-4603-9524-e38f5f03a18a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\util\ezsp">
+      <UniqueIdentifier>{f13ee4aa-4501-49ba-9d7b-eec9440a8bf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin-host">
+      <UniqueIdentifier>{fcc0cca3-a77e-4b81-be0f-3f00524f33d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin-host\file-descriptor-dispatch">
+      <UniqueIdentifier>{5a42c105-c836-476a-a6b9-dcd77460c986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin-host\gateway">
+      <UniqueIdentifier>{561c939f-d7b4-4d38-bb47-c4ac3c3fb0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin-host\link-list">
+      <UniqueIdentifier>{c5bc5a41-95d2-4399-bb52-32d21853f938}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin-host\ncp-configuration">
+      <UniqueIdentifier>{4470a32a-9e8e-4ebc-8c5b-f907e91da35e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\plugin">
+      <UniqueIdentifier>{dc5fd894-04bb-4003-9a21-0ea83addd05e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\platform\base\hal\plugin\serial">
+      <UniqueIdentifier>{cebe21d7-edd0-46ec-9976-4b35c8699ace}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\groups-client">
+      <UniqueIdentifier>{bc57cd10-203a-4520-afc0-bf59a2821821}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\scenes-client">
+      <UniqueIdentifier>{700fcf9a-0fc8-4837-9c9b-ae248457f518}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\xmodem-sender">
+      <UniqueIdentifier>{85bcd2bb-ace9-4815-b3d9-38384b45846e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\counters">
+      <UniqueIdentifier>{34599913-e5dd-4cab-9a08-80c686cbce02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\protocol\app\framework\plugin\network-find">
+      <UniqueIdentifier>{06043d19-9bd1-48b9-b7b5-7a2ea5a847b7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\app\builder\HaSmartGateway\HaSmartGateway.isc">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </None>
+    <None Include="..\app\builder\HaSmartGateway\Makefile">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </None>
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so.1">
+      <Filter>源文件\build\external\lib\paho-mqtt</Filter>
+    </None>
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so">
+      <Filter>源文件\build\external\lib\paho-mqtt</Filter>
+    </None>
+    <None Include="..\build\external\lib\paho-mqtt\libpaho-mqtt3a.so.1.0">
+      <Filter>源文件\build\external\lib\paho-mqtt</Filter>
+    </None>
+    <None Include="..\build\external\lib\cjson\libcjson.so">
+      <Filter>源文件\build\external\lib\cjson</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\app\builder\HaSmartGateway\af-structs.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-id.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-size.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\attribute-type.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\att-storage.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\callback.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\call-command-handler.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\cli.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\client-command-macro.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\cluster-id.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\command-id.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\debug-printing.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\debug-printing-test.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\enums.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway_board.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\HaSmartGateway_endpoint_config.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\app\builder\HaSmartGateway\print-cluster.h">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClInclude>
+    <ClInclude Include="..\build\external\inc\cJSON.h">
+      <Filter>源文件\build\external\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\build\external\inc\MQTTAsync.h">
+      <Filter>源文件\build\external\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\build\external\inc\MQTTClientPersistence.h">
+      <Filter>源文件\build\external\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\platform\base\hal\micro\unix\compiler\gcc.h">
+      <Filter>源文件\platform\base\hal\micro\unix\compiler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database.h">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\app\builder\HaSmartGateway\callback-stub.c">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\builder\HaSmartGateway\call-command-handler.c">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\builder\HaSmartGateway\cli.c">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\builder\HaSmartGateway\HaSmartGateway_callbacks.c">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\app\builder\HaSmartGateway\stack-handler-stub.c">
+      <Filter>源文件\app\builder\HaSmartGateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\core-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\network-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\option-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\plugin-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\security-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\zdo-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\cli\zcl-cli.c">
+      <Filter>源文件\protocol\app\framework\cli</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-node.c">
+      <Filter>源文件\protocol\app\framework\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-security-common.c">
+      <Filter>源文件\protocol\app\framework\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\af-trust-center.c">
+      <Filter>源文件\protocol\app\framework\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\security\crypto-state.c">
+      <Filter>源文件\protocol\app\framework\security</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-event.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-main-common.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\af-main-host.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-size.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-storage.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\attribute-table.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\client-api.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\message.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\multi-network.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\print.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\print-formatter.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\process-cluster-message.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\process-global-message.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\service-discovery-common.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\service-discovery-host.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\time-util.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\util\util.c">
+      <Filter>源文件\protocol\app\framework\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route.c">
+      <Filter>源文件\protocol\app\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route-common.c">
+      <Filter>源文件\protocol\app\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\source-route-host.c">
+      <Filter>源文件\protocol\app\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\library.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\serial\command-interpreter2.c">
+      <Filter>源文件\protocol\app\util\serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\zigbee-framework\zigbee-device-common.c">
+      <Filter>源文件\protocol\app\util\zigbee-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\zigbee-framework\zigbee-device-host.c">
+      <Filter>源文件\protocol\app\util\zigbee-framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\stack\framework\byte-utilities.c">
+      <Filter>源文件\protocol\stack\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\stack\framework\event-control.c">
+      <Filter>源文件\protocol\stack\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\antenna-stub.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\buzzer-stub.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\crc.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\led-stub.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\mem-util.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\random.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\system-timer.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\unix\host\micro.c">
+      <Filter>源文件\platform\base\hal\micro\unix\host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\address-table\address-table.c">
+      <Filter>源文件\protocol\app\framework\plugin\address-table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\address-table\address-table-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\address-table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\color-control\color-control.c">
+      <Filter>源文件\protocol\app\framework\plugin\color-control</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\concentrator\concentrator-support.c">
+      <Filter>源文件\protocol\app\framework\plugin\concentrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\concentrator\concentrator-support-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\concentrator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\common.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\common-onboard.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\form-and-join.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\form-and-join-host-adapter.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\common\print-stack-tables.c">
+      <Filter>源文件\protocol\app\util\common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-table\device-table.c">
+      <Filter>源文件\protocol\app\framework\plugin\device-table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ezmode-commissioning\ez-mode.c">
+      <Filter>源文件\protocol\app\framework\plugin\ezmode-commissioning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ezmode-commissioning\ez-mode-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\ezmode-commissioning</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\form-and-join\form-and-join-afv2.c">
+      <Filter>源文件\protocol\app\framework\plugin\form-and-join</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\gateway-commands\gateway-commands.c">
+      <Filter>源文件\protocol\app\framework\plugin\gateway-commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\heartbeat\heartbeat.c">
+      <Filter>源文件\protocol\app\framework\plugin\heartbeat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ias-zone-client\ias-zone-client.c">
+      <Filter>源文件\protocol\app\framework\plugin\ias-zone-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ias-zone-client\ias-zone-client-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\ias-zone-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify\identify-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\identify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify\identify.c">
+      <Filter>源文件\protocol\app\framework\plugin\identify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\identify-feedback\identify-feedback.c">
+      <Filter>源文件\protocol\app\framework\plugin\identify-feedback</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\level-control\level-control.c">
+      <Filter>源文件\protocol\app\framework\plugin\level-control</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\network-find\network-find.c">
+      <Filter>源文件\protocol\app\framework\plugin\network-find</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-unicast\trust-center-nwk-key-update-unicast.c">
+      <Filter>源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-unicast</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-periodic\trust-center-nwk-key-update-periodic.c">
+      <Filter>源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-periodic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\trust-center-nwk-key-update-broadcast\trust-center-nwk-key-update-broadcast.c">
+      <Filter>源文件\protocol\app\framework\plugin\trust-center-nwk-key-update-broadcast</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\transport-mqtt\transport-mqtt.c">
+      <Filter>源文件\protocol\app\framework\plugin\transport-mqtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\traffic-test\traffic-test.c">
+      <Filter>源文件\protocol\app\framework\plugin\traffic-test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\time-server\time-server.c">
+      <Filter>源文件\protocol\app\framework\plugin\time-server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\test-harness\test-harness.c">
+      <Filter>源文件\protocol\app\framework\plugin\test-harness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\test-harness\test-harness-host.c">
+      <Filter>源文件\protocol\app\framework\plugin\test-harness</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\stack-diagnostics\stack-diagnostics.c">
+      <Filter>源文件\protocol\app\framework\plugin\stack-diagnostics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-metering-client\simple-metering-client.c">
+      <Filter>源文件\protocol\app\framework\plugin\simple-metering-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-metering-client\simple-metering-client-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\simple-metering-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\simple-main\simple-main.c">
+      <Filter>源文件\protocol\app\framework\plugin\simple-main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine.c">
+      <Filter>源文件\protocol\app\framework\plugin\rules-engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine-actions.c">
+      <Filter>源文件\protocol\app\framework\plugin\rules-engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\rules-engine\rules-engine-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\rules-engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\poll-control-client\poll-control-client.c">
+      <Filter>源文件\protocol\app\framework\plugin\poll-control-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\poll-control-client\poll-control-client-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\poll-control-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-posix-filesystem\ota-storage-linux.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-storage-posix-filesystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-common\ota-storage-common.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-storage-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-storage-common\ota-storage-common-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-storage-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server-policy\ota-server-policy.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-server-policy</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-server\ota-server-page-request.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\ota-common\ota-common.c">
+      <Filter>源文件\protocol\app\framework\plugin\ota-common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\on-off\on-off.c">
+      <Filter>源文件\protocol\app\framework\plugin\on-off</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-io.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-io-sim.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-queues.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ezsp-host-ui.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ash\ash-host.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host\ash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\ezsp-host\ash\ash-host-ui.c">
+      <Filter>源文件\protocol\app\framework\ezsp-host\ash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-callbacks.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-enum-decode.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-frame-utilities.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\ezsp-utils.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\ezsp\serial-interface-uart.c">
+      <Filter>源文件\protocol\app\framework\util\ezsp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\micro\generic\ash-common.c">
+      <Filter>源文件\platform\base\hal\micro\generic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\platform\base\hal\plugin\serial\ember-printf-convert.c">
+      <Filter>源文件\platform\base\hal\plugin\serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\util\serial\linux-serial.c">
+      <Filter>源文件\protocol\app\util\serial</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\file-descriptor-dispatch\file-descriptor-dispatch.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\file-descriptor-dispatch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\backchannel-support.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\gateway-support.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\gateway\gateway-support-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\gateway</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\link-list\link-list.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\link-list</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin-host\ncp-configuration\ncp-configuration.c">
+      <Filter>源文件\protocol\app\framework\plugin-host\ncp-configuration</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\groups-client\groups-client.c">
+      <Filter>源文件\protocol\app\framework\plugin\groups-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\scenes-client\scenes-client.c">
+      <Filter>源文件\protocol\app\framework\plugin\scenes-client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\xmodem-sender\xmodem-sender.c">
+      <Filter>源文件\protocol\app\framework\plugin\xmodem-sender</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\counters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-host.c">
+      <Filter>源文件\protocol\app\framework\plugin\counters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\counters\counters-ota-host.c">
+      <Filter>源文件\protocol\app\framework\plugin\counters</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database.c">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\protocol\zigbee_5.7\app\framework\plugin\device-database\device-database-cli.c">
+      <Filter>源文件\protocol\app\framework\plugin\device-database</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

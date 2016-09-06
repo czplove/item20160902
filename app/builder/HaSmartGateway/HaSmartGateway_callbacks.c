@@ -1,4 +1,4 @@
-// Copyright 2016 Silicon Laboratories, Inc.                                *80*
+﻿// Copyright 2016 Silicon Laboratories, Inc.                                *80*
 
 // This callback file is created for your convenience. You may add application code
 // to this file. If you regenerate this file over a previous version, the previous
@@ -32,7 +32,7 @@
 #define PANID_STRING_LENGTH 5 // 4 chars + NULL
 #define CLUSTERID_STRING_LENGTH 5 // 4 chars + NULL
 #define GATEWAY_TOPIC_PREFIX_LENGTH 21 // 21 chars `gw/xxxxxxxxxxxxxxxx/` + NULL
-#define HEARTBEAT_RATE_MS 5000 // milliseconds
+#define HEARTBEAT_RATE_MS 60000 // milliseconds
 #define PROCESS_COMMAND_RATE_MS 20 // milliseconds
 #define BLOCK_SENT_THROTTLE_VALUE 25 // blocks to receive before sending updates
 
@@ -59,6 +59,7 @@
 
 #define IAS_ZONE_CONTACT_STATE_BIT 0
 #define IAS_ZONE_TAMPER_STATE_BIT  2
+#define IAS_ZONE_BATTERY_STATE_BIT 3
 
 #define READ_REPORT_CONFIG_STATUS       0
 #define READ_REPORT_CONFIG_DIRECTION    1
@@ -142,7 +143,7 @@ static uint8_t getAdjustedSequenceNumber();
 static void printAttributeBuffer(uint16_t clusterId, uint8_t* buffer, uint16_t bufLen);
 
 // MQTT API publishing helpers
-static char* allocateAndFormMqttGatewayTopic(char* channel);
+char* allocateAndFormMqttGatewayTopic(char* channel);
 static void publishMqttHeartbeat(void);
 static void publishMqttRules(void);
 static void publishMqttGatewayState(void);
@@ -161,6 +162,11 @@ static void publishMqttDeviceLeft(EmberEUI64 eui64);
 static void publishMqttTrafficTestResult(uint16_t numDefaultResponses,
                                          uint16_t numTxSendErrors,
                                          uint16_t numTotalMessages);
+static void publishMqttNodeHeartbeat(EmberNodeId nodeId,
+                                 EmberEUI64 eui64,
+                                 EmberAfClusterId clusterId,
+                                 uint8_t* buffer,
+                                 uint16_t bufLen);
 static void publishMqttAttribute(EmberNodeId nodeId,
                                  EmberEUI64 eui64,
                                  EmberAfClusterId clusterId,
@@ -209,7 +215,7 @@ static char* createOneByteHexString(uint8_t value)
 {
   char* outputString = (char *) malloc(ONE_BYTE_HEX_STRING_SIZE);
   
-  sprintf(outputString, "0x%02X", value);
+  sprintf(outputString, "%02X", value);
   
   return outputString;
 }
@@ -218,7 +224,7 @@ static char* createTwoByteHexString(uint16_t value)
 {
   char* outputString = (char *) malloc(TWO_BYTE_HEX_STRING_SIZE);
   
-  sprintf(outputString, "0x%04X", value);
+  sprintf(outputString, "%04X", value);
   
   return outputString;
 }
@@ -244,11 +250,52 @@ static char* createTwoByteHexString(uint16_t value)
  */
 void emberAfMainInitCallback(void)
 {
+  EmberNodeType nodeTypeResult = 0xFF;
+  EmberNetworkParameters networkParams;
+  cJSON* gatewayJson;
+  char* gatewayJsonString;
+  char panIdString[7] = {0};
+  char nodeIdString[7] = {0};
+  char xpanString[17] = {0};
   emberSerialPrintfLine(APP_SERIAL, "HA Gateweay Init");
 
-  // Save our EUI information
+  // Save our EUI and network information
   emberAfGetEui64(gatewayEui64);
+  emberAfGetNetworkParameters(&nodeTypeResult, &networkParams);
   eui64ToString(gatewayEui64, gatewayEui64String);
+  eui64ToString(networkParams.extendedPanId, xpanString);
+  nodeIdToString(emberAfGetNodeId(),nodeIdString);
+  nodeIdToString(networkParams.panId,panIdString);
+
+
+  gatewayJson = cJSON_CreateObject();
+  cJSON_AddStringToObject(gatewayJson, "gatewayEui",gatewayEui64String);
+  cJSON_AddStringToObject(gatewayJson, "nodeID",nodeIdString);
+  cJSON_AddStringToObject(gatewayJson, "panID",panIdString);
+  cJSON_AddIntegerToObject(gatewayJson, "channel",networkParams.radioChannel);
+  cJSON_AddIntegerToObject(gatewayJson, "radioTxPower",networkParams.radioTxPower);
+  cJSON_AddStringToObject(gatewayJson, "xpan",xpanString);
+  cJSON_AddIntegerToObject(gatewayJson, "nodeType",nodeTypeResult);
+  cJSON_AddIntegerToObject(gatewayJson, "Security level",emberAfGetSecurityLevel());
+  cJSON_AddIntegerToObject(gatewayJson, "network state",emberNetworkState());
+  gatewayJsonString = cJSON_PrintUnformatted(gatewayJson);
+#ifndef EMBEDDED_GATEWAY
+  FILE *fp;
+  uint16_t i;
+#if defined(__mips__)
+  // save EUI address into file
+  fp = fopen("/etc/env/gateway.json", "w");
+  emberAfAppPrintln("rite the gateway basic infomation to the path \"/etc/env/gateway.json\"");
+#elif defined(__x86_64__) || defined(__i386__)
+  fp = fopen("/etc/gateway.json", "w");
+  emberAfAppPrintln("write the gateway basic infomation to the path \"/etc/gateway.json\"");
+#endif
+        fprintf(fp, "%s ",gatewayJsonString);
+  // write something to mark the end
+  fclose(fp);
+ #endif
+  free(gatewayJsonString);
+  cJSON_Delete(gatewayJson);
 
   strcat(gatewayTopicUriPrefix, "gw/");
   strcat(gatewayTopicUriPrefix, gatewayEui64String);
@@ -272,7 +319,6 @@ void emberAfMainInitCallback(void)
   linkListPushBack(topicHandlerList,
                    (void*)buildTopicHandler("updatesettings",
                                             handleUpdateSettingsMessage));
-  emberEventControlSetActive(stateUpdateEventControl);
 }
 
 MqttTopicHandlerMap* buildTopicHandler(char* topicString,
@@ -704,7 +750,7 @@ void emberAfPluginRulesEnginePreCommandCallback(EmberAfClusterCommand* cmd) {
 };
 
 // MQTT Helper Functions
-static char* allocateAndFormMqttGatewayTopic(char* topic)
+ char* allocateAndFormMqttGatewayTopic(char* topic)
 {
   // Add our string sizes + one NULL char
   uint16_t stringSize = strlen(gatewayTopicUriPrefix) + strlen(topic) + 1;
@@ -728,7 +774,8 @@ static void publishMqttHeartbeat(void)
   sprintf(panIdString, "%04X", parameters.panId);
 
   heartbeatJson = cJSON_CreateObject();
-
+    cJSON_AddIntegerToObject(heartbeatJson, "logicalType", nodeType-1);
+	cJSON_AddStringToObject(heartbeatJson, "gwEui", gatewayEui64String);
   if (!emberAfNcpNeedsReset() && status == EMBER_SUCCESS) {
     cJSON_AddStringToObject(heartbeatJson, "networkState", "up");
     cJSON_AddStringToObject(heartbeatJson, "networkPanId", panIdString);
@@ -793,15 +840,17 @@ static cJSON* buildNodeJson(EmberNodeId nodeId)
   nodeJson = cJSON_CreateObject();
   cJSON_AddStringToObject(nodeJson, "nodeEui", euiString);
   cJSON_AddStringToObject(nodeJson, "nodeId", nodeIdString);
+  cJSON_AddIntegerToObject(nodeJson, "nodeCapabilities", addressTable[addressTableIndex].capabilities);
+  cJSON_AddIntegerToObject(nodeJson, "logicalType", addressTable[addressTableIndex].logicalType);
   cJSON_AddIntegerToObject(nodeJson, "addressTableIndex", addressTableIndex);
   cJSON_AddIntegerToObject(nodeJson, "deviceState", addressTable[addressTableIndex].state);
-
+  nodeJsonEndpointArray = cJSON_CreateArray();
+  cJSON_AddItemToObject(nodeJson, "endpoints", nodeJsonEndpointArray);
   for (epIndex = 0; epIndex < addressTable[addressTableIndex].endpointCount; epIndex++) {
     endpointNum = getEndpointFromNodeIdAndEndpoint(addressTable[addressTableIndex].nodeId,
                                                    addressTable[addressTableIndex].endpoints[epIndex]);
     if (endpointNum != NULL_INDEX) {
-      nodeJsonEndpointArray = cJSON_CreateArray();
-      cJSON_AddItemToObject(nodeJson, "endpoints", nodeJsonEndpointArray);
+
       endpointJson = cJSON_CreateObject();
       cJSON_AddIntegerToObject(endpointJson, 
                               "endpointNumber", 
@@ -921,11 +970,18 @@ static void publishMqttContactSense(EmberNodeId nodeId,
   char nodeIdString[NODEID_STRING_LENGTH] = {0};
   cJSON* contactSenseJson;
   char* contactSenseJsonString;
-
+  char* dataString;
   eui64ToString(eui64, euiString);
   nodeIdToString(nodeId, nodeIdString);
   
   contactSenseJson = cJSON_CreateObject();
+  dataString = createTwoByteHexString(ZCL_IAS_ZONE_CLUSTER_ID);
+  cJSON_AddStringToObject(contactSenseJson, "clusterId", dataString);
+    free(dataString);
+  dataString = 
+    createOneByteHexString(ZCL_ZONE_STATUS_CHANGE_NOTIFICATION_COMMAND_ID);
+  cJSON_AddStringToObject(contactSenseJson, "commandId", dataString);
+  free(dataString);
   cJSON_AddIntegerToObject(contactSenseJson, "contactState", contactState);
   cJSON_AddIntegerToObject(contactSenseJson, "tamperState", tamperState);
   cJSON_AddStringToObject(contactSenseJson, "nodeId", nodeIdString);
@@ -954,7 +1010,7 @@ static void publishMqttZclContactSense(EmberNodeId nodeId,
   
   contactSenseJson = cJSON_CreateObject();
   dataString = createTwoByteHexString(ZCL_IAS_ZONE_CLUSTER_ID);
-  cJSON_AddStringToObject(contactSenseJson, "clusterId", "0500");
+  cJSON_AddStringToObject(contactSenseJson, "clusterId", dataString);
   free(dataString);
   dataString = 
     createOneByteHexString(ZCL_ZONE_STATUS_CHANGE_NOTIFICATION_COMMAND_ID);
@@ -1074,6 +1130,30 @@ static void publishMqttTrafficTestResult(uint16_t numDefaultResponses,
   free(topic);
 }
 
+static void publishMqttNodeHeartbeat(EmberNodeId nodeId,
+                                 EmberEUI64 eui64,
+                                 EmberAfClusterId clusterId,
+                                 uint8_t* buffer,
+                                 uint16_t bufLen) 
+{ 
+  char* topic = allocateAndFormMqttGatewayTopic("heartbeat");
+  uint16_t bufferIndex;
+  char euiString[EUI64_STRING_LENGTH] = {0};
+  cJSON* heartBeatJson;
+  char* heartBeatJsonString;
+
+  int8_t rssi = buffer[ATTRIBUTE_BUFFER_REPORT_DATA_START];
+  eui64ToString(eui64, euiString);
+  heartBeatJson = cJSON_CreateObject();
+  uint16_t addressTableIndex = getAddressIndexFromIeee(eui64);
+  cJSON_AddIntegerToObject(heartBeatJson, "logicalType",addressTable[addressTableIndex].logicalType);
+  cJSON_AddStringToObject(heartBeatJson, "nodeEui", euiString);
+  heartBeatJsonString = cJSON_PrintUnformatted(heartBeatJson);
+  emberAfPluginTransportMqttPublish(topic, heartBeatJsonString);
+  free(heartBeatJsonString);
+  cJSON_Delete(heartBeatJson);
+  free(topic);
+}
 static void publishMqttAttribute(EmberNodeId nodeId,
                                  EmberEUI64 eui64,
                                  EmberAfClusterId clusterId,
@@ -1081,8 +1161,6 @@ static void publishMqttAttribute(EmberNodeId nodeId,
                                  uint16_t bufLen) 
 { 
   char* topic = allocateAndFormMqttGatewayTopic("attributeupdate");
-  char* topicZcl = 
-          allocateAndFormMqttGatewayTopic(ZCL_RESPONSE_TOPIC);
   uint16_t bufferIndex;
   char euiString[EUI64_STRING_LENGTH] = {0};
   char nodeIdString[NODEID_STRING_LENGTH] = {0};
@@ -1102,7 +1180,7 @@ static void publishMqttAttribute(EmberNodeId nodeId,
        bufferIndex++) {
     sprintf(&bufferString[2 * (bufferIndex - ATTRIBUTE_BUFFER_DATA_START)],
             "%02X",
-            buffer[bufferIndex]);
+            buffer[bufLen+ATTRIBUTE_BUFFER_DATA_START-bufferIndex-1]);
   }
 
   eui64ToString(eui64, euiString);
@@ -1118,19 +1196,17 @@ static void publishMqttAttribute(EmberNodeId nodeId,
   globalReadJson = cJSON_CreateObject();
   cJSON_AddStringToObject(globalReadJson, "clusterId", clusterIdString);
   cJSON_AddStringToObject(globalReadJson, "attributeId", attribString);
-  cJSON_AddStringToObject(globalReadJson, "attributeBuffer", bufferString);
   cJSON_AddStringToObject(globalReadJson, "attributeDataType", dataTypeString);
+  cJSON_AddStringToObject(globalReadJson, "attributeBuffer", bufferString);
+  cJSON_AddStringToObject(globalReadJson, "returnStatus", statusString);
   cJSON_AddStringToObject(globalReadJson, "nodeId", nodeIdString);
   cJSON_AddStringToObject(globalReadJson, "nodeEui", euiString);
-  cJSON_AddStringToObject(globalReadJson, "returnStatus", statusString);
   globalReadJsonString = cJSON_PrintUnformatted(globalReadJson);
   emberAfPluginTransportMqttPublish(topic, globalReadJsonString);
-  emberAfPluginTransportMqttPublish(topicZcl, globalReadJsonString);
   free(globalReadJsonString);
   free(bufferString);
   cJSON_Delete(globalReadJson);
   free(topic);
-  free(topicZcl);
 }
 
 static void publishMqttAttributeReport(EmberNodeId nodeId,
@@ -1140,8 +1216,6 @@ static void publishMqttAttributeReport(EmberNodeId nodeId,
                                  uint16_t bufLen) 
 { 
   char* topic = allocateAndFormMqttGatewayTopic("attributeupdate");
-  char* topicZcl = 
-          allocateAndFormMqttGatewayTopic(ZCL_RESPONSE_TOPIC);
   uint16_t bufferIndex;
   char euiString[EUI64_STRING_LENGTH] = {0};
   char nodeIdString[NODEID_STRING_LENGTH] = {0};
@@ -1160,7 +1234,7 @@ static void publishMqttAttributeReport(EmberNodeId nodeId,
        bufferIndex++) {
     sprintf(&bufferString[2 * (bufferIndex - ATTRIBUTE_BUFFER_REPORT_DATA_START)],
             "%02X",
-            buffer[bufferIndex]);
+            buffer[bufLen+ATTRIBUTE_BUFFER_DATA_START-bufferIndex-1]);
   }
 
   eui64ToString(eui64, euiString);
@@ -1175,13 +1249,13 @@ static void publishMqttAttributeReport(EmberNodeId nodeId,
   globalReadJson = cJSON_CreateObject();
   cJSON_AddStringToObject(globalReadJson, "clusterId", clusterIdString);
   cJSON_AddStringToObject(globalReadJson, "attributeId", attribString);
-  cJSON_AddStringToObject(globalReadJson, "attributeBuffer", bufferString);
   cJSON_AddStringToObject(globalReadJson, "attributeDataType", dataTypeString);
+  cJSON_AddStringToObject(globalReadJson, "attributeBuffer", bufferString);
+  cJSON_AddStringToObject(globalReadJson, "returnStatus", "null");
   cJSON_AddStringToObject(globalReadJson, "nodeId", nodeIdString);
   cJSON_AddStringToObject(globalReadJson, "nodeEui", euiString);
   globalReadJsonString = cJSON_PrintUnformatted(globalReadJson);
   emberAfPluginTransportMqttPublish(topic, globalReadJsonString);
-  emberAfPluginTransportMqttPublish(topicZcl, globalReadJsonString);
   free(globalReadJsonString);
   free(bufferString);
   cJSON_Delete(globalReadJson);
@@ -1261,8 +1335,8 @@ static void publishMqttTrafficReportEvent(char* messageType,
   char timeString[20] = {0}; // 20 character maximum for in64u, including null
   
   sprintf(timeString, "%llu", timeMS);
-
   trafficReportJson = cJSON_CreateObject();
+  cJSON_AddStringToObject(trafficReportJson, "currentTimeMs", timeString);
   cJSON_AddStringToObject(trafficReportJson, "messageType", messageType);
   if (status) {
     cJSON_AddIntegerToObject(trafficReportJson, "returnStatus", *status);
@@ -1276,7 +1350,6 @@ static void publishMqttTrafficReportEvent(char* messageType,
   if (zclSequenceNumber) {
     cJSON_AddIntegerToObject(trafficReportJson, "sequenceNumber", *zclSequenceNumber);
   }
-  cJSON_AddStringToObject(trafficReportJson, "currentTimeMs", timeString);
   trafficReportJsonString = cJSON_PrintUnformatted(trafficReportJson);
   emberAfPluginTransportMqttPublish(topic, trafficReportJsonString);
   free(trafficReportJsonString);
@@ -1378,7 +1451,6 @@ void emberAfPluginIASZoneClientContactCallback(uint8_t zoneStatus)
                         >> IAS_ZONE_TAMPER_STATE_BIT;
   getIeeeFromNodeId(nodeId, nodeEui64);
   publishMqttContactSense(nodeId, nodeEui64, contactState, tamperState);
-  publishMqttZclContactSense(nodeId, nodeEui64, contactState, tamperState);
 }
 
 // OTA Callbacks
@@ -1596,11 +1668,22 @@ bool emberAfReportAttributesCallback(EmberAfClusterId clusterId,
           bufferTemp[ATTRIBUTE_BUFFER_REPORT_DATA_TYPE]);
 
     emberAfRulesEngineReportAttributeRespones(clusterId, bufferTemp, bufferSizeI);
-    publishMqttAttributeReport(nodeId,
+    if(clusterId == ZCL_DIAGNOSTICS_CLUSTER_ID)
+    {
+        publishMqttNodeHeartbeat(nodeId,
+                                 nodeEui64,
+                                 clusterId,
+                                 bufferTemp,
+                                 bufferSizeI);
+    }
+    else
+    {
+        publishMqttAttributeReport(nodeId,
                                nodeEui64,
                                clusterId,
                                bufferTemp,
                                bufferSizeI);
+    }
     free(bufferTemp);
   }
 
@@ -1775,7 +1858,7 @@ void processCommandEventFunction(void)
     return;
   }
 
-  gatewayCommand = commandListItem->content;
+  gatewayCommand = (GatewayCommand*)(commandListItem->content);
   assert(gatewayCommand != NULL);
 
   // CLI command processing
@@ -2269,7 +2352,7 @@ void emberAfPluginRulesEngineRulesPreCommandReceivedCallback(
   cJSON_AddStringToObject(cmdResponseJson, "nodeId", tempString);
   free(tempString);
   
-  tempString = malloc(EUI64_STRING_LENGTH);
+  tempString = (char* )malloc(EUI64_STRING_LENGTH);
   eui64ToString(nodeEui64, tempString);
   cJSON_AddStringToObject(cmdResponseJson, "nodeEui", tempString);
   free(tempString);
@@ -2280,4 +2363,3 @@ void emberAfPluginRulesEngineRulesPreCommandReceivedCallback(
   cJSON_Delete(cmdResponseJson);
   free(topic); 
 }
-

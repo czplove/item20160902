@@ -805,6 +805,20 @@ bool emberAfKeyEstablishmentCallback(EmberAfKeyEstablishmentNotifyMessage status
   return true;
 }
 
+/** @brief On/off Cluster Level Control Effect
+ *
+ * This is called by the framework when the on/off cluster initiates a command
+ * that must effect a level control change. The implementation assumes that the
+ * client will handle any effect on the On/Off Cluster.
+ *
+ * @param endpoint   Ver.: always
+ * @param newValue   Ver.: always
+ */
+void emberAfOnOffClusterLevelControlEffectCallback(uint8_t endpoint,
+                                                   bool newValue)
+{
+}
+
 /** @brief Main Tick
  *
  * Whenever main application tick is called, this callback will be called at the
@@ -1230,21 +1244,6 @@ bool emberAfPerformingKeyEstablishmentCallback(void)
 }
 
 
-/** @brief Is Color Supported
- *
- * This function will be called to determine whether a color is supported by a
- * device. The color will be specified by hue and saturation.
- *
- * @param hue   Ver.: always
- * @param saturation   Ver.: always
- */
-bool emberAfPluginColorControlIsColorSupportedCallback(uint8_t hue,
-                                                       uint8_t saturation)
-{
-  return true;
-}
-
-
 /** @brief Broadcast Sent
  *
  * This function is called when a new MTORR broadcast has been successfully
@@ -1252,6 +1251,17 @@ bool emberAfPluginColorControlIsColorSupportedCallback(uint8_t hue,
  *
  */
 void emberAfPluginConcentratorBroadcastSentCallback(void)
+{
+}
+
+
+/** @brief Rollover
+ *
+ * This function is called every time a counter exceeds its threshold.
+ *
+ * @param type The counter that rolled over Ver.: always
+ */
+void emberAfPluginCountersRolloverCallback(EmberCounterType type)
 {
 }
 
@@ -1651,6 +1661,22 @@ void emberAfSetShortPollIntervalQsCallback(uint16_t shortPollIntervalQs)
  */
 void emberAfSetTimeCallback(uint32_t utcTime)
 {
+}
+
+/** @brief On/off Cluster Set Value
+ *
+ * This function is called when the on/off value needs to be set, either through
+ * normal channels or as a result of a level change.
+ *
+ * @param endpoint   Ver.: always
+ * @param command   Ver.: always
+ * @param initiatedByLevelChange   Ver.: always
+ */
+EmberAfStatus emberAfOnOffClusterSetValueCallback(uint8_t endpoint,
+                                                  uint8_t command,
+                                                  bool initiatedByLevelChange)
+{
+  return EMBER_ZCL_STATUS_UNSUP_CLUSTER_COMMAND;
 }
 
 /** @brief Set Wake Timeout Bitmask
