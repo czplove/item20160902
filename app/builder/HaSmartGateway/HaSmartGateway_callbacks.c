@@ -1234,7 +1234,7 @@ static void publishMqttAttributeReport(EmberNodeId nodeId,
        bufferIndex++) {
     sprintf(&bufferString[2 * (bufferIndex - ATTRIBUTE_BUFFER_REPORT_DATA_START)],
             "%02X",
-            buffer[bufLen+ATTRIBUTE_BUFFER_DATA_START-bufferIndex-1]);
+            buffer[bufLen+ATTRIBUTE_BUFFER_REPORT_DATA_START-bufferIndex-1]);
   }
 
   eui64ToString(eui64, euiString);
