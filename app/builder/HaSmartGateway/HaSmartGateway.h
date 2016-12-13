@@ -360,7 +360,7 @@
 // Use this macro to check if Gateway MQTT Transport plugin is included
 #define EMBER_AF_PLUGIN_TRANSPORT_MQTT
 // User options for plugin Gateway MQTT Transport
-#define EMBER_AF_PLUGIN_TRANSPORT_MQTT_BROKER_ADDRESS "tcp://localhost:1883"
+#define EMBER_AF_PLUGIN_TRANSPORT_MQTT_BROKER_ADDRESS "tcp://localhost:1883"	//-在本地搭建一个服务器
 #define EMBER_AF_PLUGIN_TRANSPORT_MQTT_BROKER_ADDRESS_LENGTH (20)
 #define EMBER_AF_PLUGIN_TRANSPORT_MQTT_QOS 2
 #define EMBER_AF_PLUGIN_TRANSPORT_MQTT_CLIENT_ID_PREFIX "gw"

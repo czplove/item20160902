@@ -37,7 +37,7 @@ static MQTTAsync_messageArrived mqttMessageArrivedCallback;
 // Event controls
 EmberEventControl emberAfPluginTransportMqttBrokerReconnectEventControl;
 
-void emberAfPluginTransportMqttInitCallback()
+void emberAfPluginTransportMqttInitCallback()	//-初始化MQTT客户端
 {  
   emberSerialPrintfLine(APP_SERIAL, "MQTT Client Init");
   static EmberEUI64 eui64;
@@ -60,7 +60,7 @@ void emberAfPluginTransportMqttInitCallback()
   emberSerialPrintfLine(APP_SERIAL,
                         "MQTT Client ID = %s",
                         mqttClientIdString);
-
+  //-客户端ID号是通过mac地址保证唯一的
   MQTTAsync_create(&mqttClient,
                    EMBER_AF_PLUGIN_TRANSPORT_MQTT_BROKER_ADDRESS,
                    mqttClientIdString,

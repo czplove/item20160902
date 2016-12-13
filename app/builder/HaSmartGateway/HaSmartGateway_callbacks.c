@@ -1740,7 +1740,7 @@ void emberAfPluginTransportMqttConnectedCallback(void)
     currentElement = linkListNextElement(topicHandlerList, &currentElement);
     if (currentElement != NULL) {
       topicHandlerMap = (MqttTopicHandlerMap*)currentElement->content;
-      emberAfPluginTransportMqttSubscribe(topicHandlerMap->topic);
+      emberAfPluginTransportMqttSubscribe(topicHandlerMap->topic);	//-订阅需要的主题
     }
   } while (currentElement != NULL);
 
